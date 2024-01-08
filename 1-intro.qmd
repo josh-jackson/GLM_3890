@@ -1,0 +1,109 @@
+---
+title: What are models? 
+format: revealjs
+editor: visual
+execute:
+  echo: true
+html:
+  code-fold: true
+  code-summary: Show the code
+---
+
+## GLM
+
+- General(ized) Linear Model
+
+- A workhorse that is responsible for >99% of statistical tests in psychology, as well as the building block of many machine learning models
+
+## What do we mean by General(ized)?
+
+- It is *general* in that it refers to a broad set of similar models that can applied to almost any context
+
+
+## What do we mean by linear?
+
+- We try to understand our dependent variable (DV) via a linear combination predictor variables. 
+
+- A linear combination a  way of combining things (variables) using scalar multiplication and addition
+
+
+## What is a model?
+
+
+
+## What is a model?
+
+- a representation of the world
+- a **statistical** model uses math to make predictions about the world
+
+
+--------
+
+**YOU DEFINE THE MODEL**
+
+
+## Middle School Math
+
+$$ y = mx + b $$
+- what is $y$? 
+
+- what is $m$? 
+
+- what is $x$? 
+
+- what is $b$? 
+
+
+## Let's rewrite this
+
+$$y = b_0 + b_{1}X$$ 
+
+- what is $y$?
+
+- what is $b_0$?
+
+- what is $b_1$?
+
+- what is $X$?
+
+
+
+
+## Are models always right?
+
+
+
+## MODELS ARE FLAWED
+
+- How do we compensate?
+
+
+## MODELS ARE FLAWED
+
+- How do we compensate?
+
+$y = b_0 + b_{1}X + e$
+
+
+## Models
+
+- What are the goals of modeling?
+- What do you need in order to develop a model?
+
+
+
+## How do we know if a model is good? 
+
+- What makes it good?
+
+
+
+## How will we use models?
+
+- This semester, we will mainly focus on classic statistical tests
+
+- Every single one of these is a model
+
+- We will also focus on developing your intuition 
+
+- When you face new models, come back to these basics

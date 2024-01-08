@@ -1,0 +1,121 @@
+[
+  {
+    "objectID": "1-intro.html",
+    "href": "1-intro.html",
+    "title": "Untitled",
+    "section": "",
+    "text": "General(ized) Linear Model\nA workhorse that is responsible for &gt;99% of statistical tests in psychology, as well as the building block of many machine learning models"
+  },
+  {
+    "objectID": "1-intro.html#glm",
+    "href": "1-intro.html#glm",
+    "title": "What are models?",
+    "section": "GLM",
+    "text": "GLM\n\nGeneral(ized) Linear Model\nA workhorse that is responsible for &gt;99% of statistical tests in psychology, as well as the building block of many machine learning models"
+  },
+  {
+    "objectID": "1-intro.html#what-do-we-mean-by-generalized",
+    "href": "1-intro.html#what-do-we-mean-by-generalized",
+    "title": "What are models?",
+    "section": "What do we mean by General(ized)?",
+    "text": "What do we mean by General(ized)?\n\nIt is general in that it refers to a broad set of similar models that can applied to almost any context"
+  },
+  {
+    "objectID": "1-intro.html#what-do-we-mean-by-linear",
+    "href": "1-intro.html#what-do-we-mean-by-linear",
+    "title": "What are models?",
+    "section": "What do we mean by linear?",
+    "text": "What do we mean by linear?\n\nWe try to understand our dependent variable (DV) via a linear combination predictor variables.\nA linear combination a way of combining things (variables) using scalar multiplication and addition"
+  },
+  {
+    "objectID": "1-intro.html#what-is-a-model",
+    "href": "1-intro.html#what-is-a-model",
+    "title": "What are models?",
+    "section": "What is a model?",
+    "text": "What is a model?"
+  },
+  {
+    "objectID": "1-intro.html#what-is-a-model-1",
+    "href": "1-intro.html#what-is-a-model-1",
+    "title": "What are models?",
+    "section": "What is a model?",
+    "text": "What is a model?\n\na representation of the world\na statistical model uses math to make predictions about the world"
+  },
+  {
+    "objectID": "1-intro.html#middle-school-math",
+    "href": "1-intro.html#middle-school-math",
+    "title": "What are models?",
+    "section": "Middle School Math",
+    "text": "Middle School Math\n\\[ y = mx + b \\] - what is \\(y\\)?\n\nwhat is \\(m\\)?\nwhat is \\(x\\)?\nwhat is \\(b\\)?"
+  },
+  {
+    "objectID": "1-intro.html#lets-rewrite-this",
+    "href": "1-intro.html#lets-rewrite-this",
+    "title": "What are models?",
+    "section": "Let’s rewrite this",
+    "text": "Let’s rewrite this\n\\[y = b_0 + b_{1}X\\]\n\nwhat is \\(y\\)?\nwhat is \\(b_0\\)?\nwhat is \\(b_1\\)?\nwhat is \\(X\\)?"
+  },
+  {
+    "objectID": "1-intro.html#are-models-always-right",
+    "href": "1-intro.html#are-models-always-right",
+    "title": "What are models?",
+    "section": "Are models always right?",
+    "text": "Are models always right?"
+  },
+  {
+    "objectID": "1-intro.html#models-are-flawed",
+    "href": "1-intro.html#models-are-flawed",
+    "title": "What are models?",
+    "section": "MODELS ARE FLAWED",
+    "text": "MODELS ARE FLAWED\n\nHow do we compensate?"
+  },
+  {
+    "objectID": "1-intro.html#models-are-flawed-1",
+    "href": "1-intro.html#models-are-flawed-1",
+    "title": "What are models?",
+    "section": "MODELS ARE FLAWED",
+    "text": "MODELS ARE FLAWED\n\nHow do we compensate?\n\n\\(y = b_0 + b_{1}X + e\\)"
+  },
+  {
+    "objectID": "1-intro.html#models",
+    "href": "1-intro.html#models",
+    "title": "What are models?",
+    "section": "Models",
+    "text": "Models\n\nWhat are the goals of modeling?\nWhat do you need in order to develop a model?"
+  },
+  {
+    "objectID": "1-intro.html#how-do-we-know-if-a-model-is-good-what-makes-it-good",
+    "href": "1-intro.html#how-do-we-know-if-a-model-is-good-what-makes-it-good",
+    "title": "What are models?",
+    "section": "How do we know if a model is good? What makes it good?",
+    "text": "How do we know if a model is good? What makes it good?"
+  },
+  {
+    "objectID": "1-intro.html#how-will-we-use-models",
+    "href": "1-intro.html#how-will-we-use-models",
+    "title": "What are models?",
+    "section": "How will we use models?",
+    "text": "How will we use models?\n\nThis semester, we will mainly focus on classic statistical tests\nEvery single one of these is a model\nWe will also focus on developing your intuition\nWhen you face new models, come back to these basics"
+  },
+  {
+    "objectID": "lectures.html",
+    "href": "lectures.html",
+    "title": "Lectures",
+    "section": "",
+    "text": "What are models?"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Advanced Psychological Statistics",
+    "section": "",
+    "text": "1/17: Welcome to the first day of class! If you want to follow along with examples, head over to github for all of the code and data. https://github.com/josh-jackson/GLM_3890"
+  },
+  {
+    "objectID": "1-intro.html#how-do-we-know-if-a-model-is-good",
+    "href": "1-intro.html#how-do-we-know-if-a-model-is-good",
+    "title": "What are models?",
+    "section": "How do we know if a model is good?",
+    "text": "How do we know if a model is good?\n\nWhat makes it good?"
+  }
+]
