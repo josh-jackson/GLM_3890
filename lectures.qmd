@@ -5,4 +5,4 @@ editor: visual
 
 1.  [What are models?](1-intro.qmd)
 
-2.  [GLM basics](1-Basics.qmd)
+2.  [GLM basics](2-Basics.qmd)
