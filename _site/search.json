@@ -102,7 +102,7 @@
     "href": "lectures.html",
     "title": "Lectures",
     "section": "",
-    "text": "What are models?"
+    "text": "What are models?\nGLM basics"
   },
   {
     "objectID": "index.html",
@@ -117,5 +117,341 @@
     "title": "What are models?",
     "section": "How do we know if a model is good?",
     "text": "How do we know if a model is good?\n\nWhat makes it good?"
+  },
+  {
+    "objectID": "2-Basics.html#thinking-in-terms-of-models",
+    "href": "2-Basics.html#thinking-in-terms-of-models",
+    "title": "GLM basics",
+    "section": "Thinking in terms of models",
+    "text": "Thinking in terms of models\n\nOur DV (here forth Y) is what we are trying to understand\nWe hypothesize it has some relationship with your IV(s) (here forth Xs), with what is left over described as error (E)\n\n\\(y = b_0 + b_{1}X + e\\)"
+  },
+  {
+    "objectID": "2-Basics.html#how-can-we-visualize-data-to-make-sense-of-it",
+    "href": "2-Basics.html#how-can-we-visualize-data-to-make-sense-of-it",
+    "title": "GLM basics",
+    "section": "How can we visualize data to make sense of it?",
+    "text": "How can we visualize data to make sense of it?\n\n\nCode\nlibrary(broom)\nset.seed(123)\nx.1 &lt;- rnorm(100, 0, 1)\ne.1 &lt;- rnorm(100, 0, 2)\ny.1 &lt;- .5 + .55 * x.1 + e.1\nd.1 &lt;- data.frame(x.1,y.1)\nm.1 &lt;- lm(y.1 ~ x.1, data = d.1)\nd1.f&lt;- augment(m.1)\nd.1\n\n\n             x.1         y.1\n1   -0.560475647 -1.22907473\n2   -0.230177489  0.88716980\n3    1.558708314  0.86390582\n4    0.070508391 -0.15630558\n5    0.129287735 -1.33212888\n6    1.715064987  1.35323029\n7    0.460916206 -0.81630503\n8   -1.265061235 -3.53166755\n9   -0.686852852 -0.63822211\n10  -0.445661970  2.09287913\n11   1.224081797  0.02255106\n12   0.359813827  1.91382625\n13   0.400771451 -2.51534112\n14   0.110682716  0.44975156\n15  -0.555841135  1.23310178\n16   1.786913137  2.08510895\n17   0.497850478  0.98517015\n18  -1.966617157 -1.86305145\n19   0.701355902 -0.81366295\n20  -0.472791408 -1.80829286\n21  -1.067823706  0.14799016\n22  -0.217974915 -1.51483543\n23  -1.026004448 -1.04541733\n24  -0.728891229 -0.41307456\n25  -0.625039268  3.84395241\n26  -1.686693311 -1.73158112\n27   0.837787044  1.43155602\n28   0.153373118  0.74027691\n29  -1.138136937 -2.04968858\n30   1.253814921  1.04698203\n31   0.426464221  3.62365704\n32  -0.295071483  1.24071879\n33   0.895125661  1.07478496\n34   0.878133488  0.13797975\n35   0.821581082 -3.15462485\n36   0.688640254  3.14142657\n37   0.553917654 -2.11662543\n38  -0.061911711  1.94584358\n39  -0.305962664  4.14992767\n40  -0.380471001 -2.59704537\n41  -0.694706979  1.52147983\n42  -0.207917278 -0.13874948\n43  -1.265396352 -3.34025631\n44   2.168955965 -1.33640953\n45   1.207961998 -2.03869325\n46  -1.123108583 -1.17952277\n47  -0.402884835 -2.64509783\n48  -0.466655354  1.61917310\n49   0.779965118  5.12919870\n50  -0.083369066 -2.11991394\n51   0.253318514  2.21480288\n52  -0.028546755  2.02238377\n53  -0.042870457  1.14082641\n54   1.368602284 -0.76402196\n55  -0.225770986  0.13692074\n56   1.516470604  0.77326816\n57  -1.548752804  0.77416502\n58   0.584613750  0.07666005\n59   0.123854244  2.52206661\n60   0.215941569 -0.13039385\n61   0.379639483  2.81422465\n62  -0.502323453 -1.87463191\n63  -0.333207384 -2.20357455\n64  -1.018575383  6.42186341\n65  -1.071791226 -0.92320035\n66   0.303528641  1.26339594\n67   0.448209779  2.01965473\n68   0.053004227 -0.43840893\n69   0.922267468  2.04097120\n70   2.050084686  2.36547563\n71  -0.491031166 -0.20082816\n72  -2.309168876 -0.63945681\n73   1.005738524  0.98502168\n74  -0.709200763  4.36684338\n75  -0.688008616 -1.36107693\n76   1.025571370 -1.12792828\n77  -0.284773007  0.41895164\n78  -1.220717712  0.44956676\n79   0.181303480  1.47276387\n80  -0.138891362 -0.49312091\n81   0.005764186 -1.62348197\n82   0.385280401  3.23827457\n83  -0.370660032 -0.40316379\n84   0.644376549 -0.87661862\n85  -0.220486562 -0.09382675\n86   0.331781964  0.28812829\n87   1.096839013  3.32310204\n88   0.435181491  0.90882440\n89  -0.325931586  1.82884520\n90   1.148807618  0.13326016\n91   0.993503856  1.47531774\n92   0.548396960  0.15224650\n93   0.238731735  0.82046951\n94  -0.627906076 -1.63607506\n95   1.360652449 -1.37324422\n96  -0.600259587  4.16428400\n97   2.187332993  2.90445079\n98   1.532610626 -1.15960688\n99  -0.235700359 -0.85196703\n100 -1.026420900 -2.43549166"
+  },
+  {
+    "objectID": "2-Basics.html#how-do-we-visualize-categorical-data",
+    "href": "2-Basics.html#how-do-we-visualize-categorical-data",
+    "title": "GLM basics",
+    "section": "How do we visualize categorical data?",
+    "text": "How do we visualize categorical data?\nNominal/categorical data does not have any inherent numbers associated with it. Think control/tx, eye color, etc.\n\n\nCode\nset.seed(123)\ngroup &lt;- c(0, 1)\nx.2 &lt;- rep(group, times = 50)\ne.1 &lt;- rnorm(100, 0, 1)\ny.1 &lt;- .5 + .85 * x.2 + e.1\nd.2 &lt;- data.frame(x.2,y.1)\nm.2 &lt;- lm(y.1 ~ x.2, data = d.2)\nd2.f&lt;- augment(m.2)\nd.2\n\n\n    x.2          y.1\n1     0 -0.060475647\n2     1  1.119822511\n3     0  2.058708314\n4     1  1.420508391\n5     0  0.629287735\n6     1  3.065064987\n7     0  0.960916206\n8     1  0.084938765\n9     0 -0.186852852\n10    1  0.904338030\n11    0  1.724081797\n12    1  1.709813827\n13    0  0.900771451\n14    1  1.460682716\n15    0 -0.055841135\n16    1  3.136913137\n17    0  0.997850478\n18    1 -0.616617157\n19    0  1.201355902\n20    1  0.877208592\n21    0 -0.567823706\n22    1  1.132025085\n23    0 -0.526004448\n24    1  0.621108771\n25    0 -0.125039268\n26    1 -0.336693311\n27    0  1.337787044\n28    1  1.503373118\n29    0 -0.638136937\n30    1  2.603814921\n31    0  0.926464221\n32    1  1.054928517\n33    0  1.395125661\n34    1  2.228133488\n35    0  1.321581082\n36    1  2.038640254\n37    0  1.053917654\n38    1  1.288088289\n39    0  0.194037336\n40    1  0.969528999\n41    0 -0.194706979\n42    1  1.142082722\n43    0 -0.765396352\n44    1  3.518955965\n45    0  1.707961998\n46    1  0.226891417\n47    0  0.097115165\n48    1  0.883344646\n49    0  1.279965118\n50    1  1.266630934\n51    0  0.753318514\n52    1  1.321453245\n53    0  0.457129543\n54    1  2.718602284\n55    0  0.274229014\n56    1  2.866470604\n57    0 -1.048752804\n58    1  1.934613750\n59    0  0.623854244\n60    1  1.565941569\n61    0  0.879639483\n62    1  0.847676547\n63    0  0.166792616\n64    1  0.331424617\n65    0 -0.571791226\n66    1  1.653528641\n67    0  0.948209779\n68    1  1.403004227\n69    0  1.422267468\n70    1  3.400084686\n71    0  0.008968834\n72    1 -0.959168876\n73    0  1.505738524\n74    1  0.640799237\n75    0 -0.188008616\n76    1  2.375571370\n77    0  0.215226993\n78    1  0.129282288\n79    0  0.681303480\n80    1  1.211108638\n81    0  0.505764186\n82    1  1.735280401\n83    0  0.129339968\n84    1  1.994376549\n85    0  0.279513438\n86    1  1.681781964\n87    0  1.596839013\n88    1  1.785181491\n89    0  0.174068414\n90    1  2.498807618\n91    0  1.493503856\n92    1  1.898396960\n93    0  0.738731735\n94    1  0.722093924\n95    0  1.860652449\n96    1  0.749740413\n97    0  2.687332993\n98    1  2.882610626\n99    0  0.264299641\n100   1  0.323579100"
+  },
+  {
+    "objectID": "2-Basics.html#what-do-these-visualizations-have-in-common",
+    "href": "2-Basics.html#what-do-these-visualizations-have-in-common",
+    "title": "GLM basics",
+    "section": "What do these visualizations have in common?",
+    "text": "What do these visualizations have in common?\n\nLINES!\nMost of what we are going to do is represent the relationship between variables with lines (or planes or hyperplanes once we get into 2 or more variables)"
+  },
+  {
+    "objectID": "2-Basics.html#thinking-in-terms-of-models-1",
+    "href": "2-Basics.html#thinking-in-terms-of-models-1",
+    "title": "GLM basics",
+    "section": "Thinking in terms of models",
+    "text": "Thinking in terms of models\n\nModels help us draw the lines\nOur DV (here forth Y) is what we are trying to understand\nWe hypothesize it has some relationship with your IV(s) (hence forth Xs), with what is left over described as error (E)\n\n\\(y = b_0 + b_{1}X + e\\)\n\n\\(b_{1}\\) describes the strength of association i.e. the line!"
+  },
+  {
+    "objectID": "2-Basics.html#see-this-in-our-r-code",
+    "href": "2-Basics.html#see-this-in-our-r-code",
+    "title": "GLM basics",
+    "section": "See this in our R code",
+    "text": "See this in our R code\nIndependent samples t-test\n\n\nCode\nt.1 &lt;- t.test(y.1 ~ x.2, data = d.2) \nt.1\n\n\n\n    Welch Two Sample t-test\n\ndata:  y.1 by x.2\nt = -4.4144, df = 93.846, p-value = 2.706e-05\nalternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0\n95 percent confidence interval:\n -1.1740658 -0.4455722\nsample estimates:\nmean in group 0 mean in group 1 \n      0.6104964       1.4203154"
+  },
+  {
+    "objectID": "2-Basics.html#comparison-across-these-three-models",
+    "href": "2-Basics.html#comparison-across-these-three-models",
+    "title": "GLM basics",
+    "section": "Comparison across these three models",
+    "text": "Comparison across these three models\n\nNote that each of these three models (t, anova, regression) were exactly the same in terms of the mode: Y ~ X\nThat is because they are the same model! Different terms referring to the same thing is one of the major stumbling blocks of stats.\nYet they gave us different information. Depending on what you are interested in some information may be more pertinent.\nWe will focus on the regression model (glm) as it is most flexible"
+  },
+  {
+    "objectID": "2-Basics.html#general-linear-model-glm",
+    "href": "2-Basics.html#general-linear-model-glm",
+    "title": "GLM basics",
+    "section": "General linear model (GLM)",
+    "text": "General linear model (GLM)\n\nThis model (equation) can be very simple as in a treatment/control experiment\nIt can be very complex in terms of trying to understand something like academic achievement\nThe majority of our models fall under the umbrella of a general(ized) linear model (often referred to as regression models)\nModels imply our theory about how the data are generated (ie how the world works)"
+  },
+  {
+    "objectID": "2-Basics.html#regression-equation",
+    "href": "2-Basics.html#regression-equation",
+    "title": "GLM basics",
+    "section": "Regression Equation",
+    "text": "Regression Equation\n\\[Y_i = b_{0} + b_{1}X_i +e_i\\]\n\n\\(Y_i \\sim Normal(\\mu, \\sigma)\\)\nThe DV, \\(Y\\) for each person \\(i\\) is distributed normaly, with a mean of \\(\\mu\\) and a standard deviation of \\(\\sigma\\)"
+  },
+  {
+    "objectID": "2-Basics.html#regression-terms",
+    "href": "2-Basics.html#regression-terms",
+    "title": "GLM basics",
+    "section": "Regression terms",
+    "text": "Regression terms\n\nY / DV / Outcome / Response / Criterion\nX / IV / Predictor / Explanatory variable\nRegression coefficient (weight) / b / b* / \\(\\beta\\)\nIntercept \\(b_0\\) / \\(\\beta_{0}\\)\nError / Residuals \\(e\\)\nPredictions \\(\\hat{Y}\\)"
+  },
+  {
+    "objectID": "2-Basics.html#regression-models",
+    "href": "2-Basics.html#regression-models",
+    "title": "GLM basics",
+    "section": "Regression models",
+    "text": "Regression models\n\nThese models are a way to convey the relationship between two (or more) variables. They translate our hypotheses into math.\nWe can use these models to get information we may be interested in (e.g. means, SEs) and test hypotheses about the relationship among variables\n“All models are wrong but some are useful (and some are better than others)” - George Box"
+  },
+  {
+    "objectID": "2-Basics.html#another-example",
+    "href": "2-Basics.html#another-example",
+    "title": "GLM basics",
+    "section": "Another example",
+    "text": "Another example\n\n\nCode\nlibrary(tidyverse)\nlibrary(readr)\nexample.data &lt;- read_csv(\"exampleData.csv\")\nexample.data &lt;- na.omit(example.data)\nexample.data\n\n\n# A tibble: 270 × 3\n      id    tx traffic.risk\n   &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;\n 1     1     1         1.86\n 2     2     1         1   \n 3     3     1         3.29\n 4     4     1         2   \n 5     5     1         2.43\n 6     6     1         3.29\n 7     7     0         1.17\n 8     8     0         2.43\n 9     9     0         3   \n10    10     1         1.71\n# ℹ 260 more rows"
+  },
+  {
+    "objectID": "2-Basics.html#example-summary",
+    "href": "2-Basics.html#example-summary",
+    "title": "GLM basics",
+    "section": "Example summary",
+    "text": "Example summary\n\nSame p-values for each test; same SS; same test!\nt-test is a special form of a linear model\nanova is a special form of a linear model\nBecause the anova and t-test are narrower models, we will be working with the general linear model"
+  },
+  {
+    "objectID": "2-Basics.html#parts-of-the-model",
+    "href": "2-Basics.html#parts-of-the-model",
+    "title": "GLM basics",
+    "section": "Parts of the model",
+    "text": "Parts of the model\n\\[Y_i = b_{0} + b_{1}X_i + e_i\\] \\[T.risk_i = b_{0} + b_{1}TX_i + e_i\\]\n\nEach individual has a unique Y value an X value and a residual/error term\n\nThe model only has a single \\(b_{0}\\) and \\(b_{1}\\) term. These are the regression parameters. \\(b_{0}\\) is the intercept and \\(b_{1}\\) quantifies the relationship between your model of the world and the DV."
+  },
+  {
+    "objectID": "2-Basics.html#what-do-the-estimates-tell-us",
+    "href": "2-Basics.html#what-do-the-estimates-tell-us",
+    "title": "GLM basics",
+    "section": "What do the estimates tell us?",
+    "text": "What do the estimates tell us?\n\n\nCode\nmod.1 &lt;- lm(traffic.risk ~ tx, data = example.data)\nlibrary(broom)\ntidy(mod.1)\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic   p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)    2.65     0.0764     34.7  3.80e-101\n2 tx            -0.481    0.0974     -4.94 1.38e-  6"
+  },
+  {
+    "objectID": "2-Basics.html#how-to-interpret-regression-estimates",
+    "href": "2-Basics.html#how-to-interpret-regression-estimates",
+    "title": "GLM basics",
+    "section": "How to interpret regression estimates",
+    "text": "How to interpret regression estimates\n\nIntercept is the mean of group of variable tx that is coded 0\nRegression coefficient is the slope or rise over run, scaled as a 1 unit on the x axis\n“For a one unit change in X, there is a b1 predicted change in Y.”\nRegression coefficient is the difference in means between the groups, given that we coded our groups as 0 and 1."
+  },
+  {
+    "objectID": "2-Basics.html#how-to-interpret-regression-estimates-1",
+    "href": "2-Basics.html#how-to-interpret-regression-estimates-1",
+    "title": "GLM basics",
+    "section": "How to interpret regression estimates",
+    "text": "How to interpret regression estimates\n\nThe entire class will go over different ways to interpret these estimates/parameters/coefficients\nIntercept (b0) signifies the level of Y when your model IVs (Xs) are zero\nRegression (b1) signifies the difference for a one unit change in your X"
+  },
+  {
+    "objectID": "2-Basics.html#standard-errors",
+    "href": "2-Basics.html#standard-errors",
+    "title": "GLM basics",
+    "section": "Standard errors",
+    "text": "Standard errors\n\nThese coefficients are “best guesses” at some population parameter we want to make inferences about.\nTo do so we must balance our signal to our noise. If we have a strong signal (steep regression line/difference between groups) that would imply the groups differ.\nIf there was a lot of noise in that assessment then a big difference between groups may not be meaningful. We assess this “noise” component with our standard errors"
+  },
+  {
+    "objectID": "2-Basics.html#sampling-distribution-refresher",
+    "href": "2-Basics.html#sampling-distribution-refresher",
+    "title": "GLM basics",
+    "section": "Sampling distribution refresher",
+    "text": "Sampling distribution refresher\n\nWe collect a sample and calculate a sample statistic \\(b_1\\)\nThis statistic is not a perfect assessment of the population\nWe calculate a sampling distribution to represent all possible samples we could have gotten from the same population with the same sample size\nThe standard deviation of the sampling distribution (standard error) reflects the spread of the hypothetical scores we could have gotten\nA large standard error means we have a flat sampling distribution and thus should not trust the estimate.\nPer convention, if our estimate is &gt; 2xSE away from 0, we say our estimate is “significantly different from zero”"
+  },
+  {
+    "objectID": "2-Basics.html#predicted-scores",
+    "href": "2-Basics.html#predicted-scores",
+    "title": "GLM basics",
+    "section": "Predicted scores",
+    "text": "Predicted scores\n\nBased on the output how do I calculate means for each group?\n\n\ntidy(mod.1)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic   p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)    2.65     0.0764     34.7  3.80e-101\n2 tx            -0.481    0.0974     -4.94 1.38e-  6"
+  },
+  {
+    "objectID": "2-Basics.html#anova-as-regression",
+    "href": "2-Basics.html#anova-as-regression",
+    "title": "GLM basics",
+    "section": "ANOVA as regression",
+    "text": "ANOVA as regression\n\n“For a one unit change in X, there is a b1 predicted change in Y” will always be true.\nNominal/categorical variables do not have any inherent numbers associated with them so we need to assign them numbers\nWhat numbers you assign will impact the equation/estimates/hypothesis you can test\n\nBehoove you to code them as useful numbers. O and 1 are useful and are the default in R."
+  },
+  {
+    "objectID": "2-Basics.html#anova-as-regression-1",
+    "href": "2-Basics.html#anova-as-regression-1",
+    "title": "GLM basics",
+    "section": "ANOVA as regression",
+    "text": "ANOVA as regression\n\\[T.risk_i = b_{0} + b_{1}TX_i + e_i\\]\n\n\nCode\nexample.data\n\n\n# A tibble: 270 × 3\n      id    tx traffic.risk\n   &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;\n 1     1     1         1.86\n 2     2     1         1   \n 3     3     1         3.29\n 4     4     1         2   \n 5     5     1         2.43\n 6     6     1         3.29\n 7     7     0         1.17\n 8     8     0         2.43\n 9     9     0         3   \n10    10     1         1.71\n# ℹ 260 more rows"
+  },
+  {
+    "objectID": "2-Basics.html#what-if-we-changed-0-and-1-to-other-values",
+    "href": "2-Basics.html#what-if-we-changed-0-and-1-to-other-values",
+    "title": "GLM basics",
+    "section": "What if we changed 0 and 1 to other values?",
+    "text": "What if we changed 0 and 1 to other values?\n\nInfinite number of ways to code categorical/nominal variables, only a few meaningful ways\n\nThe R default is called “dummy coding”\n\nUses 0s and 1s to put numbers to categories. We will soon see what this looks like when you have more than 2 groups.\nChanging the numbers changes…?"
+  },
+  {
+    "objectID": "2-Basics.html#effect-coding",
+    "href": "2-Basics.html#effect-coding",
+    "title": "GLM basics",
+    "section": "Effect coding",
+    "text": "Effect coding\n\n\nCode\nexample.data$tx.effect &lt;- dplyr::recode(example.data$tx, '0' = -1, '1' = 1) \n\n\n\n\nCode\nexample.data\n\n\n# A tibble: 270 × 5\n      id    tx traffic.risk tx.r      tx.effect\n   &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;\n 1     1     1         1.86 treatment         1\n 2     2     1         1    treatment         1\n 3     3     1         3.29 treatment         1\n 4     4     1         2    treatment         1\n 5     5     1         2.43 treatment         1\n 6     6     1         3.29 treatment         1\n 7     7     0         1.17 control          -1\n 8     8     0         2.43 control          -1\n 9     9     0         3    control          -1\n10    10     1         1.71 treatment         1\n# ℹ 260 more rows"
+  },
+  {
+    "objectID": "2-Basics.html#effect-coding-1",
+    "href": "2-Basics.html#effect-coding-1",
+    "title": "GLM basics",
+    "section": "Effect coding",
+    "text": "Effect coding\n\n\nCode\nmod.1.eff &lt;- lm(traffic.risk ~ tx.effect, data = example.data)\ntidy(mod.1.eff)\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic   p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)    2.41     0.0487     49.5  8.15e-137\n2 tx.effect     -0.241    0.0487     -4.94 1.38e-  6\n\n\n\nsystematically changes both the intercept and the regression estimate"
+  },
+  {
+    "objectID": "2-Basics.html#effect-coding-2",
+    "href": "2-Basics.html#effect-coding-2",
+    "title": "GLM basics",
+    "section": "Effect coding",
+    "text": "Effect coding\nConsists of -1, 1s (And zeros for more than 2 groups)\n\nThe intercept is the “grand mean” or “mean of means” if unbalanced\nThe regression coefficient represents the group “effect” ie the difference between the grand mean and the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)\n\n\nCommon to use for Factorial ANOVA designs"
+  },
+  {
+    "objectID": "2-Basics.html#dummy-coding",
+    "href": "2-Basics.html#dummy-coding",
+    "title": "GLM basics",
+    "section": "Dummy coding",
+    "text": "Dummy coding\n\nMore appropriate when you are interested in comparing to a specific group rather than an “average person.”\nIntercept: value of the group coded zero\nRegression coefficient: mean difference between groups"
+  },
+  {
+    "objectID": "2-Basics.html#contrast-coding",
+    "href": "2-Basics.html#contrast-coding",
+    "title": "GLM basics",
+    "section": "Contrast coding",
+    "text": "Contrast coding\n\nAs our models get more complex our coding schemes can too\nWhat happens if you code the groups -.5 and .5?\nThese make more sense when we have more groups. More groups require more independent variables, however."
+  },
+  {
+    "objectID": "2-Basics.html#categorical-coding-summary",
+    "href": "2-Basics.html#categorical-coding-summary",
+    "title": "GLM basics",
+    "section": "categorical coding summary",
+    "text": "categorical coding summary\n\nIn the end, it really doesn’t matter how you code your model. The overall “fit” of the model will be exactly the same because it is the same model.\nThe only thing that changes is the interpretation of your coefficients.\nEven then, you can recreate any test you want regardless of coding scheme. As a result, we often leave the default coding in place."
+  },
+  {
+    "objectID": "2-Basics.html#statistical-inference",
+    "href": "2-Basics.html#statistical-inference",
+    "title": "GLM basics",
+    "section": "Statistical Inference",
+    "text": "Statistical Inference\n\nThe way the world is = our model + error\nHow good is our model? Is it a good representation of reality? Does it “fit” the data well?\nNeed to go beyond asking if it is significant, because what does that mean? Remember, all models are wrong\nWe are going to make predictions and see if the predictions (based on our model) matches our data\nWe can then compare one model to another to see which one matches our data better ie which one is a better representation of reality."
+  },
+  {
+    "objectID": "2-Basics.html#predictions",
+    "href": "2-Basics.html#predictions",
+    "title": "GLM basics",
+    "section": "Predictions",
+    "text": "Predictions\n\npredictions \\(\\hat{Y}\\) are of the form of E(Y|X)\nThey are created by simply plugging a persons Xs into the created model\nIf you have bs and have Xs you can create a prediction\n\n\\(\\hat{Y}_{i}\\) = 2.65064 + -0.48111* \\(X_{i}\\)\n\nYou have already done this with dummy codes above"
+  },
+  {
+    "objectID": "2-Basics.html#predictions-1",
+    "href": "2-Basics.html#predictions-1",
+    "title": "GLM basics",
+    "section": "Predictions",
+    "text": "Predictions\n\nWe want our predictions to be close to our actual data for each person ( \\(Y_{i}\\) )\nThe difference between the actual data and our our prediction ( \\(Y_{i} - \\hat{Y}_{i} = e\\) ) is the residual, how far we are “off”. This tells us how good our fit is.\nYou can have the same estimates for two models but completely different fit.\nPreviously you may have evaluated overall model fit by looking at Eta Squared, SS Error and visualizing observations around group means"
+  },
+  {
+    "objectID": "2-Basics.html#which-one-has-better-fit",
+    "href": "2-Basics.html#which-one-has-better-fit",
+    "title": "GLM basics",
+    "section": "Which one has better fit?",
+    "text": "Which one has better fit?\n\nCan you point out the predictions?\n\n\n\nCode\ntwogroup_fun = function(nrep = 100, b0 = 6, b1 = -2, sigma = 1) {\n     ngroup = 2\n     group = rep( c(\"group1\", \"group2\"), each = nrep)\n     eps = rnorm(ngroup*nrep, 0, sigma)\n     traffic = b0 + b1*(group == \"group2\") + eps\n     growthfit = lm(traffic ~ group)\n     growthfit\n}\n\n\ntwogroup_fun2 = function(nrep = 100, b0 = 6, b1 = -2, sigma = 2) {\n     ngroup = 2\n     group = rep( c(\"group1\", \"group2\"), each = nrep)\n     eps = rnorm(ngroup*nrep, 0, sigma)\n     traffic = b0 + b1*(group == \"group2\") + eps\n     growthfit = lm(traffic ~ group)\n     growthfit\n}\n\nset.seed(16)\nlibrary(broom)\nlm1 &lt;- augment(twogroup_fun())\n\nset.seed(16)\nlm2 &lt;- augment(twogroup_fun2())\n\nplot1&lt;- ggplot(lm1) +\n  aes(x = group, y = traffic) +\n  geom_violin() + geom_boxplot() + geom_jitter() + ylim(-1, 11)\n\nplot2&lt;- ggplot(lm2) +\n  aes(x = group, y = traffic) +\n  geom_violin() + geom_boxplot() + geom_jitter() + ylim(-1, 11)\n\n\nlibrary(gridExtra)\n grid.arrange(plot1, plot2, ncol=2)"
+  },
+  {
+    "objectID": "2-Basics.html#easy-to-examine-fit-with-lm-objects",
+    "href": "2-Basics.html#easy-to-examine-fit-with-lm-objects",
+    "title": "GLM basics",
+    "section": "Easy to examine fit with lm objects",
+    "text": "Easy to examine fit with lm objects\n\nThese are automatically created anytime you run a lm in R\n\n\n\nCode\nmod.1 &lt;- lm(traffic.risk ~ tx, data = example.data)\n\n\n\ncoefficients(mod.1)       # coefficients\nresiduals(mod.1)          # residuals\nfitted.values(mod.1)      # fitted values ie predicted\nsummary(mod.1)$r.squared  # R-sq for the model\nsummary(mod.1)$sigma      # sd of residuals"
+  },
+  {
+    "objectID": "2-Basics.html#pop-quiz",
+    "href": "2-Basics.html#pop-quiz",
+    "title": "GLM basics",
+    "section": "Pop quiz",
+    "text": "Pop quiz\n\\[\\hat{Y}_{i} = b_{0} + b_{1}X_{i}\\]\n\\[Y_{i} = b_{0} + b_{1}X_{i} +e_{i}\\]\n\\[Y_{i}  - \\hat{Y}_{i} = e\\]\n\nCan you plug in numbers and calculate subject 3’s predicted and residual scores without explicitly asking for lm object residuals and fitted values? (using the same model from slide 41 on)\nPost answers in Slack – see if you and your peers get the same results!"
+  },
+  {
+    "objectID": "2-Basics.html#residuals",
+    "href": "2-Basics.html#residuals",
+    "title": "GLM basics",
+    "section": "Residuals",
+    "text": "Residuals\n\n\nCode\nfit.1.data &lt;- augment(mod.1) \nfit.1.data\n\n\n# A tibble: 270 × 8\n   traffic.risk    tx .fitted .resid    .hat .sigma  .cooksd .std.resid\n          &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;\n 1         1.86     1    2.17 -0.312 0.00602  0.780 0.000490     -0.402\n 2         1        1    2.17 -1.17  0.00602  0.777 0.00687      -1.51 \n 3         3.29     1    2.17  1.12  0.00602  0.777 0.00626       1.44 \n 4         2        1    2.17 -0.170 0.00602  0.780 0.000144     -0.218\n 5         2.43     1    2.17  0.259 0.00602  0.780 0.000337      0.334\n 6         3.29     1    2.17  1.12  0.00602  0.777 0.00626       1.44 \n 7         1.17     0    2.65 -1.48  0.00962  0.775 0.0178       -1.91 \n 8         2.43     0    2.65 -0.222 0.00962  0.780 0.000398     -0.287\n 9         3        0    2.65  0.349 0.00962  0.780 0.000986      0.451\n10         1.71     1    2.17 -0.455 0.00602  0.780 0.00104      -0.586\n# ℹ 260 more rows"
+  },
+  {
+    "objectID": "2-Basics.html#an-aside-concerning-lm-objects",
+    "href": "2-Basics.html#an-aside-concerning-lm-objects",
+    "title": "GLM basics",
+    "section": "An aside concerning lm objects",
+    "text": "An aside concerning lm objects\n\nlm objects consist of the information embedded in your linear model\nR often handles model objects poorly due to them not necessarily being in a usable data frame (lists!)\nthe broom package makes model objects into dataframes\n\n\n\nCode\nlibrary(broom)\nfit.1.tidy &lt;- tidy(mod.1)  \nfit.1.tidy\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic   p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)    2.65     0.0764     34.7  3.80e-101\n2 tx            -0.481    0.0974     -4.94 1.38e-  6"
+  },
+  {
+    "objectID": "2-Basics.html#pop-quiz-2",
+    "href": "2-Basics.html#pop-quiz-2",
+    "title": "GLM basics",
+    "section": "Pop quiz #2",
+    "text": "Pop quiz #2\n\nFor a two group ANOVA how many different predicted values will we have? Residuals?\nPost your answer in Slack and see how you compare to your peers!"
+  },
+  {
+    "objectID": "2-Basics.html#statistical-inference-1",
+    "href": "2-Basics.html#statistical-inference-1",
+    "title": "GLM basics",
+    "section": "Statistical Inference",
+    "text": "Statistical Inference\n\nIn making predictions, we have to compare our prediction to some alternative prediction to see if we are doing well or not.\nWhat is our best guess (ie prediction) if we didn’t collect any data?\n\n\\[ \\hat{Y} = \\bar{Y} \\]\n\nRegression can be thought of as: is E(Y|X) better than E(Y)?"
+  },
+  {
+    "objectID": "2-Basics.html#statistical-inference-2",
+    "href": "2-Basics.html#statistical-inference-2",
+    "title": "GLM basics",
+    "section": "Statistical Inference",
+    "text": "Statistical Inference\n\nTo the extent that we can generate different predicted values of Y based on the values of the predictors, our model is doing well\nSaid differently, the closer our model is to the “actual” data generating model, our guesses ( \\(\\hat{Y}\\) ) will be closer to our actual data ( \\(Y\\) )"
+  },
+  {
+    "objectID": "2-Basics.html#partitioning-the-variation-in-y",
+    "href": "2-Basics.html#partitioning-the-variation-in-y",
+    "title": "GLM basics",
+    "section": "Partitioning the variation in Y",
+    "text": "Partitioning the variation in Y\n\\[ \\sum (Y_i - \\bar{Y})^2 = \\sum (\\hat{Y}_i -\\bar{Y})^2 + \\sum(Y_i - \\hat{Y}_i)^2 \\]\n\nSS total = SS between + SS within\nSS total = SS regression + SS residual (or error)"
+  },
+  {
+    "objectID": "2-Basics.html#what-can-we-do-with-this",
+    "href": "2-Basics.html#what-can-we-do-with-this",
+    "title": "GLM basics",
+    "section": "What can we do with this?",
+    "text": "What can we do with this?\n\nomnibus F tests (ANOVA)\nWhat hypothesis does the omnibus F test test, generally?\n\n\\[s_{y}^2 = s_{regression}^2 + s_{residual}^2\\]\n\\[1 = \\frac{s_{regression}^2}{s_{y}^2} + \\frac{s_{residual}^2}{s_{y}^2}\\]"
+  },
+  {
+    "objectID": "2-Basics.html#coefficient-of-determination",
+    "href": "2-Basics.html#coefficient-of-determination",
+    "title": "GLM basics",
+    "section": "Coefficient of Determination",
+    "text": "Coefficient of Determination\n\\[\\frac{s_{regression}^2}{s_{y}^2} = \\frac{SS_{regression}}{SS_{Y}} = R^2\\]\n\nPercent (of total) variance explained by your model…which currently are groups\nAnother way of asking how much variance group status explains"
+  },
+  {
+    "objectID": "2-Basics.html#r2-and-eta-squared",
+    "href": "2-Basics.html#r2-and-eta-squared",
+    "title": "GLM basics",
+    "section": "\\(R^2\\) and Eta squared",
+    "text": "\\(R^2\\) and Eta squared\n\nsummary(mod.1)$r.squared\n\n[1] 0.08344007\n\n\n\nlibrary(lsr)\netaSquared(mod.1)\n\n       eta.sq eta.sq.part\ntx 0.08344007  0.08344007"
+  },
+  {
+    "objectID": "2-Basics.html#r2-for-different-coding-schemes",
+    "href": "2-Basics.html#r2-for-different-coding-schemes",
+    "title": "GLM basics",
+    "section": "\\(R^2\\) for different coding schemes",
+    "text": "\\(R^2\\) for different coding schemes\n\nglance(mod.1)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic    p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0834        0.0800 0.779      24.4 0.00000138     1  -315.  635.  646.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\nglance(mod.1.eff)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic    p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0834        0.0800 0.779      24.4 0.00000138     1  -315.  635.  646.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+  },
+  {
+    "objectID": "2-Basics.html#note-the-r2-p-value",
+    "href": "2-Basics.html#note-the-r2-p-value",
+    "title": "GLM basics",
+    "section": "Note the \\(R^2\\) p-value",
+    "text": "Note the \\(R^2\\) p-value\n\n\nCode\nsummary(mod.1)\n\n\n\nCall:\nlm(formula = traffic.risk ~ tx, data = example.data)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1.65064 -0.59811 -0.02668  0.54475  2.54475 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  2.65064    0.07637  34.707  &lt; 2e-16 ***\ntx          -0.48111    0.09740  -4.939 1.38e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.7789 on 268 degrees of freedom\nMultiple R-squared:  0.08344,   Adjusted R-squared:  0.08002 \nF-statistic:  24.4 on 1 and 268 DF,  p-value: 1.381e-06"
+  },
+  {
+    "objectID": "2-Basics.html#summary",
+    "href": "2-Basics.html#summary",
+    "title": "GLM basics",
+    "section": "Summary",
+    "text": "Summary"
+  },
+  {
+    "objectID": "2-Basics.html#summary-1",
+    "href": "2-Basics.html#summary-1",
+    "title": "GLM basics",
+    "section": "Summary",
+    "text": "Summary\n\nWe are using linear models to do the exact same tests as t-tests and ANOVAs\nIt is the exact same because t-tests and ANOVAs are part of the general linear model\nThe GLM provides a more systematic way at 1) building and testing your theoretical model and 2) comparing between alternative theoretical models\nYou can get 1) estimates and 2) fit statistics from the model. Both are important."
   }
 ]
