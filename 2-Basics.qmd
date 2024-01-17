@@ -602,8 +602,7 @@ $$Y_{i}  - \hat{Y}_{i} = e$$
 
 ```{r}
 #| code-fold: true
-library(DT)
-datatable(example.data)
+example.data
 ```
 
 ## Residuals
@@ -691,24 +690,12 @@ $$ \hat{Y} = \bar{Y} $$
 
 -   Said differently, the closer our model is to the "actual" data generating model, our guesses ( $\hat{Y}$ ) will be closer to our actual data ( $Y$ )
 
-------------------------------------------------------------------------
-
--   We formally test how well we are doing with our guesses by partitioning variation
-
-$$ Y = \hat{Y} + e$$
-
-$$ Y = \hat{Y} + (Y - \hat{Y}) $$
-
-$$ Y - \bar{Y} = (\hat{Y} -\bar{Y}) + (Y - \hat{Y}) $$
-
-$$ (Y - \bar{Y})^2 = [(\hat{Y} -\bar{Y}) + (Y - \hat{Y})]^2 $$
-
-$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 $$
 
 ------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
+library(ggstatsplot)
 ggstatsplot::ggbetweenstats(
   data = example.data,
   x = tx,
