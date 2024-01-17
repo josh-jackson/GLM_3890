@@ -2,7 +2,4 @@
 title: "Advanced Psychological Statistics"
 ---
 
-
-
 1/17: Welcome to the first day of class! If you want to follow along with examples, head over to github for all of the code and data. https://github.com/josh-jackson/GLM_3890
-
