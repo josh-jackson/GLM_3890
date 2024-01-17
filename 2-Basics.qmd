@@ -1,6 +1,7 @@
 ---
 title: GLM basics 
 format: revealjs
+slide-number: true
 editor: visual
 execute:
   echo: true
@@ -12,12 +13,11 @@ html:
 
 ## Thinking in terms of models
 
-- Our DV (here forth Y) is what we are trying to understand 
+-   Our DV (here forth Y) is what we are trying to understand
 
-- We hypothesize it has some relationship with your IV(s) (here forth Xs), with what is left over described as error (E)
+-   We hypothesize it has some relationship with your IV(s) (here forth Xs), with what is left over described as error (E)
 
 $y = b_0 + b_{1}X + e$
-
 
 ## How can we visualize data to make sense of it?
 
@@ -34,8 +34,7 @@ d1.f<- augment(m.1)
 d.1
 ```
 
-
-------
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -44,8 +43,7 @@ ggplot(d1.f , aes(x=x.1, y=y.1)) +
     geom_point(size = 2)
 ```
 
-
--------
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -54,10 +52,9 @@ ggplot(d1.f , aes(x=x.1, y=y.1)) +
   geom_smooth(method = lm, se = FALSE) 
 ```
 
+## How do we visualize categorical data?
 
-## How do we visualize categorical data? 
-
-Nominal/categorical data does not have any inherent numbers associated with it. Think control/tx, eye color, etc. 
+Nominal/categorical data does not have any inherent numbers associated with it. Think control/tx, eye color, etc.
 
 ```{r}
 #| code-fold: true
@@ -72,9 +69,7 @@ d2.f<- augment(m.2)
 d.2
 ```
 
-
-
--------
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -83,9 +78,7 @@ ggplot(d2.f , aes(x=x.2, y=y.1)) +
   geom_smooth(method = lm, se = FALSE) 
 ```
 
-
-
--------
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -103,111 +96,100 @@ ggplot(d2.f,
        y = "y")
 ```
 
-
-
-
-## What do these visualizations have in common? 
+## What do these visualizations have in common?
 
 . . .
 
-LINES! 
+LINES!
 
 Most of what we are going to do is represent the relationship between variables with lines (or planes or hyperplanes once we get into 2 or more variables)
 
-
-
 ## Thinking in terms of models
 
-- Models help us draw the lines
+-   Models help us draw the lines
 
-- Our DV (here forth Y) is what we are trying to understand 
+-   Our DV (here forth Y) is what we are trying to understand
 
-- We hypothesize it has some relationship with your IV(s) (hence forth Xs), with what is left over described as error (E)
+-   We hypothesize it has some relationship with your IV(s) (hence forth Xs), with what is left over described as error (E)
 
 $y = b_0 + b_{1}X + e$
 
-- $b_{1}$ describes the strength of association i.e. the line!
-
+-   $b_{1}$ describes the strength of association i.e. the line!
 
 ## See this in our R code
 
 Independent samples t-test
+
 ```{r}
 #| code-fold: true
 t.1 <- t.test(y.1 ~ x.2, data = d.2) 
 t.1
 ```
 
-----------
+------------------------------------------------------------------------
 
 One-way ANOVA
+
 ```{r}
 #| code-fold: true
 a.1 <- aov(y.1 ~ x.2, data=d.2)
 summary(a.1)
 ```
 
-
--------
+------------------------------------------------------------------------
 
 regression model
+
 ```{r}
 #| code-fold: true
 lm.1 <- lm(y.1 ~ x.2, data=d.2)
 summary(lm.1)
 ```
 
-
 ## Comparison across these three models
 
-- Note that each of these three models (t, anova, regression) were exactly the same in terms of the mode: Y ~ X
+-   Note that each of these three models (t, anova, regression) were exactly the same in terms of the mode: Y \~ X
 
-- That is because they are the same model! Different terms referring to the same thing is one of the major stumbling blocks of stats. 
+-   That is because they are the same model! Different terms referring to the same thing is one of the major stumbling blocks of stats.
 
-- Yet they gave us different information. Depending on what you are interested in some information may be more pertinent. 
+-   Yet they gave us different information. Depending on what you are interested in some information may be more pertinent.
 
-- We will focus on the regression model (glm) as it is most flexible
-
+-   We will focus on the regression model (glm) as it is most flexible
 
 ## General linear model (GLM)
 
-- This model (equation) can be very simple as in a treatment/control experiment  
+-   This model (equation) can be very simple as in a treatment/control experiment
 
-- It can be very complex in terms of trying to understand something like academic achievement  
+-   It can be very complex in terms of trying to understand something like academic achievement
 
-- The majority of our models fall under the umbrella of a general(ized) linear model (often referred to as regression models)
+-   The majority of our models fall under the umbrella of a general(ized) linear model (often referred to as regression models)
 
-- Models imply our theory about how the data are generated (ie how the world works)
-
-
+-   Models imply our theory about how the data are generated (ie how the world works)
 
 ## Regression Equation
 
 $$Y_i = b_{0} + b_{1}X_i +e_i$$
 
-- $Y_i \sim Normal(\mu, \sigma)$
+-   $Y_i \sim Normal(\mu, \sigma)$
 
-- The DV, $Y$ for each person $i$ is distributed normaly, with a mean of $\mu$ and a standard deviation of $\sigma$
-
-
+-   The DV, $Y$ for each person $i$ is distributed normaly, with a mean of $\mu$ and a standard deviation of $\sigma$
 
 ## Regression terms
-- Y / DV / Outcome / Response / Criterion
-- X / IV / Predictor / Explanatory variable
-- Regression coefficient (weight) / b / b* / $\beta$
-- Intercept $b_0$ / $\beta_{0}$
-- Error / Residuals $e$
-- Predictions  $\hat{Y}$
 
-
+-   Y / DV / Outcome / Response / Criterion
+-   X / IV / Predictor / Explanatory variable
+-   Regression coefficient (weight) / b / b\* / $\beta$
+-   Intercept $b_0$ / $\beta_{0}$
+-   Error / Residuals $e$
+-   Predictions $\hat{Y}$
 
 ## Regression models
 
-- These models are a way to convey the relationship between two (or more) variables. They translate our hypotheses into math. 
+-   These models are a way to convey the relationship between two (or more) variables. They translate our hypotheses into math.
 
-- We can use these models to get information we may be interested in (e.g. means, SEs) and test hypotheses about the relationship among variables
+-   We can use these models to get information we may be interested in (e.g. means, SEs) and test hypotheses about the relationship among variables
 
-- *"All models are wrong but some are useful (and some are better than others)"* - George Box
+-   *"All models are wrong but some are useful (and some are better than others)"* - George Box
 
 ## Another example
 
@@ -220,8 +202,7 @@ example.data <- na.omit(example.data)
 example.data
 ```
 
----
-
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -239,8 +220,7 @@ ggplot(example.data,
        y = "Traffic Risk")
 ```
 
-
-----------
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -248,8 +228,7 @@ t.test(traffic.risk ~ tx, data = example.data,
               var.equal = TRUE) 
 ```
 
-
----
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -257,8 +236,7 @@ a.1 <- aov(traffic.risk ~ tx, data = example.data)
 summary(a.1)
 ```
 
----
-
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -266,9 +244,7 @@ mod.1 <- lm(traffic.risk ~ tx, data = example.data)
 summary(mod.1)
 ```
 
-
----
-
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -276,26 +252,24 @@ mod.1 <- lm(traffic.risk ~ tx, data = example.data)
 anova(mod.1)
 ```
 
-
 ## Example summary
 
-- Same *p*-values for each test; same SS; same test!   
+-   Same *p*-values for each test; same SS; same test!
 
-- t-test is a special form of a linear model
-- anova is a special form of a linear model
+-   t-test is a special form of a linear model
 
-- Because the anova and t-test are narrower models, we will be working with the *general* linear model
-   
+-   anova is a special form of a linear model
+
+-   Because the anova and t-test are narrower models, we will be working with the *general* linear model
+
 ## Parts of the model
 
-$$Y_i = b_{0} + b_{1}X_i + e_i$$
-$$T.risk_i = b_{0} + b_{1}TX_i + e_i$$ 
+$$Y_i = b_{0} + b_{1}X_i + e_i$$ $$T.risk_i = b_{0} + b_{1}TX_i + e_i$$
 
-- Each individual has a unique Y value an X value and a residual/error term  
-- The model only has a single $b_{0}$ and $b_{1}$ term. These are the regression parameters. $b_{0}$ is the intercept and $b_{1}$ quantifies the relationship between your model of the world and the DV. 
+-   Each individual has a unique Y value an X value and a residual/error term\
+-   The model only has a single $b_{0}$ and $b_{1}$ term. These are the regression parameters. $b_{0}$ is the intercept and $b_{1}$ quantifies the relationship between your model of the world and the DV.
 
-
-## What do the estimates tell us? 
+## What do the estimates tell us?
 
 ```{r}
 #| code-fold: true
@@ -304,8 +278,7 @@ library(broom)
 tidy(mod.1)
 ```
 
----
-
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -316,13 +289,12 @@ example.data %>%
 
 ## How to interpret regression estimates
 
-- Intercept is the mean of group of variable tx that is coded 0
-- Regression coefficient is the slope or rise over run, scaled as a 1 unit on the x axis
-- **"For a one unit change in X, there is a b1 predicted change in Y."**
-- Regression coefficient is the difference in means between the groups, given that we coded our groups as 0 and 1. 
+-   Intercept is the mean of group of variable tx that is coded 0
+-   Regression coefficient is the slope or rise over run, scaled as a 1 unit on the x axis
+-   **"For a one unit change in X, there is a b1 predicted change in Y."**
+-   Regression coefficient is the difference in means between the groups, given that we coded our groups as 0 and 1.
 
----
-
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -338,9 +310,7 @@ ggstatsplot::ggbetweenstats(
 ) 
 ```
 
-
-
----
+------------------------------------------------------------------------
 
 Note that the same interpretation for a regression line holds: for a 1 unit change in X (tx) there is a predicted b change in Y (traffic risk)
 
@@ -353,49 +323,45 @@ ggplot(example.data, aes(x=tx, y=traffic.risk)) +
                 se=FALSE)    # Don't add shaded confidence region
 ```
 
-
-
-
 ## How to interpret regression estimates
 
-- The entire class will go over different ways to interpret these estimates/parameters/coefficients
+-   The entire class will go over different ways to interpret these estimates/parameters/coefficients
 
-- Intercept (b0) signifies the level of Y when your model IVs (Xs) are zero 
-- Regression (b1) signifies the difference for a one unit change in your X
+-   Intercept (b0) signifies the level of Y when your model IVs (Xs) are zero
+
+-   Regression (b1) signifies the difference for a one unit change in your X
 
 ## Standard errors
 
-- These coefficients are "best guesses" at some population parameter we want to make inferences about. 
+-   These coefficients are "best guesses" at some population parameter we want to make inferences about.
 
-- To do so we must balance our signal to our noise. If we have a strong signal (steep regression line/difference between groups) that would imply the groups differ. 
+-   To do so we must balance our signal to our noise. If we have a strong signal (steep regression line/difference between groups) that would imply the groups differ.
 
-- If there was a lot of noise in that assessment then a big difference between groups may not be meaningful. We assess this "noise" component with our standard errors
+-   If there was a lot of noise in that assessment then a big difference between groups may not be meaningful. We assess this "noise" component with our standard errors
 
 ## Sampling distribution refresher
 
-- We collect a sample and calculate a sample statistic $b_1$
-- This statistic is not a perfect assessment of the population
-- We calculate a sampling distribution to represent all possible samples we could have gotten from the same population with the same sample size
-- The standard deviation of the sampling distribution (standard error) reflects the spread of the hypothetical scores *we could have gotten*
-- A large standard error means we have a flat sampling distribution and thus should not trust the estimate. 
-- Per convention, if our estimate is > 2xSE away from 0, we say our estimate is "significantly different from zero"
-
-
+-   We collect a sample and calculate a sample statistic $b_1$
+-   This statistic is not a perfect assessment of the population
+-   We calculate a sampling distribution to represent all possible samples we could have gotten from the same population with the same sample size
+-   The standard deviation of the sampling distribution (standard error) reflects the spread of the hypothetical scores *we could have gotten*
+-   A large standard error means we have a flat sampling distribution and thus should not trust the estimate.
+-   Per convention, if our estimate is \> 2xSE away from 0, we say our estimate is "significantly different from zero"
 
 ## Predicted scores
 
-- Based on the output how do I calculate means for each group? 
+-   Based on the output how do I calculate means for each group?
+
 ```{r}
 tidy(mod.1)
 ```
 
-
 ## ANOVA as regression
-- "For a one unit change in X, there is a b1 predicted change in Y" will always be true. 
-- Nominal/categorical variables do not have any inherent numbers associated with them so we need to assign them numbers
-- What numbers you assign will impact the equation/estimates/hypothesis you can test  
-- Behoove you to code them as useful numbers. O and 1 are useful and are the default in R. 
 
+-   "For a one unit change in X, there is a b1 predicted change in Y" will always be true.
+-   Nominal/categorical variables do not have any inherent numbers associated with them so we need to assign them numbers
+-   What numbers you assign will impact the equation/estimates/hypothesis you can test\
+-   Behoove you to code them as useful numbers. O and 1 are useful and are the default in R.
 
 ## ANOVA as regression
 
@@ -406,8 +372,7 @@ $$T.risk_i = b_{0} + b_{1}TX_i + e_i$$
 example.data
 ```
 
-
----
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -417,14 +382,13 @@ example.data$tx.r <- recode_factor(example.data$tx.r, "0" = "control", "1" = "tr
 ```
 
 Create a new variable that is not numeric
+
 ```{r}
 #| code-fold: true
 example.data
 ```
 
-
----
-
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -438,15 +402,12 @@ mod.1r <- lm(traffic.risk ~ tx.r, data = example.data)
 tidy(mod.1r)
 ```
 
+## What if we changed 0 and 1 to other values?
 
-
-## What if we changed 0 and 1 to other values? 
-
-- Infinite number of ways to code categorical/nominal variables, only a few meaningful ways  
-- The R default is called "dummy coding"  
-- Uses 0s and 1s to put numbers to categories. We will soon see what this looks like when you have more than 2 groups. 
-- Changing the numbers changes...?
-
+-   Infinite number of ways to code categorical/nominal variables, only a few meaningful ways\
+-   The R default is called "dummy coding"\
+-   Uses 0s and 1s to put numbers to categories. We will soon see what this looks like when you have more than 2 groups.
+-   Changing the numbers changes...?
 
 ## Effect coding
 
@@ -455,12 +416,10 @@ tidy(mod.1r)
 example.data$tx.effect <- dplyr::recode(example.data$tx, '0' = -1, '1' = 1) 
 ```
 
-
 ```{r}
 #| code-fold: true
 example.data
 ```
-
 
 ## Effect coding
 
@@ -469,96 +428,86 @@ example.data
 mod.1.eff <- lm(traffic.risk ~ tx.effect, data = example.data)
 tidy(mod.1.eff)
 ```
-- systematically changes both the intercept and the regression estimate
 
----
+-   systematically changes both the intercept and the regression estimate
 
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
 effect <- tidy(mod.1.eff)
 effect
 ```
+
 ```{r}
 #| code-fold: true
 dummy <- tidy(mod.1)
 dummy
 ```
 
-- Intercept: value when your predictor X is zero
+-   Intercept: value when your predictor X is zero
 
-- Regression coefficient: one unit increase in X is associated with a (regression estimate) predicted increase in Y
-
-
+-   Regression coefficient: one unit increase in X is associated with a (regression estimate) predicted increase in Y
 
 ## Effect coding
 
 Consists of -1, 1s (And zeros for more than 2 groups)
 
-1. The intercept is the "grand mean" or "mean of means" if unbalanced
-2. The regression coefficient represents the group "effect" ie the difference between the grand mean and the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)
+1.  The intercept is the "grand mean" or "mean of means" if unbalanced
+2.  The regression coefficient represents the group "effect" ie the difference between the grand mean and the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)
 
-- Common to use for Factorial ANOVA designs 
-
-
-
+-   Common to use for Factorial ANOVA designs
 
 ## Dummy coding
 
-- More appropriate when you are interested in comparing to a specific group rather than an "average person."  
+-   More appropriate when you are interested in comparing to a specific group rather than an "average person."
 
-- Intercept: value of the group coded zero 
-- Regression coefficient: mean difference between groups 
+-   Intercept: value of the group coded zero
 
-
+-   Regression coefficient: mean difference between groups
 
 ## Contrast coding
 
-- As our models get more complex our coding schemes can too
-- What happens if you code the groups -.5 and .5? 
-- These make more sense when we have more groups. More groups require more independent variables, however. 
-
+-   As our models get more complex our coding schemes can too
+-   What happens if you code the groups -.5 and .5?
+-   These make more sense when we have more groups. More groups require more independent variables, however.
 
 ## categorical coding summary
 
-- In the end, it really doesn't matter how you code your model. The overall "fit" of the model will be exactly the same because it is the same model. 
+-   In the end, it really doesn't matter how you code your model. The overall "fit" of the model will be exactly the same because it is the same model.
 
-- The only thing that changes is the interpretation of your coefficients. 
+-   The only thing that changes is the interpretation of your coefficients.
 
-- Even then, you can recreate any test you want regardless of coding scheme. As a result, we often leave the default coding in place. 
-
+-   Even then, you can recreate any test you want regardless of coding scheme. As a result, we often leave the default coding in place.
 
 ## Statistical Inference
 
-- The way the world is = our model + error
-- How good is our model? Is it a good representation of reality? Does it "fit" the data well? 
-- Need to go beyond asking if it is significant, because what does that mean? Remember, all models are wrong
-- We are going to make predictions and see if the predictions (based on our model) matches our data
-- We can then compare one model to another to see which one matches our data better ie which one is a better representation of reality. 
-
-
-## Predictions
-
-- predictions $\hat{Y}$ are of the form of E(Y|X)
-- They are created by simply plugging a persons Xs into the created model
-- If you have bs and have Xs you can create a prediction 
-
-$\hat{Y}_{i}$ = 2.65064 + -0.48111* $X_{i}$
-
-- You have already done this with dummy codes above
-
+-   The way the world is = our model + error
+-   How good is our model? Is it a good representation of reality? Does it "fit" the data well?
+-   Need to go beyond asking if it is significant, because what does that mean? Remember, all models are wrong
+-   We are going to make predictions and see if the predictions (based on our model) matches our data
+-   We can then compare one model to another to see which one matches our data better ie which one is a better representation of reality.
 
 ## Predictions
 
-- We want our predictions to be close to our actual data for each person ( $Y_{i}$ )
-- The difference between the actual data and our our prediction ( $Y_{i}  - \hat{Y}_{i} = e$ ) is the residual, how far we are "off". This tells us how good our fit is. 
-- You can have the same estimates for two models but completely different fit. 
-- Previously you may have evaluated overall model fit by looking at Eta Squared, SS Error and visualizing observations around group means
+-   predictions $\hat{Y}$ are of the form of E(Y\|X)
+-   They are created by simply plugging a persons Xs into the created model
+-   If you have bs and have Xs you can create a prediction
 
+$\hat{Y}_{i}$ = 2.65064 + -0.48111\* $X_{i}$
 
+-   You have already done this with dummy codes above
 
-## Which one has better fit? 
-- Can you point out the predictions? 
+## Predictions
+
+-   We want our predictions to be close to our actual data for each person ( $Y_{i}$ )
+-   The difference between the actual data and our our prediction ( $Y_{i} - \hat{Y}_{i} = e$ ) is the residual, how far we are "off". This tells us how good our fit is.
+-   You can have the same estimates for two models but completely different fit.
+-   Previously you may have evaluated overall model fit by looking at Eta Squared, SS Error and visualizing observations around group means
+
+## Which one has better fit?
+
+-   Can you point out the predictions?
 
 ```{r}
 #| code-fold: true
@@ -602,17 +551,14 @@ library(gridExtra)
  grid.arrange(plot1, plot2, ncol=2)
 ```
 
-
-
-
 ## Easy to examine fit with `lm` objects
 
-- These are automatically created anytime you run a `lm` in R
+-   These are automatically created anytime you run a `lm` in R
+
 ```{r}
 #| code-fold: true
 mod.1 <- lm(traffic.risk ~ tx, data = example.data)
 ```
-
 
 ```{r, eval=FALSE}
 coefficients(mod.1)       # coefficients
@@ -622,48 +568,43 @@ summary(mod.1)$r.squared  # R-sq for the model
 summary(mod.1)$sigma      # sd of residuals
 ```
 
----
+------------------------------------------------------------------------
 
 ```{r}
 coefficients(mod.1)
 ```
 
----
-
+------------------------------------------------------------------------
 
 ```{r}
 fitted.values(mod.1)
 ```
 
----
+------------------------------------------------------------------------
 
 ```{r}
 residuals(mod.1)
 ```
 
+## Pop quiz
 
-##  Pop quiz 
- 
-$$\hat{Y}_{i} = b_{0} + b_{1}X_{i}$$ 
+$$\hat{Y}_{i} = b_{0} + b_{1}X_{i}$$
 
+$$Y_{i} = b_{0} + b_{1}X_{i} +e_{i}$$
 
-$$Y_{i} = b_{0} + b_{1}X_{i} +e_{i}$$ 
+$$Y_{i}  - \hat{Y}_{i} = e$$
 
-$$Y_{i}  - \hat{Y}_{i} = e$$ 
+-   Can you plug in numbers and calculate subject 3's predicted and residual scores without explicitly asking for lm object residuals and fitted values? (using the same model from slide 41 on)
 
-- Can you plug in numbers and calculate subject 3's predicted and residual scores without explicitly asking for lm object residuals and fitted values? (using the same model from slide 41 on)
+-   Post answers in Slack -- see if you and your peers get the same results!
 
-- Post answers in Slack -- see if you and your peers get the same results!
-
----
-
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
 library(DT)
 datatable(example.data)
 ```
-
 
 ## Residuals
 
@@ -673,7 +614,7 @@ fit.1.data <- augment(mod.1)
 fit.1.data
 ```
 
-----------
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -682,14 +623,11 @@ ggplot(fit.1.data, aes(.resid)) +
    
 ```
 
-
 ## An aside concerning `lm` objects
 
-- `lm` objects consist of the information embedded in your linear model
-- R often handles model objects poorly due to them not necessarily being in a usable data frame (lists!)
-- the `broom` package makes model objects into dataframes
-
-
+-   `lm` objects consist of the information embedded in your linear model
+-   R often handles model objects poorly due to them not necessarily being in a usable data frame (lists!)
+-   the `broom` package makes model objects into dataframes
 
 ```{r}
 #| code-fold: true
@@ -698,10 +636,9 @@ fit.1.tidy <- tidy(mod.1)
 fit.1.tidy
 ```
 
+------------------------------------------------------------------------
 
----
-
-- `Augment` function from the `broom` package amends the original dataset with lm object content. The new variable names of have a "." in front of the name to distinguish
+-   `Augment` function from the `broom` package amends the original dataset with lm object content. The new variable names of have a "." in front of the name to distinguish
 
 ```{r}
 #| code-fold: true
@@ -710,16 +647,13 @@ fit.1.data
 
 ```
 
----
+------------------------------------------------------------------------
 
-
-:::: {.columns}
-
+::: columns
 ::: {.column width="30%"}
-
-- `augment` = adds to existing dataset
-- `tidy` = model components like $\beta$
-- `glance` = model fit like $\eta^2$ or $R^2$ 
+-   `augment` = adds to existing dataset
+-   `tidy` = model components like $\beta$
+-   `glance` = model fit like $\eta^2$ or $R^2$
 :::
 
 ::: {.column width="70%"}
@@ -728,46 +662,38 @@ fit.1.data
 tidy(mod.1) 
 ```
 
-
 ```{r}
 #| code-fold: true
 glance(mod.1) 
 ```
-
 :::
-
-::::
-
-
+:::
 
 ## Pop quiz #2
 
-- For a two group ANOVA how many different predicted values will we have? Residuals? 
+-   For a two group ANOVA how many different predicted values will we have? Residuals?
 
-- Post your answer in Slack and see how you compare to your peers!
-
+-   Post your answer in Slack and see how you compare to your peers!
 
 ## Statistical Inference
 
-- In making predictions, we have to compare our prediction to some alternative prediction to see if we are doing well or not. 
+-   In making predictions, we have to compare our prediction to some alternative prediction to see if we are doing well or not.
 
-- What is our best guess (ie prediction) if we didn't collect any data? 
+-   What is our best guess (ie prediction) if we didn't collect any data?
 
 $$ \hat{Y} = \bar{Y} $$
 
-- Regression can be thought of as: is E(Y|X) better than E(Y)?
-
+-   Regression can be thought of as: is E(Y\|X) better than E(Y)?
 
 ## Statistical Inference
 
-- To the extent that we can generate different predicted values of Y based on the values of the predictors, our model is doing well
+-   To the extent that we can generate different predicted values of Y based on the values of the predictors, our model is doing well
 
-- Said differently, the closer our model is to the "actual" data generating model, our guesses ( $\hat{Y}$ ) will be closer to our actual data ( $Y$ )  
+-   Said differently, the closer our model is to the "actual" data generating model, our guesses ( $\hat{Y}$ ) will be closer to our actual data ( $Y$ )
 
----
+------------------------------------------------------------------------
 
-
-- We formally test how well we are doing with our guesses by partitioning variation
+-   We formally test how well we are doing with our guesses by partitioning variation
 
 $$ Y = \hat{Y} + e$$
 
@@ -779,8 +705,7 @@ $$ (Y - \bar{Y})^2 = [(\hat{Y} -\bar{Y}) + (Y - \hat{Y})]^2 $$
 
 $$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 $$
 
----
-
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -799,34 +724,29 @@ ggstatsplot::ggbetweenstats(
   geom_text(aes(.55,2.5,label = "Average"))
 ```
 
-
 ## Partitioning the variation in Y
 
 $$ \sum (Y_i - \bar{Y})^2 = \sum (\hat{Y}_i -\bar{Y})^2 + \sum(Y_i - \hat{Y}_i)^2 $$
 
-- SS total = SS between + SS within
+-   SS total = SS between + SS within
 
-- SS total = SS regression + SS residual (or error)
+-   SS total = SS regression + SS residual (or error)
 
+## What can we do with this?
 
-
-## What can we do with this? 
-
-- omnibus F tests (ANOVA)
-- What hypothesis does the omnibus F test test, generally? 
+-   omnibus F tests (ANOVA)
+-   What hypothesis does the omnibus F test test, generally?
 
 $$s_{y}^2 = s_{regression}^2 + s_{residual}^2$$
 
 $$1 = \frac{s_{regression}^2}{s_{y}^2} + \frac{s_{residual}^2}{s_{y}^2}$$
 
-
 ## Coefficient of Determination
 
 $$\frac{s_{regression}^2}{s_{y}^2} = \frac{SS_{regression}}{SS_{Y}} = R^2$$
 
-- Percent (of total) variance explained by your model...which currently are groups
-- Another way of asking how much variance group status explains
-
+-   Percent (of total) variance explained by your model...which currently are groups
+-   Another way of asking how much variance group status explains
 
 ## $R^2$ and Eta squared
 
@@ -834,12 +754,10 @@ $$\frac{s_{regression}^2}{s_{y}^2} = \frac{SS_{regression}}{SS_{Y}} = R^2$$
 summary(mod.1)$r.squared
 ```
 
-
 ```{r}
 library(lsr)
 etaSquared(mod.1)
 ```
-
 
 ## $R^2$ for different coding schemes
 
@@ -851,30 +769,23 @@ glance(mod.1)
 glance(mod.1.eff)
 ```
 
-
-
 ## Note the $R^2$ *p*-value
+
 ```{r}
 #| code-fold: true
 summary(mod.1)
 ```
 
-
-
 ## Summary
 
 ![](regMeme.jpeg)
 
-
-
 ## Summary
 
-- We are using linear models to do the exact same tests as *t*-tests and ANOVAs
+-   We are using linear models to do the exact same tests as *t*-tests and ANOVAs
 
-- It is the exact same because *t*-tests and ANOVAs are part of the general linear model
+-   It is the exact same because *t*-tests and ANOVAs are part of the general linear model
 
-- The GLM provides a more systematic way at 1) building and testing your theoretical model and 2) comparing between alternative theoretical models
+-   The GLM provides a more systematic way at 1) building and testing your theoretical model and 2) comparing between alternative theoretical models
 
-- You can get 1) estimates and 2) fit statistics from the model. Both are important. 
-
-
+-   You can get 1) estimates and 2) fit statistics from the model. Both are important.
