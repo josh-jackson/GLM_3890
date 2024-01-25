@@ -7,7 +7,6 @@ Syllabus:
   pdf: "Syllabus_Psych3890.pdf"
 ---
 
-
 ```{css, echo=FALSE}
 #title-block-header .description {
     display: none;
@@ -45,4 +44,3 @@ Syllabus:
   <iframe src="Syllabus_Psych3890.pdf" style="border: 0.5px"></iframe>
 </div>
 ```
-
