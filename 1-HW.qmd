@@ -1,0 +1,48 @@
+---
+title: "Homework 1"
+---
+
+We will use the \`palmerpenguins\` dataset. Please install the pacakge \`palmerpenguins\` if you do not already have it and use the \`penguins\` data.frame.
+
+Remember that if you work with a peer or use AI tools like Chat-GPT, you must cite them in your code.
+
+You will submit both your .Rmd and HTML files to Canvas. For all figures, you must be intentional. Change the axes names, the theme etc. Do not settle for the defaults!
+
+Good luck!
+
+## Question 1
+Run a model to test the question:
+
+\> Do male and female penguins have different length flippers?
+
+- Yes or no, is the flipper length of male penguins signiciantly different from the flipper length of female penguins? How do you know?
+
+- What is the (mean) flipper length for males and females, respectively?
+
+- Is this a good model? How do you know?
+
+- Using the output, write the formal equation (see Slide 26 if confused)
+
+- Interpret the intercept and the regression coefficient
+
+- If you were back in your OG Psych Stats days, what would we call this statistical test?
+
+- Make a figure to illustrate this relationship. In it, you should include a summary metric (e.g., the mean or median) as well as information about the distribution of data, the raw data, or both. Look at slides for inspiration!
+
+
+## Question 2
+Run a model to test the question:
+
+\> Are penguins on different islands the same size?
+
+- Try to write the formal equation \-- just do your best! In a sentence or two, what makes this equation different from the one you wrote in Question 1?
+
+- If you were back in your OG Psych Stats days, what would we call this statistical test?
+
+- Given the name of this statistical test, replace \`lm\` with a different function. That is, use a function that is \*not\* \`lm\` to run the same model. (I'm being intentionally vague here...). What changes about this new output, compared to the model in Question 1, and what stays the same?
+
+- Make a figure to compare the size of penguins on different islands. Make sure to give an interval around the point estimate (\*hint: this usually comes in the form of 'bars'\*)
+
+- Is this a good model? How do you know?
+
+- Given the name of this statistical test, calculate an effect size. What do you notice between this effect size and the \`lm\` object output? Any similarities?

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GLM 2024 - Lectures</title>
+<title>GLM 2024 - Homework 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./lectures.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./lectures.html" rel="" target="">
  <span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item">
@@ -109,14 +109,21 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lectures</h1>
+<h1 class="title">Homework 1</h1>
 </div>
 
 
@@ -131,12 +138,39 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<ol type="1">
-<li><p><a href="./1-intro.html">What are models?</a></p></li>
-<li><p><a href="./2-Basics.html">GLM basics</a></p></li>
-</ol>
+<p>We will use the `palmerpenguins` dataset. Please install the pacakge `palmerpenguins` if you do not already have it and use the `penguins` data.frame.</p>
+<p>Remember that if you work with a peer or use AI tools like Chat-GPT, you must cite them in your code.</p>
+<p>You will submit both your .Rmd and HTML files to Canvas. For all figures, you must be intentional. Change the axes names, the theme etc. Do not settle for the defaults!</p>
+<p>Good luck!</p>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>Run a model to test the question:</p>
+<p>&gt; Do male and female penguins have different length flippers?</p>
+<ul>
+<li><p>Yes or no, is the flipper length of male penguins signiciantly different from the flipper length of female penguins? How do you know?</p></li>
+<li><p>What is the (mean) flipper length for males and females, respectively?</p></li>
+<li><p>Is this a good model? How do you know?</p></li>
+<li><p>Using the output, write the formal equation (see Slide 26 if confused)</p></li>
+<li><p>Interpret the intercept and the regression coefficient</p></li>
+<li><p>If you were back in your OG Psych Stats days, what would we call this statistical test?</p></li>
+<li><p>Make a figure to illustrate this relationship. In it, you should include a summary metric (e.g., the mean or median) as well as information about the distribution of data, the raw data, or both. Look at slides for inspiration!</p></li>
+</ul>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p>Run a model to test the question:</p>
+<p>&gt; Are penguins on different islands the same size?</p>
+<ul>
+<li><p>Try to write the formal equation -- just do your best! In a sentence or two, what makes this equation different from the one you wrote in Question 1?</p></li>
+<li><p>If you were back in your OG Psych Stats days, what would we call this statistical test?</p></li>
+<li><p>Given the name of this statistical test, replace `lm` with a different function. That is, use a function that is *not* `lm` to run the same model. (I’m being intentionally vague here…). What changes about this new output, compared to the model in Question 1, and what stays the same?</p></li>
+<li><p>Make a figure to compare the size of penguins on different islands. Make sure to give an interval around the point estimate (*hint: this usually comes in the form of ‘bars’*)</p></li>
+<li><p>Is this a good model? How do you know?</p></li>
+<li><p>Given the name of this statistical test, calculate an effect size. What do you notice between this effect size and the `lm` object output? Any similarities?</p></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

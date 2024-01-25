@@ -1,6 +1,6 @@
 ---
 title: "Lectures"
-editor: visual
+editor: source
 ---
 
 1.  [What are models?](1-intro.qmd)
