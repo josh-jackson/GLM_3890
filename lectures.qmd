@@ -6,3 +6,5 @@ editor: source
 1.  [What are models?](1-intro.qmd)
 
 2.  [GLM basics](2-Basics.qmd)
+
+3.  [GLM basics - 2](3-Basics.qmd)

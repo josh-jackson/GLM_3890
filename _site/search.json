@@ -102,7 +102,7 @@
     "href": "lectures.html",
     "title": "Lectures",
     "section": "",
-    "text": "What are models?\nGLM basics"
+    "text": "What are models?\nGLM basics\nGLM basics - 2"
   },
   {
     "objectID": "index.html",
@@ -488,5 +488,145 @@
     "title": "homework",
     "section": "",
     "text": "Homework 1"
+  },
+  {
+    "objectID": "3-Basics.html#this-time",
+    "href": "3-Basics.html#this-time",
+    "title": "GLM basics II",
+    "section": "This time",
+    "text": "This time\n\nWhat is regression and why is it useful?\nNuts and bolts\n\nEquation\nOrdinary least squares\nInterpretation"
+  },
+  {
+    "objectID": "3-Basics.html#regression",
+    "href": "3-Basics.html#regression",
+    "title": "GLM basics II",
+    "section": "Regression",
+    "text": "Regression\nRegression is a general data analytic system, meaning lots of things fall under the umbrella of regression. This system can handle a variety of forms of relations, although all forms have to be specified in a linear way. Usefully, we can incorporate IVs of all nature – continuous, categorical, nominal, ordinal….\nThe output of regression includes both effect sizes and, if using frequentist or Bayesian software, statistical significance. We can also incorporate multiple influences (IVs) and account for their intercorrelations."
+  },
+  {
+    "objectID": "3-Basics.html#regression-1",
+    "href": "3-Basics.html#regression-1",
+    "title": "GLM basics II",
+    "section": "Regression",
+    "text": "Regression\n\nScientific use: explaining the influence of one or more variables on some outcome.\n\nDoes this intervention affect reaction time? Does self-esteem predict relationship quality?\n\nPrediction use: We can develop models based on what’s happened in the past to predict what will happen in the figure.\n\nInsurance premiums? Graduate school… success?\n\nAdjustment: Statistically control for known effects\n\nIf everyone had the same level of SES, would abuse still be associated with criminal behavior?"
+  },
+  {
+    "objectID": "3-Basics.html#regression-equation",
+    "href": "3-Basics.html#regression-equation",
+    "title": "GLM basics II",
+    "section": "Regression equation",
+    "text": "Regression equation\nWhat is a regression equation?\n\nFunctional relationship\n\nIdeally like a physical law \\((E = MC^2)\\)\nIn practice, it’s never as robust as that\n\n\nHow do we uncover the relationship?"
+  },
+  {
+    "objectID": "3-Basics.html#how-does-y-vary-with-x",
+    "href": "3-Basics.html#how-does-y-vary-with-x",
+    "title": "GLM basics II",
+    "section": "How does Y vary with X?",
+    "text": "How does Y vary with X?\n\nThe regression of Y (DV) on X (IV) corresponds to the line that gives the mean value of Y corresponding to each possible value of X\n“Our best guess” regardless of whether our model includes categories or continuous predictor variables\nWe will evaluate our guesses based on how far away we are from the mean. But how do we come up with those guesses in the first place?"
+  },
+  {
+    "objectID": "3-Basics.html#regression-equation-1",
+    "href": "3-Basics.html#regression-equation-1",
+    "title": "GLM basics II",
+    "section": "Regression Equation",
+    "text": "Regression Equation\n\\[\\Large Y = b_{0} + b_{1}X +e\\]\n\\[\\Large \\hat{Y} = b_{0} + b_{1}X\\]\n\\(\\hat{Y}\\) signifies the predicted score – no error\nThe difference between the predicted and observed score is the residual ( \\(e_i\\) )"
+  },
+  {
+    "objectID": "3-Basics.html#ols",
+    "href": "3-Basics.html#ols",
+    "title": "GLM basics II",
+    "section": "OLS",
+    "text": "OLS\n\nHow do we find the regression estimates?\nOrdinary Least Squares (OLS) estimation\nMinimizes deviations\n\n\\[ min\\sum(Y_{i}-\\hat{Y})^{2} \\]\n\nOther estimation procedures possible (and necessary in some cases)"
+  },
+  {
+    "objectID": "3-Basics.html#compare-with-bad-fit",
+    "href": "3-Basics.html#compare-with-bad-fit",
+    "title": "GLM basics II",
+    "section": "compare with bad fit",
+    "text": "compare with bad fit\n\n\nCode\nnew.i = 1.1\nnew.slope = -0.7\nd1.f$new.fitted = 1.1 -0.7*d1.f$x.1\n\nggplot(d1.f , aes(x=x.1, y=y.1)) +\n    geom_point(size = 2) +\n  geom_abline(intercept = new.i, slope = new.slope, color = \"blue\", linewidth = 1) +\n  geom_point(aes(y = new.fitted), shape = 1, size = 2) +\n  geom_segment(aes( xend = x.1, yend = new.fitted))+\n  theme_bw(base_size = 20)"
+  },
+  {
+    "objectID": "3-Basics.html#what-is-error",
+    "href": "3-Basics.html#what-is-error",
+    "title": "GLM basics II",
+    "section": "What is error?",
+    "text": "What is error?\n\\[\\Large Y = b_{0} + b_{1}X +e\\]\n\\[\\Large \\hat{Y} = b_{0} + b_{1}X\\]\n\\[\\Large Y_i = \\hat{Y_i} + e_i\\]\n\\[\\Large e_i = Y_i - \\hat{Y_i}\\]"
+  },
+  {
+    "objectID": "3-Basics.html#ols-1",
+    "href": "3-Basics.html#ols-1",
+    "title": "GLM basics II",
+    "section": "OLS",
+    "text": "OLS\nThe line that yields the smallest sum of squared deviations\n\\[\\Large \\Sigma(Y_i - \\hat{Y_i})^2\\] \\[\\Large = \\Sigma(Y_i - (b_0+b_{1}X_i))^2\\] \\[\\Large = \\Sigma(e_i)^2\\]"
+  },
+  {
+    "objectID": "3-Basics.html#regression-coefficient-b_1",
+    "href": "3-Basics.html#regression-coefficient-b_1",
+    "title": "GLM basics II",
+    "section": "Regression coefficient, \\(b_{1}\\)",
+    "text": "Regression coefficient, \\(b_{1}\\)\n\\[\\large b_{1} = \\frac{cov_{XY}}{s_{x}^{2}} = r_{xy} \\frac{s_{y}}{s_{x}}\\]\n\\[\\large r_{xy} = \\frac{s_{xy}}{s_xs_y}\\]\n\nThe regression coefficient (slope) equals the estimated change in Y for a 1-unit change in X"
+  },
+  {
+    "objectID": "3-Basics.html#standardized-regression",
+    "href": "3-Basics.html#standardized-regression",
+    "title": "GLM basics II",
+    "section": "Standardized regression",
+    "text": "Standardized regression\n\nRegression using z-scores for Y and X\nCorrelation equals standardized regression coefficient\n\n\\[\\large b_{1} = r_{xy} \\frac{s_{y}}{s_{x}}\\]\n\\[ \\large r_{xy} = b_1\\frac{s_x}{s_y} \\]\nIf the variance of both X and Y is equal to 1 (as in z-scores):\n\\[\\large \\beta_{1} = b_{1}^* = r_{xy}\\]"
+  },
+  {
+    "objectID": "3-Basics.html#standardized-regression-equation",
+    "href": "3-Basics.html#standardized-regression-equation",
+    "title": "GLM basics II",
+    "section": "Standardized regression equation",
+    "text": "Standardized regression equation\n\\[\\large Y = b_{1}^*X+e\\]\n\\[\\large b_{1}^* = b_{1}\\frac{s_x}{s_y}\\]\nWhen \\(X = 0, Y = 0\\). A one-standard deviation increase in X is associated with a \\(b_{1}^*\\) standard deviation increase in Y. Our regression coefficient is equivalent to the correlation coefficient when we have only one predictor in our model."
+  },
+  {
+    "objectID": "3-Basics.html#estimating-the-intercept-b_0",
+    "href": "3-Basics.html#estimating-the-intercept-b_0",
+    "title": "GLM basics II",
+    "section": "Estimating the intercept, \\(b_0\\)",
+    "text": "Estimating the intercept, \\(b_0\\)\n(AKA how to get the raw score regressione equation)\n\nRe-write equation to include the means of Y and X ( \\(\\bar{X}\\) & \\(\\bar{Y}\\) )\nIntercept serves to adjust for differences in means between X and Y\n\n\\[\\Large \\hat{Y} = \\bar{Y} + r_{xy} \\frac{s_{y}}{s_{x}}(X-\\bar{X})\\] - If standardized, intercept drops out - Otherwise, intercept is where regression line crosses the y-axis at X = 0\n- Notice that when \\(X = \\bar{X}\\) the regression line goes through \\(\\bar{Y}\\). This is true for all regressions such that the regression line must pass through \\(\\bar{X}\\) and \\(\\bar{Y}\\)"
+  },
+  {
+    "objectID": "3-Basics.html#example",
+    "href": "3-Basics.html#example",
+    "title": "GLM basics II",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nlibrary(psych)\ngalton.data &lt;- psychTools::galton\nhead(galton.data)\n\n\n  parent child\n1   70.5  61.7\n2   68.5  61.7\n3   65.5  61.7\n4   64.5  61.7\n5   64.0  61.7\n6   67.5  62.2\n\n\nCode\ndescribe(galton.data, fast = T)\n\n\n       vars   n  mean   sd  min  max range   se\nparent    1 928 68.31 1.79 64.0 73.0     9 0.06\nchild     2 928 68.09 2.52 61.7 73.7    12 0.08\n\n\nCode\ncor(galton.data)\n\n\n          parent     child\nparent 1.0000000 0.4587624\nchild  0.4587624 1.0000000"
+  },
+  {
+    "objectID": "3-Basics.html#in-r",
+    "href": "3-Basics.html#in-r",
+    "title": "GLM basics II",
+    "section": "In R",
+    "text": "In R\n\n\nCode\nfit.1 &lt;- lm(child ~ parent, data = galton.data)\nsummary(fit.1)\n\n\n\nCall:\nlm(formula = child ~ parent, data = galton.data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "3-Basics.html#reversed",
+    "href": "3-Basics.html#reversed",
+    "title": "GLM basics II",
+    "section": "Reversed",
+    "text": "Reversed\n\n\nCode\nsummary(lm(parent ~ child, data = galton.data))\n\n\n\nCall:\nlm(formula = parent ~ child, data = galton.data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.6702 -1.1702 -0.1471  1.1324  4.2722 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 46.13535    1.41225   32.67   &lt;2e-16 ***\nchild        0.32565    0.02073   15.71   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.589 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "3-Basics.html#data-predicted-and-residuals",
+    "href": "3-Basics.html#data-predicted-and-residuals",
+    "title": "GLM basics II",
+    "section": "Data, predicted, and residuals",
+    "text": "Data, predicted, and residuals\n\n\nCode\nlibrary(broom)\nmodel_info = augment(fit.1)\nhead(model_info)\n\n\n# A tibble: 6 × 8\n  child parent .fitted .resid    .hat .sigma .cooksd .std.resid\n  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;\n1  61.7   70.5    69.5  -7.81 0.00270   2.22 0.0165       -3.49\n2  61.7   68.5    68.2  -6.51 0.00109   2.23 0.00462      -2.91\n3  61.7   65.5    66.3  -4.57 0.00374   2.23 0.00787      -2.05\n4  61.7   64.5    65.6  -3.93 0.00597   2.24 0.00931      -1.76\n5  61.7   64      65.3  -3.60 0.00735   2.24 0.00966      -1.62\n6  62.2   67.5    67.6  -5.37 0.00130   2.23 0.00374      -2.40"
+  },
+  {
+    "objectID": "3-Basics.html#residuals",
+    "href": "3-Basics.html#residuals",
+    "title": "GLM basics II",
+    "section": "Residuals",
+    "text": "Residuals\n\nDispersion of residuals can be thought of as what is left over in Y that is not explained by our model. As residuals get smaller on average, so will the SD of the residuals.\nSigma ( \\(\\sigma\\) ) is the SD of residuals. It can be thought of as how much left over in Y that we cannot explain by our model."
+  },
+  {
+    "objectID": "3-Basics.html#residuals-summary",
+    "href": "3-Basics.html#residuals-summary",
+    "title": "GLM basics II",
+    "section": "Residuals Summary",
+    "text": "Residuals Summary\n\nResiduals are not correlated with \\(X\\) and \\(\\hat{Y}\\) because those two are perfectly correlated with one another (that is, \\(r_{\\text{fitted,x}} = 1\\) )\n\\(X\\) and \\(\\hat{Y}\\) represent the same information. We use our model ( \\(X\\) ) to make a prediction ( \\(\\hat{Y}\\) ). These predictions are entirely based on the model.\nThere is no correlation between residuals with \\(X\\) and \\(\\hat{Y}\\) because they are created by subtracting them out of \\(Y\\). That is, ( \\(\\epsilon = Y - \\hat{Y}\\) )\nSigma ( \\(\\sigma\\) ; the SD of residuals) can be thought of as how much left over in \\(Y\\) after we take out all of the information our model provides."
   }
 ]
