@@ -1364,14 +1364,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="predictions" class="slide level2">
 <h2>Predictions</h2>
 <ul>
-<li>predictions <span class="math inline">\(\hat{Y}\)</span> are of the form of E(Y|X)</li>
+<li>Our model is a prediction machine.</li>
 <li>They are created by simply plugging a persons Xs into the created model</li>
 <li>If you have bs and have Xs you can create a prediction</li>
 </ul>
 <p><span class="math inline">\(\hat{Y}_{i}\)</span> = 2.65064 + -0.48111* <span class="math inline">\(X_{i}\)</span></p>
-<ul>
-<li>You have already done this with dummy codes above</li>
-</ul>
 </section>
 <section id="predictions-1" class="slide level2">
 <h2>Predictions</h2>
@@ -1634,43 +1631,34 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </section>
-<section id="pop-quiz" class="slide level2">
-<h2>Pop quiz</h2>
-<p><span class="math display">\[\hat{Y}_{i} = b_{0} + b_{1}X_{i}\]</span></p>
-<p><span class="math display">\[Y_{i} = b_{0} + b_{1}X_{i} +e_{i}\]</span></p>
-<p><span class="math display">\[Y_{i}  - \hat{Y}_{i} = e\]</span></p>
+<section id="an-aside-concerning-lm-objects" class="slide level2">
+<h2>An aside concerning <code>lm</code> objects</h2>
 <ul>
-<li><p>Can you plug in numbers and calculate subject 3’s predicted and residual scores without explicitly asking for lm object residuals and fitted values? (using the same model from slide 41 on)</p></li>
-<li><p>Post answers in Slack – see if you and your peers get the same results!</p></li>
+<li><code>lm</code> objects consist of the information embedded in your linear model</li>
+<li>R often handles model objects poorly due to them not necessarily being in a usable data frame (lists!)</li>
+<li>the <code>broom</code> package makes model objects into dataframes</li>
 </ul>
-</section>
-<section class="slide level2">
-
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a>example.data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb61-2"><a href="#cb61-2"></a>fit.<span class="fl">1.</span>tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(mod<span class="fl">.1</span>)  </span>
+<span id="cb61-3"><a href="#cb61-3"></a>fit.<span class="fl">1.</span>tidy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 270 × 5
-      id    tx traffic.risk tx.r      tx.effect
-   &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;
- 1     1     1         1.86 treatment         1
- 2     2     1         1    treatment         1
- 3     3     1         3.29 treatment         1
- 4     4     1         2    treatment         1
- 5     5     1         2.43 treatment         1
- 6     6     1         3.29 treatment         1
- 7     7     0         1.17 control          -1
- 8     8     0         2.43 control          -1
- 9     9     0         3    control          -1
-10    10     1         1.71 treatment         1
-# ℹ 260 more rows</code></pre>
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic   p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)    2.65     0.0764     34.7  3.80e-101
+2 tx            -0.481    0.0974     -4.94 1.38e-  6</code></pre>
 </div>
 </div>
 </section>
-<section id="residuals" class="slide level2">
-<h2>Residuals</h2>
+<section class="slide level2">
+
+<ul>
+<li><code>Augment</code> function from the <code>broom</code> package amends the original dataset with lm object content. The new variable names of have a “.” in front of the name to distinguish</li>
+</ul>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1695,127 +1683,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </section>
-<section class="slide level2">
-
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="fu">ggplot</span>(fit.<span class="fl">1.</span>data, <span class="fu">aes</span>(.resid)) <span class="sc">+</span></span>
-<span id="cb65-2"><a href="#cb65-2"></a>    <span class="fu">geom_density</span>()    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="2-Basics_files/figure-revealjs/unnamed-chunk-39-1.png" width="960" class="r-stretch"></section>
-<section id="an-aside-concerning-lm-objects" class="slide level2">
-<h2>An aside concerning <code>lm</code> objects</h2>
-<ul>
-<li><code>lm</code> objects consist of the information embedded in your linear model</li>
-<li>R often handles model objects poorly due to them not necessarily being in a usable data frame (lists!)</li>
-<li>the <code>broom</code> package makes model objects into dataframes</li>
-</ul>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb66-2"><a href="#cb66-2"></a>fit.<span class="fl">1.</span>tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(mod<span class="fl">.1</span>)  </span>
-<span id="cb66-3"><a href="#cb66-3"></a>fit.<span class="fl">1.</span>tidy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  term        estimate std.error statistic   p.value
-  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-1 (Intercept)    2.65     0.0764     34.7  3.80e-101
-2 tx            -0.481    0.0974     -4.94 1.38e-  6</code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<ul>
-<li><code>Augment</code> function from the <code>broom</code> package amends the original dataset with lm object content. The new variable names of have a “.” in front of the name to distinguish</li>
-</ul>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a>fit.<span class="fl">1.</span>data <span class="ot">&lt;-</span> <span class="fu">augment</span>(mod<span class="fl">.1</span>) </span>
-<span id="cb68-2"><a href="#cb68-2"></a>fit.<span class="fl">1.</span>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 270 × 8
-   traffic.risk    tx .fitted .resid    .hat .sigma  .cooksd .std.resid
-          &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
- 1         1.86     1    2.17 -0.312 0.00602  0.780 0.000490     -0.402
- 2         1        1    2.17 -1.17  0.00602  0.777 0.00687      -1.51 
- 3         3.29     1    2.17  1.12  0.00602  0.777 0.00626       1.44 
- 4         2        1    2.17 -0.170 0.00602  0.780 0.000144     -0.218
- 5         2.43     1    2.17  0.259 0.00602  0.780 0.000337      0.334
- 6         3.29     1    2.17  1.12  0.00602  0.777 0.00626       1.44 
- 7         1.17     0    2.65 -1.48  0.00962  0.775 0.0178       -1.91 
- 8         2.43     0    2.65 -0.222 0.00962  0.780 0.000398     -0.287
- 9         3        0    2.65  0.349 0.00962  0.780 0.000986      0.451
-10         1.71     1    2.17 -0.455 0.00602  0.780 0.00104      -0.586
-# ℹ 260 more rows</code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="columns">
-<div class="column" style="width:30%;">
-<ul>
-<li><code>augment</code> = adds to existing dataset</li>
-<li><code>tidy</code> = model components like <span class="math inline">\(\beta\)</span></li>
-<li><code>glance</code> = model fit like <span class="math inline">\(\eta^2\)</span> or <span class="math inline">\(R^2\)</span></li>
-</ul>
-</div><div class="column" style="width:70%;">
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="fu">tidy</span>(mod<span class="fl">.1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  term        estimate std.error statistic   p.value
-  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-1 (Intercept)    2.65     0.0764     34.7  3.80e-101
-2 tx            -0.481    0.0974     -4.94 1.38e-  6</code></pre>
-</div>
-</div>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">glance</span>(mod<span class="fl">.1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 12
-  r.squared adj.r.squared sigma statistic    p.value    df logLik   AIC   BIC
-      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1    0.0834        0.0800 0.779      24.4 0.00000138     1  -315.  635.  646.
-# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="pop-quiz-2" class="slide level2">
-<h2>Pop quiz #2</h2>
-<ul>
-<li><p>For a two group ANOVA how many different predicted values will we have? Residuals?</p></li>
-<li><p>Post your answer in Slack and see how you compare to your peers!</p></li>
-</ul>
-</section>
 <section id="statistical-inference-1" class="slide level2">
-<h2>Statistical Inference</h2>
-<ul>
-<li><p>In making predictions, we have to compare our prediction to some alternative prediction to see if we are doing well or not.</p></li>
-<li><p>What is our best guess (ie prediction) if we didn’t collect any data?</p></li>
-</ul>
-<p><span class="math display">\[ \hat{Y} = \bar{Y} \]</span></p>
-<ul>
-<li>Regression can be thought of as: is E(Y|X) better than E(Y)?</li>
-</ul>
-</section>
-<section id="statistical-inference-2" class="slide level2">
 <h2>Statistical Inference</h2>
 <ul>
 <li><p>To the extent that we can generate different predicted values of Y based on the values of the predictors, our model is doing well</p></li>
@@ -1827,24 +1695,24 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="fu">library</span>(ggstatsplot)</span>
-<span id="cb74-2"><a href="#cb74-2"></a>ggstatsplot<span class="sc">::</span><span class="fu">ggbetweenstats</span>(</span>
-<span id="cb74-3"><a href="#cb74-3"></a>  <span class="at">data =</span> example.data,</span>
-<span id="cb74-4"><a href="#cb74-4"></a>  <span class="at">x =</span> tx,</span>
-<span id="cb74-5"><a href="#cb74-5"></a>  <span class="at">y =</span> traffic.risk,</span>
-<span id="cb74-6"><a href="#cb74-6"></a>  <span class="at">xlab =</span> <span class="st">"Traffic Risk Score"</span>, <span class="co"># label for the x-axis variable</span></span>
-<span id="cb74-7"><a href="#cb74-7"></a>  <span class="at">ylab =</span> <span class="st">"Treatment group"</span>, <span class="co"># label for the y-axis variable</span></span>
-<span id="cb74-8"><a href="#cb74-8"></a>  <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb74-9"><a href="#cb74-9"></a>  <span class="at">mean.plotting =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb74-10"><a href="#cb74-10"></a>  <span class="at">plot.type =</span> <span class="st">"violin"</span>,</span>
-<span id="cb74-11"><a href="#cb74-11"></a>  <span class="at">messages =</span> <span class="cn">FALSE</span></span>
-<span id="cb74-12"><a href="#cb74-12"></a>) <span class="sc">+</span></span>
-<span id="cb74-13"><a href="#cb74-13"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">2.35</span>)<span class="sc">+</span></span>
-<span id="cb74-14"><a href="#cb74-14"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(.<span class="dv">55</span>,<span class="fl">2.5</span>,<span class="at">label =</span> <span class="st">"Average"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="fu">library</span>(ggstatsplot)</span>
+<span id="cb65-2"><a href="#cb65-2"></a>ggstatsplot<span class="sc">::</span><span class="fu">ggbetweenstats</span>(</span>
+<span id="cb65-3"><a href="#cb65-3"></a>  <span class="at">data =</span> example.data,</span>
+<span id="cb65-4"><a href="#cb65-4"></a>  <span class="at">x =</span> tx,</span>
+<span id="cb65-5"><a href="#cb65-5"></a>  <span class="at">y =</span> traffic.risk,</span>
+<span id="cb65-6"><a href="#cb65-6"></a>  <span class="at">xlab =</span> <span class="st">"Traffic Risk Score"</span>, <span class="co"># label for the x-axis variable</span></span>
+<span id="cb65-7"><a href="#cb65-7"></a>  <span class="at">ylab =</span> <span class="st">"Treatment group"</span>, <span class="co"># label for the y-axis variable</span></span>
+<span id="cb65-8"><a href="#cb65-8"></a>  <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb65-9"><a href="#cb65-9"></a>  <span class="at">mean.plotting =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb65-10"><a href="#cb65-10"></a>  <span class="at">plot.type =</span> <span class="st">"violin"</span>,</span>
+<span id="cb65-11"><a href="#cb65-11"></a>  <span class="at">messages =</span> <span class="cn">FALSE</span></span>
+<span id="cb65-12"><a href="#cb65-12"></a>) <span class="sc">+</span></span>
+<span id="cb65-13"><a href="#cb65-13"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">2.35</span>)<span class="sc">+</span></span>
+<span id="cb65-14"><a href="#cb65-14"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(.<span class="dv">55</span>,<span class="fl">2.5</span>,<span class="at">label =</span> <span class="st">"Average"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="2-Basics_files/figure-revealjs/unnamed-chunk-44-1.png" width="960" class="r-stretch"></section>
+<img data-src="2-Basics_files/figure-revealjs/unnamed-chunk-39-1.png" width="960" class="r-stretch"></section>
 <section id="partitioning-the-variation-in-y" class="slide level2">
 <h2>Partitioning the variation in Y</h2>
 <p><span class="math display">\[ \sum (Y_i - \bar{Y})^2 = \sum (\hat{Y}_i -\bar{Y})^2 + \sum(Y_i - \hat{Y}_i)^2 \]</span></p>
@@ -1873,14 +1741,14 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="r2-and-eta-squared" class="slide level2">
 <h2><span class="math inline">\(R^2\)</span> and Eta squared</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="fu">summary</span>(mod<span class="fl">.1</span>)<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">summary</span>(mod<span class="fl">.1</span>)<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.08344007</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a><span class="fu">library</span>(lsr)</span>
-<span id="cb77-2"><a href="#cb77-2"></a><span class="fu">etaSquared</span>(mod<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">library</span>(lsr)</span>
+<span id="cb68-2"><a href="#cb68-2"></a><span class="fu">etaSquared</span>(mod<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       eta.sq eta.sq.part
 tx 0.08344007  0.08344007</code></pre>
@@ -1890,7 +1758,7 @@ tx 0.08344007  0.08344007</code></pre>
 <section id="r2-for-different-coding-schemes" class="slide level2">
 <h2><span class="math inline">\(R^2\)</span> for different coding schemes</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="fu">glance</span>(mod<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="fu">glance</span>(mod<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic    p.value    df logLik   AIC   BIC
@@ -1900,7 +1768,7 @@ tx 0.08344007  0.08344007</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="fu">glance</span>(mod.<span class="fl">1.</span>eff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">glance</span>(mod.<span class="fl">1.</span>eff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic    p.value    df logLik   AIC   BIC
@@ -1915,7 +1783,7 @@ tx 0.08344007  0.08344007</code></pre>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="fu">summary</span>(mod<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="fu">summary</span>(mod<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>

@@ -333,7 +333,7 @@
     "href": "2-Basics.html#predictions",
     "title": "GLM basics",
     "section": "Predictions",
-    "text": "Predictions\n\npredictions \\(\\hat{Y}\\) are of the form of E(Y|X)\nThey are created by simply plugging a persons Xs into the created model\nIf you have bs and have Xs you can create a prediction\n\n\\(\\hat{Y}_{i}\\) = 2.65064 + -0.48111* \\(X_{i}\\)\n\nYou have already done this with dummy codes above"
+    "text": "Predictions\n\nOur model is a prediction machine.\nThey are created by simply plugging a persons Xs into the created model\nIf you have bs and have Xs you can create a prediction\n\n\\(\\hat{Y}_{i}\\) = 2.65064 + -0.48111* \\(X_{i}\\)"
   },
   {
     "objectID": "2-Basics.html#predictions-1",
@@ -389,7 +389,7 @@
     "href": "2-Basics.html#statistical-inference-1",
     "title": "GLM basics",
     "section": "Statistical Inference",
-    "text": "Statistical Inference\n\nIn making predictions, we have to compare our prediction to some alternative prediction to see if we are doing well or not.\nWhat is our best guess (ie prediction) if we didn’t collect any data?\n\n\\[ \\hat{Y} = \\bar{Y} \\]\n\nRegression can be thought of as: is E(Y|X) better than E(Y)?"
+    "text": "Statistical Inference\n\nTo the extent that we can generate different predicted values of Y based on the values of the predictors, our model is doing well\nSaid differently, the closer our model is to the “actual” data generating model, our guesses ( \\(\\hat{Y}\\) ) will be closer to our actual data ( \\(Y\\) )"
   },
   {
     "objectID": "2-Basics.html#statistical-inference-2",
@@ -585,7 +585,7 @@
     "href": "3-Basics.html#estimating-the-intercept-b_0",
     "title": "GLM basics II",
     "section": "Estimating the intercept, \\(b_0\\)",
-    "text": "Estimating the intercept, \\(b_0\\)\n(AKA how to get the raw score regressione equation)\n\nRe-write equation to include the means of Y and X ( \\(\\bar{X}\\) & \\(\\bar{Y}\\) )\nIntercept serves to adjust for differences in means between X and Y\n\n\\[\\Large \\hat{Y} = \\bar{Y} + r_{xy} \\frac{s_{y}}{s_{x}}(X-\\bar{X})\\] - If standardized, intercept drops out - Otherwise, intercept is where regression line crosses the y-axis at X = 0\n- Notice that when \\(X = \\bar{X}\\) the regression line goes through \\(\\bar{Y}\\). This is true for all regressions such that the regression line must pass through \\(\\bar{X}\\) and \\(\\bar{Y}\\)"
+    "text": "Estimating the intercept, \\(b_0\\)\n\nRe-write equation to include the means of Y and X ( \\(\\bar{X}\\) & \\(\\bar{Y}\\) )\nIntercept serves to adjust for differences in means between X and Y\n\n\\[\\Large \\hat{Y} = \\bar{Y} + r_{xy} \\frac{s_{y}}{s_{x}}(X-\\bar{X})\\] - If standardized, intercept drops out. Otherwise, intercept is where regression line crosses the y-axis at X = 0\n- Notice that when \\(X = \\bar{X}\\) the regression line goes through \\(\\bar{Y}\\). This is true for all regressions such that the regression line must pass through \\(\\bar{X}\\) and \\(\\bar{Y}\\)"
   },
   {
     "objectID": "3-Basics.html#example",

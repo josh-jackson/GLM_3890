@@ -490,13 +490,12 @@ Consists of -1, 1s (And zeros for more than 2 groups)
 
 ## Predictions
 
--   predictions $\hat{Y}$ are of the form of E(Y\|X)
+-   Our model is a prediction machine. 
 -   They are created by simply plugging a persons Xs into the created model
 -   If you have bs and have Xs you can create a prediction
 
 $\hat{Y}_{i}$ = 2.65064 + -0.48111\* $X_{i}$
 
--   You have already done this with dummy codes above
 
 ## Predictions
 
@@ -586,41 +585,8 @@ fitted.values(mod.1)
 residuals(mod.1)
 ```
 
-## Pop quiz
 
-$$\hat{Y}_{i} = b_{0} + b_{1}X_{i}$$
 
-$$Y_{i} = b_{0} + b_{1}X_{i} +e_{i}$$
-
-$$Y_{i}  - \hat{Y}_{i} = e$$
-
--   Can you plug in numbers and calculate subject 3's predicted and residual scores without explicitly asking for lm object residuals and fitted values? (using the same model from slide 41 on)
-
--   Post answers in Slack -- see if you and your peers get the same results!
-
-------------------------------------------------------------------------
-
-```{r}
-#| code-fold: true
-example.data
-```
-
-## Residuals
-
-```{r}
-#| code-fold: true
-fit.1.data <- augment(mod.1) 
-fit.1.data
-```
-
-------------------------------------------------------------------------
-
-```{r}
-#| code-fold: true
-ggplot(fit.1.data, aes(.resid)) +
-    geom_density()    
-   
-```
 
 ## An aside concerning `lm` objects
 
@@ -646,50 +612,15 @@ fit.1.data
 
 ```
 
-------------------------------------------------------------------------
 
-::: columns
-::: {.column width="30%"}
--   `augment` = adds to existing dataset
--   `tidy` = model components like $\beta$
--   `glance` = model fit like $\eta^2$ or $R^2$
-:::
 
-::: {.column width="70%"}
-```{r}
-#| code-fold: true
-tidy(mod.1) 
-```
 
-```{r}
-#| code-fold: true
-glance(mod.1) 
-```
-:::
-:::
-
-## Pop quiz #2
-
--   For a two group ANOVA how many different predicted values will we have? Residuals?
-
--   Post your answer in Slack and see how you compare to your peers!
-
-## Statistical Inference
-
--   In making predictions, we have to compare our prediction to some alternative prediction to see if we are doing well or not.
-
--   What is our best guess (ie prediction) if we didn't collect any data?
-
-$$ \hat{Y} = \bar{Y} $$
-
--   Regression can be thought of as: is E(Y\|X) better than E(Y)?
 
 ## Statistical Inference
 
 -   To the extent that we can generate different predicted values of Y based on the values of the predictors, our model is doing well
 
 -   Said differently, the closer our model is to the "actual" data generating model, our guesses ( $\hat{Y}$ ) will be closer to our actual data ( $Y$ )
-
 
 ------------------------------------------------------------------------
 

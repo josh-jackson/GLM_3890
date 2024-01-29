@@ -239,14 +239,11 @@ When $X = 0, Y = 0$. A one-standard deviation increase in X is associated with a
 
 ## Estimating the intercept, $b_0$
 
-(AKA how to get the raw score regressione equation)
-
 - Re-write equation to include the means of Y and X ( $\bar{X}$ & $\bar{Y}$ )
 - Intercept serves to adjust for differences in means between X and Y
 
 $$\Large \hat{Y} = \bar{Y} + r_{xy} \frac{s_{y}}{s_{x}}(X-\bar{X})$$
-- If standardized, intercept drops out
-- Otherwise, intercept is where regression line crosses the y-axis at X = 0  
+- If standardized, intercept drops out. Otherwise, intercept is where regression line crosses the y-axis at X = 0  
 - Notice that when  $X = \bar{X}$ the regression line goes through  $\bar{Y}$. This is true for all regressions such that the regression line must pass through $\bar{X}$  and  $\bar{Y}$
 
 
