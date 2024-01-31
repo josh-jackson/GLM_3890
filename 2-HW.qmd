@@ -3,7 +3,7 @@ title: "Homework 2"
 ---
 
 
-**Data:** You will need to use the Dawtry et al., 2015 Psychological Science article and the accompanying dataset to answer all questions. Please download this [`dawtry-hw2-data`](dawtry-hw2-data.csv) dataset for the homework, which corresponds to study 1a of the paper. [The paper can be found here](../readings/Dawtry2015-PS.pdf).
+**Data:** You will need to use the Dawtry et al., 2015 Psychological Science article and the accompanying dataset to answer all questions. Please download this [`dawtry-hw2-data`](https://raw.githubusercontent.com/josh-jackson/GLM_3890/main/dawtry-hw2-data.csv) dataset for the homework, which corresponds to study 1a of the paper. [The paper can be found here](https://github.com/josh-jackson/GLM_3890/blob/main/Dawtry2015-PS.pdf).
 
 Remember that if you work with a peer or use AI tools like Chat-GPT, you must cite them in your code.
 
