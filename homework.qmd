@@ -5,4 +5,7 @@ editor: source
 
 
 
-1.  [Homework 1](1-HW.qmd)
+
+- [Homework 2](2-HW.qmd)
+
+- [Homework 1](1-HW.qmd)

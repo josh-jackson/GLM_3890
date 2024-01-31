@@ -1,0 +1,32 @@
+---
+title: "Homework 2"
+---
+
+
+**Data:** You will need to use the Dawtry et al., 2015 Psychological Science article and the accompanying dataset to answer all questions. Please download this [`dawtry-hw2-data`](dawtry-hw2-data.csv) dataset for the homework, which corresponds to study 1a of the paper. [The paper can be found here](../readings/Dawtry2015-PS.pdf).
+
+Remember that if you work with a peer or use AI tools like Chat-GPT, you must cite them in your code.
+
+You will submit both your .Rmd (or .qmd) and HTML files to Canvas. For all figures, you must be intentional. Change the axes names, the theme etc. Do not settle for the defaults!
+
+Good luck!
+
+## Question 1
+
+Graph the distributions of the following items. Be sure to comment on anything you find irregular or interesting. The variables to be plotted are:
+
+-   Household Income
+-   Fairness and Satisfaction
+-   Social Circle Mean Income
+-   Population Mean Income
+-   Political Preference
+
+## Question 2
+
+Run a regression where political preferences predict redistribution:
+
+-   Write the formal equation (be specific!)
+-   Interpret the intercept and the regression coefficient (be specific!)
+-   Standardize the variables, rerun the model, write the formal equation (be specific!) and interpret the intercept and the regression coefficient (be specific!)
+-   Calculate the correlation of the two variables (use the original variables in raw units). How does this relate to the standardized and unstandardized regression coefficients?
+-   Created a fitted vs. residuals plot. Do not use the defaults -- you must (at the very least) change the labels, colors, and give it a titles. Then interpret this plot.
