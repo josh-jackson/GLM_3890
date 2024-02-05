@@ -1,0 +1,51 @@
+---
+title: "Homework 3"
+---
+
+**Data:** You will use the same Human Connectome Project dataset you worked with in the `R` class and this semester's `R` refresher. It is available [here](https://raw.githubusercontent.com/josh-jackson/GLM_3890/main/hcp-data.csv)
+
+Remember that if you work with a peer or use AI tools like Chat-GPT, you must cite them in your code. 
+
+You will submit both your .Rmd and HTML files to Canvas. For all figures, you must be intentional. Change the axes names, the theme etc. Do not settle for the defaults!
+
+Good luck!
+
+## Question 1
+
+Run a univariate regression model where Mean Purpose in Life is predicted by Life Satisfaction. Answer the following for this model:
+
+- Interpret the coefficients
+- Describe what $R^2$ means, and interpret this model's $R^2$
+- Describe what $\sigma$ means, and interpret this model's $\sigma$. Overall, is this a "good" model? 
+- Is Life Satisfaction a good predictor of Mean Purpose in Life? How do you know
+
+## Question 2
+
+Repeat the same as above, but now use the NEO Agreeableness subscale as the predictor. Answer the same questions as above.
+
+## Question 3
+
+Run a third model where Mean Purpose in Life is predicted by both Life Satisfaction and the NEO Agreeableness subscale.
+
+- Interpret all the coefficients
+- Is this a good model? How do you know?
+
+## Question 4
+
+Given your model from Question 3, please do the following (note, you might need to create some more univariate models)
+
+- Create a measure of Mean Purpose that is *independent* of Life Satisfaction. Store this as an object. This will be your **Y** axis.
+- Create a measure of Life Satisfaction that is *independent* of Agreeableness. This will be your **X** axis.
+- Now plot the above 2. Store this plot as it's own object. Make sure to include a best fit line in your figure.
+
+## Question 5
+Given your model from Question 3, please do the following (note, you might need to create some more univariate models)
+
+- Create a measure of Mean Purpose that is *independent* of Agreeableness. Store this as an object. This will be your **Y** axis.
+- Create a measure of Agreeableness that is *independent* of Life Satisfaction This will be your **X** axis.
+- Now plot the above 2. Store this plot as it's own object. Make sure to include a best fit line in your figure.
+
+## Question 6
+
+- Create a single figure where the plot from Question 4 is the first panel on the left, and the plot from Question 5 is the second panel on the right. You should wind up with a single figure. 
+- Give this figure the title "Added Variable Plot". In your own words, try to describe what you did and *why* you did it. It's OK to be confused! Just give it your best shot. 

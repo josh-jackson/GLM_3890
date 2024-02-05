@@ -428,7 +428,6 @@
 <p><span class="math display">\[\Large \hat{Y} = \bar{Y}\]</span></p>
 <p>To the extent that we can generate different predicted values of Y based on the values of the predictors, we are doing well in our prediction</p>
 <p><span class="math display">\[\large \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2\]</span></p>
-<p><span class="math display">\[\Large SS_Y = SS_{\text{Model}} + SS_{\text{Residual}}\]</span></p>
 </section>
 <section id="coefficient-of-determination" class="slide level2">
 <h2>Coefficient of Determination</h2>
@@ -700,8 +699,11 @@ X1    1 928    0 2.24   0.05    0.06 2.26 -7.81 5.93 13.73 -0.24    -0.23 0.07</
 <section id="why-do-we-care-about-sigma" class="slide level2">
 <h2>Why do we care about sigma?</h2>
 <ul>
-<li><p>Let’s simulate!</p></li>
-<li><p>Data generating process: <span class="math display">\[Y_{i} \sim \mathcal{N}(\mu,\,\sigma)\ \]</span></p></li>
+<li>Let’s simulate!</li>
+<li>Data generating process:</li>
+</ul>
+<p><span class="math display">\[Y_{i} \sim\mathcal{N}(\mu,\,\sigma)\ \]</span></p>
+<ul>
 <li><p>In English: our DV for individual <span class="math inline">\(i\)</span> is distributed normally with a mean of <span class="math inline">\(\mu\)</span> and a standard deviation of <span class="math inline">\(\sigma\)</span></p></li>
 <li><p>This describes how we think our DVs are generated, and the paramters of interest A a standard regression model assumes this, but we will see other DGPs such as binomial or poisson that do not</p></li>
 <li><p>For normal, <span class="math inline">\(\mu\)</span> gets all the focus but <span class="math inline">\(\sigma\)</span> is just as important</p></li>

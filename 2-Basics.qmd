@@ -490,12 +490,11 @@ Consists of -1, 1s (And zeros for more than 2 groups)
 
 ## Predictions
 
--   Our model is a prediction machine. 
+-   Our model is a prediction machine.
 -   They are created by simply plugging a persons Xs into the created model
 -   If you have bs and have Xs you can create a prediction
 
 $\hat{Y}_{i}$ = 2.65064 + -0.48111\* $X_{i}$
-
 
 ## Predictions
 
@@ -585,9 +584,6 @@ fitted.values(mod.1)
 residuals(mod.1)
 ```
 
-
-
-
 ## An aside concerning `lm` objects
 
 -   `lm` objects consist of the information embedded in your linear model
@@ -611,10 +607,6 @@ fit.1.data <- augment(mod.1)
 fit.1.data
 
 ```
-
-
-
-
 
 ## Statistical Inference
 
