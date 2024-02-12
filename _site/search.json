@@ -487,7 +487,7 @@
     "href": "homework.html",
     "title": "homework",
     "section": "",
-    "text": "Homework 3\nHomework 2\nHomework 1"
+    "text": "Homework 4\nHomework 3\nHomework 2\nHomework 1"
   },
   {
     "objectID": "3-Basics.html#this-time",
@@ -1174,5 +1174,26 @@
     "title": "Homework 3",
     "section": "Question 6",
     "text": "Question 6\n\nCreate a single figure where the plot from Question 4 is the first panel on the left, and the plot from Question 5 is the second panel on the right. You should wind up with a single figure.\nGive this figure the title “Added Variable Plot”. In your own words, try to describe what you did and why you did it. It’s OK to be confused! Just give it your best shot."
+  },
+  {
+    "objectID": "4-HW.html",
+    "href": "4-HW.html",
+    "title": "Homework 4",
+    "section": "",
+    "text": "Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.\nData: These data were from a study where physical health was predicted by a happiness measure, socioeconomic status, number of close friends, and a 16-week mood intervention with a waitlist control group (coded 0), a positive self affirmation intervention group (coded 1), and a meditation group (coded 2). The data are here: th-project-3.csv"
+  },
+  {
+    "objectID": "4-HW.html#instructions",
+    "href": "4-HW.html#instructions",
+    "title": "Homework 4",
+    "section": "",
+    "text": "Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.\nData: These data were from a study where physical health was predicted by a happiness measure, socioeconomic status, number of close friends, and a 16-week mood intervention with a waitlist control group (coded 0), a positive self affirmation intervention group (coded 1), and a meditation group (coded 2). The data are here: th-project-3.csv"
+  },
+  {
+    "objectID": "4-HW.html#homework-questions",
+    "href": "4-HW.html#homework-questions",
+    "title": "Homework 4",
+    "section": "Homework Questions",
+    "text": "Homework Questions\n\nPerform a multiple regression where health is regressed on (predicted by) friends, SES, and happiness. Interpret each regression coefficient.\nGraph the (2-d) relationship between health and happiness as found in the above regression. Make sure the association controls for the remaining variables in the model. Include data points in your graph and a confidence band.\nDescribe why the confidence band looks like a bow tie in the above graph.\nFor the above regression, calculate the variance explained using the ANOVA table and interpret the residual standard error.\nAdd the group variable mood.group into the regression model from #2. Then answer the following:\n\nInterpret the coefficients\nIs there a significant increase in variance explained compared to the initial regression in #1? If so, what is the estimate?"
   }
 ]

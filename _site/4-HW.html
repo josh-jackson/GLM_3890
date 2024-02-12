@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GLM 2024 - homework</title>
+<title>GLM 2024 - Homework 4</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -90,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./homework.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./homework.html" rel="" target="">
  <span class="menu-text">homework</span></a>
   </li>  
   <li class="nav-item">
@@ -109,14 +109,21 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#homework-questions" id="toc-homework-questions" class="nav-link" data-scroll-target="#homework-questions">Homework Questions</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">homework</h1>
+<h1 class="title">Homework 4</h1>
 </div>
 
 
@@ -131,14 +138,27 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<ul>
-<li><p><a href="./4-HW.html">Homework 4</a></p></li>
-<li><p><a href="./3-HW.html">Homework 3</a></p></li>
-<li><p><a href="./2-HW.html">Homework 2</a></p></li>
-<li><p><a href="./1-HW.html">Homework 1</a></p></li>
-</ul>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<p>Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.</p>
+<p><strong>Data:</strong> These data were from a study where physical health was predicted by a happiness measure, socioeconomic status, number of close friends, and a 16-week mood intervention with a waitlist control group (coded 0), a positive self affirmation intervention group (coded 1), and a meditation group (coded 2). The data are here: <a href="th-project-3.csv"><code>th-project-3.csv</code></a></p>
+</section>
+<section id="homework-questions" class="level2">
+<h2 class="anchored" data-anchor-id="homework-questions">Homework Questions</h2>
+<ol type="1">
+<li><p>Perform a multiple regression where health is regressed on (predicted by) friends, SES, and happiness. Interpret each regression coefficient.</p></li>
+<li><p>Graph the (2-d) relationship between health and happiness as found in the above regression. Make sure the association controls for the remaining variables in the model. Include data points in your graph and a confidence band.</p></li>
+<li><p>Describe why the confidence band looks like a bow tie in the above graph.</p></li>
+<li><p>For the above regression, calculate the variance explained using the ANOVA table and interpret the residual standard error.</p></li>
+<li><p>Add the group variable <code>mood.group</code> into the regression model from #2. Then answer the following:</p>
+<ol type="a">
+<li>Interpret the coefficients</li>
+<li>Is there a significant increase in variance explained compared to the initial regression in #1? If so, what is the estimate?</li>
+</ol></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

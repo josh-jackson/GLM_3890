@@ -4,6 +4,7 @@ editor: source
 ---
 
 
+- [Homework 4](4-HW.qmd)
 
 - [Homework 3](3-HW.qmd)
 
