@@ -6,7 +6,7 @@ title: "Homework 4"
 
 Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.
 
-**Data:** These data were from a study where physical health was predicted by a happiness measure, socioeconomic status, number of close friends, and a 16-week mood intervention with a waitlist control group (coded 0), a positive self affirmation intervention group (coded 1), and a meditation group (coded 2). The data are here: [`HW4-data.csv`](HW4-data.csv)
+**Data:** These data were from a study where physical health was predicted by a happiness measure, socioeconomic status, number of close friends, and a 16-week mood intervention with a waitlist control group (coded 0), a positive self affirmation intervention group (coded 1), and a meditation group (coded 2). The data are here: [`HW4-data.csv`](https://raw.githubusercontent.com/josh-jackson/GLM_3890/main/HW4-data.csv)
 
 ## Homework Questions
 
