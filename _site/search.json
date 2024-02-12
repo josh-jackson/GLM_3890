@@ -1180,14 +1180,14 @@
     "href": "4-HW.html",
     "title": "Homework 4",
     "section": "",
-    "text": "Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.\nData: These data were from a study where physical health was predicted by a happiness measure, socioeconomic status, number of close friends, and a 16-week mood intervention with a waitlist control group (coded 0), a positive self affirmation intervention group (coded 1), and a meditation group (coded 2). The data are here: th-project-3.csv"
+    "text": "Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.\nData: These data were from a study where physical health was predicted by a happiness measure, socioeconomic status, number of close friends, and a 16-week mood intervention with a waitlist control group (coded 0), a positive self affirmation intervention group (coded 1), and a meditation group (coded 2). The data are here: HW4-data.csv"
   },
   {
     "objectID": "4-HW.html#instructions",
     "href": "4-HW.html#instructions",
     "title": "Homework 4",
     "section": "",
-    "text": "Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.\nData: These data were from a study where physical health was predicted by a happiness measure, socioeconomic status, number of close friends, and a 16-week mood intervention with a waitlist control group (coded 0), a positive self affirmation intervention group (coded 1), and a meditation group (coded 2). The data are here: th-project-3.csv"
+    "text": "Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.\nData: These data were from a study where physical health was predicted by a happiness measure, socioeconomic status, number of close friends, and a 16-week mood intervention with a waitlist control group (coded 0), a positive self affirmation intervention group (coded 1), and a meditation group (coded 2). The data are here: HW4-data.csv"
   },
   {
     "objectID": "4-HW.html#homework-questions",
