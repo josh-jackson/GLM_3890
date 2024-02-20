@@ -1349,5 +1349,173 @@
     "title": "Interactions",
     "section": "Standardized regression equation",
     "text": "Standardized regression equation\nThis is okay:\n\nY ~ z(X) + z(Z) + z(X)*z(Z) \n\nY ~ z(X)*z(Z) \n\nThis is not OK:\n\nY ~ z(X) + z(Z) + z(X*Z)"
+  },
+  {
+    "objectID": "6-interact.html#mixing-categorical-and-continuous",
+    "href": "6-interact.html#mixing-categorical-and-continuous",
+    "title": "Interactions II",
+    "section": "Mixing categorical and continuous",
+    "text": "Mixing categorical and continuous\nConsider the case where D is a variable representing two groups. In a univariate regression, how do we interpret the coefficient for D?\n\\[\\hat{Y} = b_{0} + b_{1}D\\]"
+  },
+  {
+    "objectID": "6-interact.html#interpreting-slopes",
+    "href": "6-interact.html#interpreting-slopes",
+    "title": "Interactions II",
+    "section": "Interpreting slopes",
+    "text": "Interpreting slopes\nExtending this to the multivariate case, where X is continuous and D is a dummy code representing two groups.\n\\[\\hat{Y} = b_{0} + b_{1}D + b_2X\\]\nHow do we interpret \\(b_1?\\)"
+  },
+  {
+    "objectID": "6-interact.html#visualizing",
+    "href": "6-interact.html#visualizing",
+    "title": "Interactions II",
+    "section": "Visualizing",
+    "text": "Visualizing\n\n\nCode\nset.seed(022520)\nD = rep(c(0,1), each = 10)\nX = rnorm(20) + D\nY = 2*D + X + rnorm(20)\n\ndf = data.frame(X,Y,D)\n\nmeans = df %&gt;%\n  group_by(D) %&gt;%\n  summarize(M = mean(Y))\nmod = lm(Y ~ X + D, data = df)\ndf$pmod = predict(mod)\n\npredict.2 = data.frame(X = rep(mean(X)+.1,2), D = c(0,1))\npredict.2$Y = predict(mod, newdata = predict.2) \npredict.2 = cbind(predict.2[1,], predict.2[2,])\nnames(predict.2) = c(\"x1\", \"d1\", \"y1\", \"x2\", \"d2\", \"y2\")\n\nggplot(df, aes(X,Y, color = as.factor(D))) +\n  geom_point(size = 3) +\n  geom_smooth(aes(y = pmod), method = \"lm\", se = F)+\n  labs(color = \"D\") +\n  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = predict.2, \n               inherit.aes = F, size = 1.5)+\n  cowplot::theme_cowplot()"
+  },
+  {
+    "objectID": "6-interact.html#visualizing-1",
+    "href": "6-interact.html#visualizing-1",
+    "title": "Interactions II",
+    "section": "Visualizing",
+    "text": "Visualizing"
+  },
+  {
+    "objectID": "6-interact.html#interactions",
+    "href": "6-interact.html#interactions",
+    "title": "Interactions II",
+    "section": "Interactions",
+    "text": "Interactions\nNow extend this example to include joint effects, not just additive effects:\n\\[\\hat{Y} = b_{0} + b_{1}D + b_2X + b_3DX\\]\nHow do we interpret \\(b_1?\\), \\(b_2\\), \\(b_3?\\)?"
+  },
+  {
+    "objectID": "6-interact.html#visualizing-2",
+    "href": "6-interact.html#visualizing-2",
+    "title": "Interactions II",
+    "section": "Visualizing",
+    "text": "Visualizing\n\n\nCode\nggplot(df, aes(X,Y, color = as.factor(D))) +\n  geom_point(size = 3) +\n  geom_smooth(method = \"lm\", se = F)+\n  labs(color = \"D\") +\n  cowplot::theme_cowplot()"
+  },
+  {
+    "objectID": "6-interact.html#example",
+    "href": "6-interact.html#example",
+    "title": "Interactions II",
+    "section": "Example",
+    "text": "Example\nWash U is interested in understanding how undergraduates’ academic performance and choice of major impacts their career success. They contact 150 alumni between the ages of 25 and 35 and collect their current salary (in thousands of dollars), their primary undergraduate major, and their GPA upon graduating.\n\n\nCode\nlibrary(psych)\ntable(inc_data$major)\n\n\n\n   Econ English   Psych \n     50      50      50 \n\n\nCode\ndescribe(inc_data[,c(\"gpa\", \"income\")], fast = T)\n\n\n       vars   n  mean   sd   min    max  range   se\ngpa       1 150  3.36  0.4  2.44   4.19   1.74 0.03\nincome    2 150 84.35 34.0 24.67 160.27 135.60 2.78"
+  },
+  {
+    "objectID": "6-interact.html#pop-quiz",
+    "href": "6-interact.html#pop-quiz",
+    "title": "Interactions II",
+    "section": "Pop Quiz",
+    "text": "Pop Quiz\nFor the model just defined in the previous slide…\n\nWrite out the regression equation\nInterpret each term\nWhere is Econ?"
+  },
+  {
+    "objectID": "6-interact.html#model-summary-centering-predictors",
+    "href": "6-interact.html#model-summary-centering-predictors",
+    "title": "Interactions II",
+    "section": "Model summary: centering predictors",
+    "text": "Model summary: centering predictors\n\ninc_data$gpa_c = inc_data$gpa - mean(inc_data$gpa)\ncareer.mod_c = lm(income ~ gpa_c*major, data = inc_data)\nsummary(career.mod_c)\n\n\nCall:\nlm(formula = income ~ gpa_c * major, data = inc_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-42.625 -11.869   0.376   9.301  40.942 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)         141.428      3.752  37.691  &lt; 2e-16 ***\ngpa_c                59.660      7.705   7.743 1.58e-12 ***\nmajorEnglish        -97.086      4.907 -19.783  &lt; 2e-16 ***\nmajorPsych          -75.965      4.384 -17.327  &lt; 2e-16 ***\ngpa_c:majorEnglish   -4.562     11.089  -0.411   0.6814    \ngpa_c:majorPsych     29.545     10.949   2.698   0.0078 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 14.91 on 144 degrees of freedom\nMultiple R-squared:  0.8142,    Adjusted R-squared:  0.8077 \nF-statistic: 126.2 on 5 and 144 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "6-interact.html#plotting-results",
+    "href": "6-interact.html#plotting-results",
+    "title": "Interactions II",
+    "section": "Plotting results",
+    "text": "Plotting results\n\n\nCode\nlibrary(ggeffects)\npredictedvals = ggpredict(model = career.mod, terms = c(\"gpa\", \"major\"))\n\nggplot(data = predictedvals, aes(x = x, y = predicted, group = group)) +\n  geom_smooth(aes(ymin = conf.low,\n                  ymax = conf.high,\n                  color = group,\n                  fill = group),\n              stat = \"identity\",\n              alpha = .2) +\n  labs(x = \"GPA\",\n       y = \"Income (in thousands of dollars)\",\n       title = \"I am in the wrong profession\",\n       color = \"Undergraduate Major\",\n       fill = \"Undergraduate Major\",\n       group = \"Undergraduate Major\")"
+  },
+  {
+    "objectID": "6-interact.html#two-categorical-predictors",
+    "href": "6-interact.html#two-categorical-predictors",
+    "title": "Interactions Two",
+    "section": "Two categorical predictors",
+    "text": "Two categorical predictors\nIf both X and M are categorical variables, the interpretation of coefficients is no longer the value of means and slopes, but means and differences in means.\n\n\nCode\nlibrary(here)\nsolomon = read.csv(here(\"solomon.csv\"))\n\n\n\n\nCode\nhead(solomon[,c(\"PERSPECTIVE\", \"DISTANCE\", \"WISDOM\")])\n\n\n  PERSPECTIVE  DISTANCE      WISDOM\n1       other  immersed -0.27589395\n2       other distanced  0.42949213\n3       other distanced -0.02785874\n4       other distanced  0.53271500\n5        self distanced  0.62299793\n6        self distanced -1.99578129\n\n\nCode\nsolomon$PERSPECTIVE = factor(solomon$PERSPECTIVE)\nsolomon$DISTANCE = factor(solomon$DISTANCE)"
+  },
+  {
+    "objectID": "6-interact.html#model-means",
+    "href": "6-interact.html#model-means",
+    "title": "Interactions Two",
+    "section": "Model Means",
+    "text": "Model Means\n\nsolomon %&gt;% \n  group_by(DISTANCE, PERSPECTIVE) %&gt;% \n  summarize(meanWISDOM = mean(WISDOM, na.rm = TRUE))\n\n# A tibble: 4 × 3\n# Groups:   DISTANCE [2]\n  DISTANCE  PERSPECTIVE meanWISDOM\n  &lt;fct&gt;     &lt;fct&gt;            &lt;dbl&gt;\n1 distanced other            0.334\n2 distanced self             0.122\n3 immersed  other            0.195\n4 immersed  self            -0.559"
+  },
+  {
+    "objectID": "6-interact.html#plotting-results-1",
+    "href": "6-interact.html#plotting-results-1",
+    "title": "Interactions Two",
+    "section": "Plotting results",
+    "text": "Plotting results\n\n\nCode\nsolomon.mod = lm(WISDOM ~ PERSPECTIVE*DISTANCE, data = solomon)\nplot_model(solomon.mod, type = \"int\")"
+  },
+  {
+    "objectID": "6-interact.html#factorial-anova",
+    "href": "6-interact.html#factorial-anova",
+    "title": "Interactions II",
+    "section": "Factorial ANOVA",
+    "text": "Factorial ANOVA\nThe interaction of two or more categorical variables in a general linear model is formally known as Factorial ANOVA.\nA factorial design is used when there is an interest in how two or more variables (or factors) affect the outcome.\n\nRather than conduct separate one-way ANOVAs for each factor, they are all included in one analysis.\nThe unique and important advantage to a factorial ANOVA over separate one-way ANOVAs is the ability to examine interactions."
+  },
+  {
+    "objectID": "6-interact.html#terminology",
+    "href": "6-interact.html#terminology",
+    "title": "Interactions II",
+    "section": "Terminology",
+    "text": "Terminology\nIn a completely crossed factorial design, each level of one factor occurs in combination with each level of the other factor.\nIf equal numbers of participants occur in each combination, the design is balanced. This has some distinct advantages (described later).\n\n\n\n\nSlow\nMedium\nFast\n\n\n\n\nNo Noise\nX\nX\nX\n\n\nControllable Noise\nX\nX\nX\n\n\nUncontrollable Noise\nX\nX\nX"
+  },
+  {
+    "objectID": "6-interact.html#terminology-1",
+    "href": "6-interact.html#terminology-1",
+    "title": "Interactions II",
+    "section": "Terminology",
+    "text": "Terminology\nWe describe the factorial ANOVA design by the number of levels of each factor.\n\nFactor: a variable that is being manipulated or in which there are two or more groups\nLevel: the different groups within a factor\n\nIn this case, we have a 3 x 3 ANOVA (“three by three”), because our first factor (speed) has three levels (slow, medium, and fast) and our second factor (noise) also has three levels (none, controllable, and uncontrollable)"
+  },
+  {
+    "objectID": "6-interact.html#questions",
+    "href": "6-interact.html#questions",
+    "title": "Interactions II",
+    "section": "Questions",
+    "text": "Questions\n\n\nCode\nmean.summary = Data %&gt;%\n  group_by(Noise, Speed) %&gt;%\n  summarize(Time = mean(Time)) %&gt;%\n  spread(\"Speed\", \"Time\")\nmean.summary$Noise = as.character(mean.summary$Noise)\nmean.summary$Marginal = rowMeans(mean.summary[2:4])\nmean.summary[4,1] = \"Marginal\"\nmean.summary[4,2] = colMeans(mean.summary[2:5], na.rm=T)[1]\nmean.summary[4,3] = colMeans(mean.summary[2:5], na.rm=T)[2]\nmean.summary[4,4] = colMeans(mean.summary[2:5], na.rm=T)[3]\nmean.summary[4,5] = colMeans(mean.summary[2:5], na.rm=T)[4]\nlibrary(knitr)\nlibrary(kableExtra)\nkable(mean.summary, digits = 2) %&gt;% kable_styling() %&gt;% group_rows(start_row = 1, end_row = 3)\n\n\n\n\n\nNoise\nSlow\nMedium\nFast\nMarginal\n\n\n\n\n\n\n\nNone\n630.72\n525.29\n329.28\n495.10\n\n\nControllable\n576.67\n492.72\n287.23\n452.21\n\n\nUncontrollable\n594.44\n304.62\n268.16\n389.08\n\n\nMarginal\n600.61\n440.88\n294.89\n445.46"
+  },
+  {
+    "objectID": "6-interact.html#marginal-means",
+    "href": "6-interact.html#marginal-means",
+    "title": "Interactions II",
+    "section": "Marginal means",
+    "text": "Marginal means\n\n\n\n\nNoise\nSlow\nMedium\nFast\nMarginal\n\n\n\n\n\n\n\nNone\n630.72\n525.29\n329.28\n495.10\n\n\nControllable\n576.67\n492.72\n287.23\n452.21\n\n\nUncontrollable\n594.44\n304.62\n268.16\n389.08\n\n\nMarginal\n600.61\n440.88\n294.89\n445.46\n\n\n\n\n\n\nRegardless of dot speed, does noise condition affect performance? Performance declines in the presence of noise, especially if the noise is uncontrollable.\nHere, too adding information about variability allows us a sense of whether these are significant and meaningful differences…"
+  },
+  {
+    "objectID": "6-interact.html#marginal-means-1",
+    "href": "6-interact.html#marginal-means-1",
+    "title": "Interactions II",
+    "section": "Marginal means",
+    "text": "Marginal means\n\n\n\n\nNoise\nSlow\nMedium\nFast\nMarginal\n\n\n\n\n\n\n\nNone\n630.72\n525.29\n329.28\n495.10\n\n\nControllable\n576.67\n492.72\n287.23\n452.21\n\n\nUncontrollable\n594.44\n304.62\n268.16\n389.08\n\n\nMarginal\n600.61\n440.88\n294.89\n445.46\n\n\n\n\n\n\nThe marginal mean differences correspond to main effects. They tell us what impact a particular factor has, ignoring the impact of the other factor.\nThe remaining effect in a factorial design, and it primary advantage over separate one-way ANOVAs, is the ability to examine conditional mean differences."
+  },
+  {
+    "objectID": "6-interact.html#the-linear-model-way",
+    "href": "6-interact.html#the-linear-model-way",
+    "title": "Interactions II",
+    "section": "The Linear Model Way",
+    "text": "The Linear Model Way\n\nsummary(lm(Time ~ Noise*Speed, data = Data))\n\n\nCall:\nlm(formula = Time ~ Noise * Speed, data = Data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-316.23  -70.82    4.99   79.87  244.40 \n\nCoefficients:\n                                Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)                       630.72      25.32  24.908  &lt; 2e-16 ***\nNoiseControllable                 -54.05      35.81  -1.509  0.13305    \nNoiseUncontrollable               -36.28      35.81  -1.013  0.31243    \nSpeedMedium                      -105.44      35.81  -2.944  0.00369 ** \nSpeedFast                        -301.45      35.81  -8.418 1.49e-14 ***\nNoiseControllable:SpeedMedium      21.48      50.64   0.424  0.67201    \nNoiseUncontrollable:SpeedMedium  -184.39      50.64  -3.641  0.00036 ***\nNoiseControllable:SpeedFast        12.01      50.64   0.237  0.81287    \nNoiseUncontrollable:SpeedFast     -24.84      50.64  -0.490  0.62448    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 113.2 on 171 degrees of freedom\nMultiple R-squared:  0.6109,    Adjusted R-squared:  0.5927 \nF-statistic: 33.56 on 8 and 171 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "6-interact.html#mean-differences",
+    "href": "6-interact.html#mean-differences",
+    "title": "Interactions II",
+    "section": "Mean differences",
+    "text": "Mean differences\n\n\n\n\nNoise\nSlow\nMedium\nFast\nMarginal\n\n\n\n\n\n\n\nNone\n630.72\n525.29\n329.28\n495.10\n\n\nControllable\n576.67\n492.72\n287.23\n452.21\n\n\nUncontrollable\n594.44\n304.62\n268.16\n389.08\n\n\nMarginal\n600.61\n440.88\n294.89\n445.46\n\n\n\n\n\n\nAre the marginal mean differences for noise condition a good representation of what is happening within each of the dot speed conditions?\nIf not, then we would need to say that the noise condition effect depends upon (is conditional on) dot speed. We would have an interaction between noise condition and dot speed condition."
+  },
+  {
+    "objectID": "6-interact.html#interpretation-of-significance-tests",
+    "href": "6-interact.html#interpretation-of-significance-tests",
+    "title": "Interactions II",
+    "section": "Interpretation of significance tests",
+    "text": "Interpretation of significance tests\n\n\nCode\nfit = lm(Time ~ Speed*Noise, data = Data)\nanova(fit)\n\n\nAnalysis of Variance Table\n\nResponse: Time\n             Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    \nSpeed         2 2805871 1402936 109.3975 &lt; 2.2e-16 ***\nNoise         2  341315  170658  13.3075 4.252e-06 ***\nSpeed:Noise   4  295720   73930   5.7649 0.0002241 ***\nResiduals   171 2192939   12824                       \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nAll three null hypotheses are rejected. This only tells us that systemic differences among the means are present; follow-up comparisons are necessary to determine the nature of the differences."
+  },
+  {
+    "objectID": "6-interact.html#cell-contrasts",
+    "href": "6-interact.html#cell-contrasts",
+    "title": "Interactions II",
+    "section": "Cell contrasts",
+    "text": "Cell contrasts\n\npairs(em)\n\n contrast                                    estimate   SE  df t.ratio p.value\n Slow None - Medium None                        105.4 35.8 171   2.944  0.0856\n Slow None - Fast None                          301.4 35.8 171   8.418  &lt;.0001\n Slow None - Slow Controllable                   54.1 35.8 171   1.509  0.8498\n Slow None - Medium Controllable                138.0 35.8 171   3.854  0.0051\n Slow None - Fast Controllable                  343.5 35.8 171   9.592  &lt;.0001\n Slow None - Slow Uncontrollable                 36.3 35.8 171   1.013  0.9842\n Slow None - Medium Uncontrollable              326.1 35.8 171   9.106  &lt;.0001\n Slow None - Fast Uncontrollable                362.6 35.8 171  10.124  &lt;.0001\n Medium None - Fast None                        196.0 35.8 171   5.473  &lt;.0001\n Medium None - Slow Controllable                -51.4 35.8 171  -1.435  0.8828\n Medium None - Medium Controllable               32.6 35.8 171   0.910  0.9922\n Medium None - Fast Controllable                238.1 35.8 171   6.648  &lt;.0001\n Medium None - Slow Uncontrollable              -69.2 35.8 171  -1.931  0.5933\n Medium None - Medium Uncontrollable            220.7 35.8 171   6.162  &lt;.0001\n Medium None - Fast Uncontrollable              257.1 35.8 171   7.180  &lt;.0001\n Fast None - Slow Controllable                 -247.4 35.8 171  -6.908  &lt;.0001\n Fast None - Medium Controllable               -163.4 35.8 171  -4.564  0.0003\n Fast None - Fast Controllable                   42.0 35.8 171   1.174  0.9609\n Fast None - Slow Uncontrollable               -265.2 35.8 171  -7.405  &lt;.0001\n Fast None - Medium Uncontrollable               24.7 35.8 171   0.689  0.9989\n Fast None - Fast Uncontrollable                 61.1 35.8 171   1.707  0.7417\n Slow Controllable - Medium Controllable         84.0 35.8 171   2.344  0.3219\n Slow Controllable - Fast Controllable          289.4 35.8 171   8.082  &lt;.0001\n Slow Controllable - Slow Uncontrollable        -17.8 35.8 171  -0.496  0.9999\n Slow Controllable - Medium Uncontrollable      272.1 35.8 171   7.597  &lt;.0001\n Slow Controllable - Fast Uncontrollable        308.5 35.8 171   8.615  &lt;.0001\n Medium Controllable - Fast Controllable        205.5 35.8 171   5.738  &lt;.0001\n Medium Controllable - Slow Uncontrollable     -101.7 35.8 171  -2.841  0.1114\n Medium Controllable - Medium Uncontrollable    188.1 35.8 171   5.252  &lt;.0001\n Medium Controllable - Fast Uncontrollable      224.6 35.8 171   6.271  &lt;.0001\n Fast Controllable - Slow Uncontrollable       -307.2 35.8 171  -8.579  &lt;.0001\n Fast Controllable - Medium Uncontrollable      -17.4 35.8 171  -0.486  0.9999\n Fast Controllable - Fast Uncontrollable         19.1 35.8 171   0.533  0.9998\n Slow Uncontrollable - Medium Uncontrollable    289.8 35.8 171   8.093  &lt;.0001\n Slow Uncontrollable - Fast Uncontrollable      326.3 35.8 171   9.111  &lt;.0001\n Medium Uncontrollable - Fast Uncontrollable     36.5 35.8 171   1.018  0.9837\n\nP value adjustment: tukey method for comparing a family of 9 estimates"
+  },
+  {
+    "objectID": "6-interact.html#marginal-contrasts",
+    "href": "6-interact.html#marginal-contrasts",
+    "title": "Interactions II",
+    "section": "Marginal contrasts",
+    "text": "Marginal contrasts\n\nemmeans(fit, pairwise ~ Speed)\n\n$emmeans\n Speed  emmean   SE  df lower.CL upper.CL\n Slow      601 14.6 171      572      629\n Medium    441 14.6 171      412      470\n Fast      295 14.6 171      266      324\n\nResults are averaged over the levels of: Noise \nConfidence level used: 0.95 \n\n$contrasts\n contrast      estimate   SE  df t.ratio p.value\n Slow - Medium      160 20.7 171   7.726  &lt;.0001\n Slow - Fast        306 20.7 171  14.787  &lt;.0001\n Medium - Fast      146 20.7 171   7.061  &lt;.0001\n\nResults are averaged over the levels of: Noise \nP value adjustment: tukey method for comparing a family of 3 estimates"
   }
 ]
