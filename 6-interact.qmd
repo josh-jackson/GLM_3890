@@ -212,6 +212,32 @@ summary(career.mod_c)
 #| code-fold: true
 #| 
 library(ggeffects)
+predictedvals = ggpredict(model = career.mod_c, terms = c("gpa_c", "major"))
+
+ggplot(data = predictedvals, aes(x = x, y = predicted, group = group)) +
+  geom_smooth(aes(ymin = conf.low,
+                  ymax = conf.high,
+                  color = group,
+                  fill = group),
+              stat = "identity",
+              alpha = .2) +
+  labs(x = "GPA",
+       y = "Income (in thousands of dollars)",
+       title = "I am in the wrong profession",
+       color = "Undergraduate Major",
+       fill = "Undergraduate Major",
+       group = "Undergraduate Major")
+
+```
+
+
+
+## Uncentered Plot
+
+```{r}
+#| code-fold: true
+#| 
+library(ggeffects)
 predictedvals = ggpredict(model = career.mod, terms = c("gpa", "major"))
 
 ggplot(data = predictedvals, aes(x = x, y = predicted, group = group)) +
@@ -229,6 +255,8 @@ ggplot(data = predictedvals, aes(x = x, y = predicted, group = group)) +
        group = "Undergraduate Major")
 
 ```
+
+
 
 
 

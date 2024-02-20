@@ -1418,7 +1418,7 @@
     "href": "6-interact.html#plotting-results",
     "title": "Interactions II",
     "section": "Plotting results",
-    "text": "Plotting results\n\n\nCode\nlibrary(ggeffects)\npredictedvals = ggpredict(model = career.mod, terms = c(\"gpa\", \"major\"))\n\nggplot(data = predictedvals, aes(x = x, y = predicted, group = group)) +\n  geom_smooth(aes(ymin = conf.low,\n                  ymax = conf.high,\n                  color = group,\n                  fill = group),\n              stat = \"identity\",\n              alpha = .2) +\n  labs(x = \"GPA\",\n       y = \"Income (in thousands of dollars)\",\n       title = \"I am in the wrong profession\",\n       color = \"Undergraduate Major\",\n       fill = \"Undergraduate Major\",\n       group = \"Undergraduate Major\")"
+    "text": "Plotting results\n\n\nCode\nlibrary(ggeffects)\npredictedvals = ggpredict(model = career.mod_c, terms = c(\"gpa_c\", \"major\"))\n\nggplot(data = predictedvals, aes(x = x, y = predicted, group = group)) +\n  geom_smooth(aes(ymin = conf.low,\n                  ymax = conf.high,\n                  color = group,\n                  fill = group),\n              stat = \"identity\",\n              alpha = .2) +\n  labs(x = \"GPA\",\n       y = \"Income (in thousands of dollars)\",\n       title = \"I am in the wrong profession\",\n       color = \"Undergraduate Major\",\n       fill = \"Undergraduate Major\",\n       group = \"Undergraduate Major\")"
   },
   {
     "objectID": "6-interact.html#two-categorical-predictors",
@@ -1517,5 +1517,12 @@
     "title": "Interactions II",
     "section": "Marginal contrasts",
     "text": "Marginal contrasts\n\nemmeans(fit, pairwise ~ Speed)\n\n$emmeans\n Speed  emmean   SE  df lower.CL upper.CL\n Slow      601 14.6 171      572      629\n Medium    441 14.6 171      412      470\n Fast      295 14.6 171      266      324\n\nResults are averaged over the levels of: Noise \nConfidence level used: 0.95 \n\n$contrasts\n contrast      estimate   SE  df t.ratio p.value\n Slow - Medium      160 20.7 171   7.726  &lt;.0001\n Slow - Fast        306 20.7 171  14.787  &lt;.0001\n Medium - Fast      146 20.7 171   7.061  &lt;.0001\n\nResults are averaged over the levels of: Noise \nP value adjustment: tukey method for comparing a family of 3 estimates"
+  },
+  {
+    "objectID": "6-interact.html#uncentered-plot",
+    "href": "6-interact.html#uncentered-plot",
+    "title": "Interactions II",
+    "section": "Uncentered Plot",
+    "text": "Uncentered Plot\n\n\nCode\nlibrary(ggeffects)\npredictedvals = ggpredict(model = career.mod, terms = c(\"gpa\", \"major\"))\n\nggplot(data = predictedvals, aes(x = x, y = predicted, group = group)) +\n  geom_smooth(aes(ymin = conf.low,\n                  ymax = conf.high,\n                  color = group,\n                  fill = group),\n              stat = \"identity\",\n              alpha = .2) +\n  labs(x = \"GPA\",\n       y = \"Income (in thousands of dollars)\",\n       title = \"I am in the wrong profession\",\n       color = \"Undergraduate Major\",\n       fill = \"Undergraduate Major\",\n       group = \"Undergraduate Major\")"
   }
 ]
