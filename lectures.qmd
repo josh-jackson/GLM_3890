@@ -12,3 +12,5 @@ editor: source
 4. [GLM basics - 3](4-Basics.qmd)
 
 5. [Interactions](5-interact.qmd)
+
+6. [Interactions - 2](6-interact.qmd)
