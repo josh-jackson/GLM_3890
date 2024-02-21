@@ -487,7 +487,7 @@
     "href": "homework.html",
     "title": "homework",
     "section": "",
-    "text": "Homework 4\nHomework 3\nHomework 2\nHomework 1"
+    "text": "Homework 5\nHomework 4\nHomework 3\nHomework 2\nHomework 1"
   },
   {
     "objectID": "3-Basics.html#this-time",
@@ -1524,5 +1524,54 @@
     "title": "Interactions II",
     "section": "Uncentered Plot",
     "text": "Uncentered Plot\n\n\nCode\nlibrary(ggeffects)\npredictedvals = ggpredict(model = career.mod, terms = c(\"gpa\", \"major\"))\n\nggplot(data = predictedvals, aes(x = x, y = predicted, group = group)) +\n  geom_smooth(aes(ymin = conf.low,\n                  ymax = conf.high,\n                  color = group,\n                  fill = group),\n              stat = \"identity\",\n              alpha = .2) +\n  labs(x = \"GPA\",\n       y = \"Income (in thousands of dollars)\",\n       title = \"I am in the wrong profession\",\n       color = \"Undergraduate Major\",\n       fill = \"Undergraduate Major\",\n       group = \"Undergraduate Major\")"
+  },
+  {
+    "objectID": "hw-5.html",
+    "href": "hw-5.html",
+    "title": "Homework 5",
+    "section": "",
+    "text": "Due 2/26 at 9:59am\nData: The dataset looks at happiness in college as a relationship with school success, friendship quality, SES, and an intervention group (1 = control, 2 = study skills training, 3 = social skills training). The data are here: hw-5-data.csv\nRemember that if you work with a peer or use AI tools like Chat-GPT, you must cite them in your code.\nYou will submit both your .Rmd and HTML files to Canvas. For all figures, you must be intentional. Change the axes names, the theme etc. Do not settle for the defaults!\nGood luck!"
+  },
+  {
+    "objectID": "hw-5.html#question-1",
+    "href": "hw-5.html#question-1",
+    "title": "Homework 5",
+    "section": "Question 1",
+    "text": "Question 1\nRun a two-predictor regression predicting happiness by friendship and school success and the interaction between the two.\n\nDescribe your hypothesis for the interaction using the study variables\nDescribe in words what exactly the b1, b2, and b3 coefficients are telling us in this model."
+  },
+  {
+    "objectID": "hw-5.html#question-2",
+    "href": "hw-5.html#question-2",
+    "title": "Homework 5",
+    "section": "Question 2",
+    "text": "Question 2\nCompute the following 3 simple regression equations based on the model you ran in Question 1. Your choice of moderating variable depends on your hypothesis. Write out and interpret each of these simple slope equations.\n\nThe regression of Y on X at the mean of X2\nAt one standard deviation above the mean of X2 (X2hi)\nAt one standard deviation below the mean of X2 (X2low)."
+  },
+  {
+    "objectID": "hw-5.html#question-3",
+    "href": "hw-5.html#question-3",
+    "title": "Homework 5",
+    "section": "Question 3",
+    "text": "Question 3\nGraph the three simple slopes above within a single figure (no multiple panels)."
+  },
+  {
+    "objectID": "hw-5.html#question-4",
+    "href": "hw-5.html#question-4",
+    "title": "Homework 5",
+    "section": "Question 4",
+    "text": "Question 4\nAre any of these simple slopes significantly different from 0? How do you know? (i.e., we want a little more info than just “yes” or “no”, but you could do this in 1-2 sentences.)"
+  },
+  {
+    "objectID": "hw-5.html#question-5",
+    "href": "hw-5.html#question-5",
+    "title": "Homework 5",
+    "section": "Question 5",
+    "text": "Question 5\nCreate a new model that examines if happiness can be explained by school success and your intervention. Do not transform any variables.\n\nInterpret the intercept and each of the lower order coefficients. Be precise.\nConceptually interpret the interaction(s)\nCreate a single figure illustrating the interaction relationships"
+  },
+  {
+    "objectID": "hw-5.html#question-6",
+    "href": "hw-5.html#question-6",
+    "title": "Homework 5",
+    "section": "Question 6",
+    "text": "Question 6\nRepeat the same regression you ran in Question 5, however before running it, please mean-center your continuous predictor. Re-interpret the intercept, the lower order coefficients, and the interaction(s)."
   }
 ]

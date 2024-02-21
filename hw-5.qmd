@@ -1,0 +1,48 @@
+---
+title: "Homework 5"
+---
+
+Due 2/26 at 9:59am
+
+**Data:** The dataset looks at happiness in college as a relationship with school success, friendship quality, SES, and an intervention group (1 = control, 2 = study skills training, 3 = social skills training). The data are here: [`hw-5-data.csv`](hw-5-data.csv)
+
+Remember that if you work with a peer or use AI tools like Chat-GPT, you must cite them in your code. 
+
+You will submit both your .Rmd and HTML files to Canvas. For all figures, you must be intentional. Change the axes names, the theme etc. Do not settle for the defaults!
+
+Good luck!
+
+## Question 1
+
+Run a two-predictor regression predicting happiness by friendship and school success and the interaction between the two.
+
+- Describe your hypothesis for the interaction using the study variables
+- Describe in words what exactly the b1, b2, and b3 coefficients are telling us in this model. 
+
+## Question 2
+
+Compute the following 3 simple regression equations based on the model you ran in Question 1. Your choice of moderating variable depends on your hypothesis. Write out and interpret each of these simple slope equations. 
+
+- The regression of Y on X at the mean of X2
+- At one standard deviation above the mean of X2 (X2hi)
+- At one standard deviation below the mean of X2 (X2low). 
+
+## Question 3
+
+Graph the three simple slopes above within a single figure (no multiple panels).
+
+## Question 4
+
+Are any of these simple slopes significantly different from 0? How do you know? (i.e., we want a little more info than just "yes" or "no", but you could do this in 1-2 sentences.)
+
+## Question 5
+
+Create a new model that examines if happiness can be explained by school success and your intervention. Do not transform any variables.
+
+  - Interpret the intercept and each of the lower order coefficients. Be precise.
+  - Conceptually interpret the interaction(s)
+  - Create a single figure illustrating the interaction relationships
+
+## Question 6
+
+Repeat the same regression you ran in Question 5, however before running it, please mean-center your continuous predictor. Re-interpret the intercept, the lower order coefficients, and the interaction(s).

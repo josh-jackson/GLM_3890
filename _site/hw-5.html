@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GLM 2024 - homework</title>
+<title>GLM 2024 - Homework 5</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -90,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./homework.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./homework.html" rel="" target="">
  <span class="menu-text">homework</span></a>
   </li>  
   <li class="nav-item">
@@ -109,14 +109,25 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">homework</h1>
+<h1 class="title">Homework 5</h1>
 </div>
 
 
@@ -131,15 +142,51 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Due 2/26 at 9:59am</p>
+<p><strong>Data:</strong> The dataset looks at happiness in college as a relationship with school success, friendship quality, SES, and an intervention group (1 = control, 2 = study skills training, 3 = social skills training). The data are here: <a href="hw-5-data.csv"><code>hw-5-data.csv</code></a></p>
+<p>Remember that if you work with a peer or use AI tools like Chat-GPT, you must cite them in your code.</p>
+<p>You will submit both your .Rmd and HTML files to Canvas. For all figures, you must be intentional. Change the axes names, the theme etc. Do not settle for the defaults!</p>
+<p>Good luck!</p>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>Run a two-predictor regression predicting happiness by friendship and school success and the interaction between the two.</p>
 <ul>
-<li><p><a href="./hw-5.html">Homework 5</a></p></li>
-<li><p><a href="./4-HW.html">Homework 4</a></p></li>
-<li><p><a href="./3-HW.html">Homework 3</a></p></li>
-<li><p><a href="./2-HW.html">Homework 2</a></p></li>
-<li><p><a href="./1-HW.html">Homework 1</a></p></li>
+<li>Describe your hypothesis for the interaction using the study variables</li>
+<li>Describe in words what exactly the b1, b2, and b3 coefficients are telling us in this model.</li>
 </ul>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p>Compute the following 3 simple regression equations based on the model you ran in Question 1. Your choice of moderating variable depends on your hypothesis. Write out and interpret each of these simple slope equations.</p>
+<ul>
+<li>The regression of Y on X at the mean of X2</li>
+<li>At one standard deviation above the mean of X2 (X2hi)</li>
+<li>At one standard deviation below the mean of X2 (X2low).</li>
+</ul>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>Graph the three simple slopes above within a single figure (no multiple panels).</p>
+</section>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>Are any of these simple slopes significantly different from 0? How do you know? (i.e., we want a little more info than just “yes” or “no”, but you could do this in 1-2 sentences.)</p>
+</section>
+<section id="question-5" class="level2">
+<h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<p>Create a new model that examines if happiness can be explained by school success and your intervention. Do not transform any variables.</p>
+<ul>
+<li>Interpret the intercept and each of the lower order coefficients. Be precise.</li>
+<li>Conceptually interpret the interaction(s)</li>
+<li>Create a single figure illustrating the interaction relationships</li>
+</ul>
+</section>
+<section id="question-6" class="level2">
+<h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<p>Repeat the same regression you ran in Question 5, however before running it, please mean-center your continuous predictor. Re-interpret the intercept, the lower order coefficients, and the interaction(s).</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
