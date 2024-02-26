@@ -3,6 +3,7 @@ title: "homework"
 editor: source
 ---
 
+- [Homework 6](6-HW.qmd)
 
 - [Homework 5](hw-5.qmd)
 
