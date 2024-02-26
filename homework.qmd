@@ -1,6 +1,5 @@
 ---
 title: "homework"
-editor: source
 ---
 
 - [Homework 6](6-HW.qmd)

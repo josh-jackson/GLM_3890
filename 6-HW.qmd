@@ -2,6 +2,8 @@
 title: "hw 6"
 ---
 
+Due: 3/4 at 9:59am
+
 **Data:**  The data consist of a 2x3 anova design examining comics. The two factors are: 1) Publisher, which has two levels (DC or Marvel comics). 2) is Alignment, which has three levels (good, bad, neutral). The DV is Total, which is a combination of strength, intelligence, speed, durability, power, and combat. Higher scores are better. 
 
 The research question is whether there are differences in total across publisher, across type of superhereo alignment and whether there is an interaction between these two factors. Data can be found here: [`hw-6-data.csv`](superhero.csv)  
