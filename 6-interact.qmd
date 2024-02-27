@@ -11,7 +11,6 @@ html:
   scrollable: true
 ---
 
-
 ## Mixing categorical and continuous
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE, include=FALSE}
@@ -23,8 +22,6 @@ Consider the case where D is a variable representing two groups. In a univariate
 
 $$\hat{Y} = b_{0} + b_{1}D$$
 
-
-
 ## Interpreting slopes
 
 Extending this to the multivariate case, where X is continuous and D is a dummy code representing two groups.
@@ -32,8 +29,6 @@ Extending this to the multivariate case, where X is continuous and D is a dummy 
 $$\hat{Y} = b_{0} + b_{1}D + b_2X$$
 
 How do we interpret $b_1?$
-
-
 
 ## Visualizing
 
@@ -57,7 +52,6 @@ predict.1 = cbind(predict.1[1,], predict.1[2,])
 names(predict.1) = c("x1", "d1", "y1", "x2", "d2", "y2")
 
 ```
-
 
 ```{r}
 #| code-fold: true
@@ -113,19 +107,13 @@ ggplot(df, aes(X,Y, color = as.factor(D))) +
   cowplot::theme_cowplot()
 ```
 
-
-
-
 ## Interactions
 
 Now extend this example to include joint effects, not just additive effects:
 
 $$\hat{Y} = b_{0} + b_{1}D + b_2X + b_3DX$$
 
-How do we interpret $b_1?$, $b_2$,  $b_3?$?
-
-
-
+How do we interpret $b_1?$, $b_2$, $b_3?$?
 
 ## Visualizing
 
@@ -138,8 +126,7 @@ ggplot(df, aes(X,Y, color = as.factor(D))) +
   cowplot::theme_cowplot()
 ```
 
-
---------------
+------------------------------------------------------------------------
 
 Where should we draw the segment to compare means?
 
@@ -147,9 +134,7 @@ Where should we draw the segment to compare means?
 
 Where you draw the segment changes the difference in means. That's why $b_1$ can only be interpreted as the difference in means when X = 0.
 
-
-## Example 
-
+## Example
 
 ```{r, echo = F}
 #| code-fold: true
@@ -169,8 +154,7 @@ inc_data$income[inc_data$income < 21] = rnorm(n = length(which(inc_data$income <
                                               m = 55, sd = 10)
 ```
 
-Wash U is interested in understanding how undergraduates' academic performance and choice of major impacts their career success. They contact 150 alumni between the ages of 25 and 35 and collect their current salary (in thousands of dollars), their primary undergraduate major, and their GPA upon graduating. 
-
+Wash U is interested in understanding how undergraduates' academic performance and choice of major impacts their career success. They contact 150 alumni between the ages of 25 and 35 and collect their current salary (in thousands of dollars), their primary undergraduate major, and their GPA upon graduating.
 
 ```{r}
 #| code-fold: true
@@ -179,8 +163,7 @@ table(inc_data$major)
 describe(inc_data[,c("gpa", "income")], fast = T)
 ```
 
-
-------------
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -188,15 +171,13 @@ career.mod = lm(income ~ gpa*major, data = inc_data)
 summary(career.mod)
 ```
 
-
 ## Pop Quiz
 
 For the model just defined in the previous slide...
 
-- Write out the regression equation
-- Interpret each term
-- Where is Econ? 
-
+-   Write out the regression equation
+-   Interpret each term
+-   Where is Econ?
 
 ## Model summary: centering predictors
 
@@ -230,8 +211,6 @@ ggplot(data = predictedvals, aes(x = x, y = predicted, group = group)) +
 
 ```
 
-
-
 ## Uncentered Plot
 
 ```{r}
@@ -256,24 +235,17 @@ ggplot(data = predictedvals, aes(x = x, y = predicted, group = group)) +
 
 ```
 
-
-
-
-
-
-
 ## Factorial ANOVA
-
 
 The interaction of two or more categorical variables in a general linear model is formally known as **Factorial ANOVA**.
 
-A factorial design is used when there is an interest in how two or more variables (or factors) affect the outcome. 
+A factorial design is used when there is an interest in how two or more variables (or factors) affect the outcome.
 
-* Rather than conduct separate one-way ANOVAs for each factor, they are all included in one analysis. 
+-   Rather than conduct separate one-way ANOVAs for each factor, they are all included in one analysis.
 
-* The unique and important advantage to a factorial ANOVA over separate one-way ANOVAs is the ability to examine interactions.
+-   The unique and important advantage to a factorial ANOVA over separate one-way ANOVAs is the ability to examine interactions.
 
----
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -309,42 +281,36 @@ Data$Speed = factor(Data$Speed, levels = c("Slow", "Medium", "Fast")) # set orde
 Data$Noise = factor(Data$Noise, levels = c("None", "Controllable", "Uncontrollable")) # set order of levels as I want them presented
 ```
 
-
-- The example data are from a simulated study in which 180 participants performed an eye-hand coordination task in which they were required to keep a mouse pointer on a red dot that moved in a circular motion.  
-
+-   The example data are from a simulated study in which 180 participants performed an eye-hand coordination task in which they were required to keep a mouse pointer on a red dot that moved in a circular motion.
 
 ![](dot.jpg)
 
-
-- The outcome was the time of the 10th failure. The experiment used a completely crossed, 3 x 3 factorial design. One factor was dot speed: .5, 1, or 1.5 revolutions per second.  The second factor was noise condition.  Some participants performed the task without any noise; others were subjected to periodic and unpredictable 3-second bursts of 85 dB white noise played over earphones.  Of those subjected to noise, half could do nothing to stop the noise (uncontrollable noise); half believed they could stop the noise by pressing a button (controllable noise).
-
-
-## Terminology 
-
-In a **completely crossed** factorial design, each level of one factor occurs in combination with each level of the other factor.
-
-If equal numbers of participants occur in each combination, the design is **balanced**.  This has some distinct advantages (described later). 
-
-| | Slow | Medium | Fast |
-|:-|:-:|:-:|:-:|
-| No Noise | X | X | X |
-| Controllable Noise | X | X | X |
-| Uncontrollable Noise | X | X | X |
-
-
+-   The outcome was the time of the 10th failure. The experiment used a completely crossed, 3 x 3 factorial design. One factor was dot speed: .5, 1, or 1.5 revolutions per second. The second factor was noise condition. Some participants performed the task without any noise; others were subjected to periodic and unpredictable 3-second bursts of 85 dB white noise played over earphones. Of those subjected to noise, half could do nothing to stop the noise (uncontrollable noise); half believed they could stop the noise by pressing a button (controllable noise).
 
 ## Terminology
 
-We describe the factorial ANOVA design by the number of **levels** of each **factor.** 
+In a **completely crossed** factorial design, each level of one factor occurs in combination with each level of the other factor.
 
-  - Factor: a variable that is being manipulated or in which there are two or more groups
-  
-  - Level: the different groups within a factor
+If equal numbers of participants occur in each combination, the design is **balanced**. This has some distinct advantages (described later).
+
+|                      | Slow | Medium | Fast |
+|:---------------------|:----:|:------:|:----:|
+| No Noise             |  X   |   X    |  X   |
+| Controllable Noise   |  X   |   X    |  X   |
+| Uncontrollable Noise |  X   |   X    |  X   |
+
+## Terminology
+
+We describe the factorial ANOVA design by the number of **levels** of each **factor.**
+
+-   Factor: a variable that is being manipulated or in which there are two or more groups
+
+-   Level: the different groups within a factor
 
 In this case, we have a 3 x 3 ANOVA ("three by three"), because our first factor (speed) has three levels (slow, medium, and fast) and our second factor (noise) also has three levels (none, controllable, and uncontrollable)
 
+## Questions
 
-## Questions 
 ```{r}
 #| code-fold: true
 mean.summary = Data %>%
@@ -363,11 +329,7 @@ library(kableExtra)
 kable(mean.summary, digits = 2) %>% kable_styling() %>% group_rows(start_row = 1, end_row = 3)
 ```
 
-
-
-
-
----
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -375,8 +337,7 @@ library(ggpubr)
 ggbarplot(data = Data, x = "Speed", y = "Time", add = c("mean_ci"), fill = "#562457", xlab = "Speed Condition", ylab = "Mean Seconds (95% CI)", title = "Failure time as a function of\nspeed condition") 
 ```
 
-Looks like the mean differences are substantial.  The ANOVA will be able to tell us if the means are significantly different  and the magnitude of those differences in terms of variance accounted for.
-
+Looks like the mean differences are substantial. The ANOVA will be able to tell us if the means are significantly different and the magnitude of those differences in terms of variance accounted for.
 
 ## Marginal means
 
@@ -387,11 +348,11 @@ kable(mean.summary, digits = 2) %>%
   column_spec(5, bold = T, color = "white", background = "#562457")
 ```
 
-Regardless of dot speed, does noise condition affect performance?  Performance declines in the presence of noise, especially if the noise is uncontrollable.
+Regardless of dot speed, does noise condition affect performance? Performance declines in the presence of noise, especially if the noise is uncontrollable.
 
 Here, too adding information about variability allows us a sense of whether these are significant and meaningful differences...
 
----
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -400,8 +361,6 @@ ggbarplot(data = Data, x = "Noise", y = "Time", add = c("mean_ci"), fill = "#562
 
 The mean differences are not as apparent for this factor
 
-
-
 ## Marginal means
 
 ```{r, echo = F, results = 'asis', message = F, warning = F}
@@ -409,23 +368,16 @@ kable(mean.summary, digits = 2) %>%
   kable_styling() %>% 
   group_rows(start_row = 1, end_row = 3) 
 ```
-The **marginal mean differences** correspond to main effects. They tell us what impact a particular factor has, ignoring the impact of the other factor. 
 
-The remaining effect in a factorial design, and it primary advantage over separate one-way ANOVAs, is the ability to examine **conditional mean differences**. 
+The **marginal mean differences** correspond to main effects. They tell us what impact a particular factor has, ignoring the impact of the other factor.
 
-
-
-
+The remaining effect in a factorial design, and it primary advantage over separate one-way ANOVAs, is the ability to examine **conditional mean differences**.
 
 ## The Linear Model Way
 
 ```{r}
 summary(lm(Time ~ Noise*Speed, data = Data))
 ```
-
-
-
-
 
 ## Mean differences
 
@@ -442,10 +394,9 @@ kable(mean.summary, digits = 2) %>%
 
 Are the marginal mean differences for noise condition a good representation of what is happening within each of the dot speed conditions?
 
-If not, then we would need to say that the noise condition effect depends upon (is conditional on) dot speed.  We would have an interaction between noise condition and dot speed condition.
+If not, then we would need to say that the noise condition effect depends upon (is conditional on) dot speed. We would have an interaction between noise condition and dot speed condition.
 
---------
-
+------------------------------------------------------------------------
 
 ```{r}
 #| code-fold: true
@@ -461,16 +412,7 @@ model.data %>% ggplot(aes(x = x, y = predicted, fill = group)) +
 cowplot::theme_cowplot(font_size = 20)
 ```
 
-
-The noise condition means are most distinctly different in the medium speed condition. The noise condition means are clearly not different in the fast speed condition. 
-
-
-
-
-
-
-
-
+The noise condition means are most distinctly different in the medium speed condition. The noise condition means are clearly not different in the fast speed condition.
 
 ## Interpretation of significance tests
 
@@ -480,16 +422,15 @@ fit = lm(Time ~ Speed*Noise, data = Data)
 anova(fit)
 ```
 
-All three null hypotheses are rejected.  This only tells us that systemic differences among the means are present; follow-up comparisons are necessary to determine the nature of the differences. 
+All three null hypotheses are rejected. This only tells us that systemic differences among the means are present; follow-up comparisons are necessary to determine the nature of the differences.
 
-
-------
+------------------------------------------------------------------------
 
 ```{r}
 summary(fit)
 ```
 
-------
+------------------------------------------------------------------------
 
 ```{r}
 library(emmeans)
@@ -507,5 +448,13 @@ pairs(em)
 
 ```{r}
 emmeans(fit, pairwise ~ Speed)
+```
+
+
+## effect sizes
+
+```{r}
+em.ef <- emmeans(fit, pairwise ~ Speed)
+eff_size(em.ef, sigma = sigma(fit), edf = 171)
 ```
 

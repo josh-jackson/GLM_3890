@@ -1580,5 +1580,12 @@
     "title": "hw 6",
     "section": "",
     "text": "Due: 3/4 at 9:59am\nData: The data consist of a 2x3 anova design examining comics. The two factors are: 1) Publisher, which has two levels (DC or Marvel comics). 2) is Alignment, which has three levels (good, bad, neutral). The DV is Total, which is a combination of strength, intelligence, speed, durability, power, and combat. Higher scores are better.\nThe research question is whether there are differences in total across publisher, across type of superhereo alignment and whether there is an interaction between these two factors. Data can be found here: hw-6-data.csv\nRemember that if you work with a peer or use AI tools like Chat-GPT, you must cite them in your code.\nYou will submit both your .Rmd/.qmd and HTML files to Canvas. For all figures, you must be intentional. Change the axes names, the theme etc. Do not settle for the defaults!\nGood luck!\n\nWrite the equation that you will use to test the hypothesis. Run this in R and interpret what each of the coefficients mean.\nAre there any significant differences between?\n\n\n\nGood and bad?\nDC vs Marvel\nDC bad superheros vs Marvel bad superheros\nDC neutral vs DC bad\n\n\nWhat are the standardized (cohen’s d) differences between the groups in #2?\nCreate two graphs. 1. that show cell differences between groups. 2. that show differences in one of the marginal means."
+  },
+  {
+    "objectID": "6-interact.html#effect-sizes",
+    "href": "6-interact.html#effect-sizes",
+    "title": "Interactions II",
+    "section": "effect sizes",
+    "text": "effect sizes\n\nem.ef &lt;- emmeans(fit, pairwise ~ Speed)\neff_size(em.ef, sigma = sigma(fit), edf = 171)\n\n contrast        effect.size    SE  df lower.CL upper.CL\n (Slow - Medium)        1.41 0.198 171    1.020     1.80\n (Slow - Fast)          2.70 0.234 171    2.238     3.16\n (Medium - Fast)        1.29 0.195 171    0.903     1.67\n\nResults are averaged over the levels of: Noise \nsigma used for effect sizes: 113.2 \nConfidence level used: 0.95"
   }
 ]

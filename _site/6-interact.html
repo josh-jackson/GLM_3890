@@ -1175,6 +1175,23 @@ Results are averaged over the levels of: Noise
 P value adjustment: tukey method for comparing a family of 3 estimates </code></pre>
 </div>
 </div>
+</section>
+<section id="effect-sizes" class="slide level2">
+<h2>effect sizes</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>em.ef <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(fit, pairwise <span class="sc">~</span> Speed)</span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">eff_size</span>(em.ef, <span class="at">sigma =</span> <span class="fu">sigma</span>(fit), <span class="at">edf =</span> <span class="dv">171</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast        effect.size    SE  df lower.CL upper.CL
+ (Slow - Medium)        1.41 0.198 171    1.020     1.80
+ (Slow - Fast)          2.70 0.234 171    2.238     3.16
+ (Medium - Fast)        1.29 0.195 171    0.903     1.67
+
+Results are averaged over the levels of: Noise 
+sigma used for effect sizes: 113.2 
+Confidence level used: 0.95 </code></pre>
+</div>
+</div>
 
 <div class="footer footer-default">
 
