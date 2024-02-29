@@ -1,0 +1,296 @@
+---
+title: MLM 
+format: revealjs
+slide-number: true
+editor: visual
+execute:
+  echo: true
+html:
+  code-fold: true
+  code-summary: Show the code
+  scrollable: true
+---
+
+
+
+![](chelsea.jpeg)
+
+
+## MLM 
+
+- We will use MLM anytime we have more than one DV per grouping variable where the grouping variable has dependency. 
+
+- Obervations nested within people; dyads within a relationship; children in classrooms; members within family; ...
+
+- When we have such designs we violate standard assumptions in regression
+
+## Building intuition
+
+
+
+## Handling multiple DVs?
+
+What if people had more than 1 DV, like we do with time? What do you do with multiple items, multiple trials, multiple _____?
+
+Two options: 1. Collapse and average across.
+
+## Example
+
+```{r}
+#| code-fold: true
+library(tidyverse)
+library(broom)
+
+simp<- tribble(
+  ~ID, ~group,  ~test.score, ~study,
+1,1,5,1,
+2,1,7,3,
+3,2,4,2,
+4,2,6,4,
+5,3,3,3,
+6,3,5,5,
+7,4,2,4,
+8,4,4,6,
+9,5,1,5,
+10,5,3,7)
+```
+
+```{r, echo=FALSE}
+simp %>% 
+ggplot(aes(x=study, y=test.score)) +
+    geom_point(aes(colour = factor(group))) + theme(legend.position = "none")
+```
+
+------------------------------------------------------------------------
+
+
+```{r, echo = FALSE}
+simp.1<- tribble(
+  ~ID, ~group,  ~test.score, ~study,
+  1,1,6,2,
+  2,2,5,3,
+  3,3,4,4,
+  4,4,3,5,
+  5,5,2,6)
+```
+
+```{r, echo=FALSE}
+simp.1 %>% 
+ggplot(aes(x=study, y=test.score)) +
+    geom_point() +    
+    geom_smooth(method=lm, se=FALSE) +
+  geom_point(data = simp, aes(colour = factor(group))) + theme(legend.position = "none")
+```
+
+------------------------------------------------------------------------
+
+```{r, echo = FALSE}
+simp %>% 
+ggplot(aes(x=study, y=test.score, group = group)) +
+    geom_point(aes(colour = factor(group))) +   
+    geom_smooth(aes(colour = factor(group)),method=lm,se=FALSE)
+```
+
+## 1. Aggregation obscures hypotheses
+
+-   Between person H1: Do students who study more get better grades?
+
+-   Within person H2: When a student studies, do they get better grades?
+
+-   H1 and H2 are independent from one another! Aggregation collapses the two. When you have nested data with many DVs it is important to not aggregate.
+
+
+## 2. Regressions within regressions
+
+Helps to take multilevel and split it into the different levels.
+
+Level 1 is the smallest unit of analysis (students, waves, trials, family members)
+
+Level 2 variables are what level 1 variables are "nested" in (people, schools, counties, families, dyads)
+
+We are going to use level one components to run a regression, and use the results to run a second regression (Coefficents as outcomes)
+
+
+## Stroop example
+
+Level 1 can be thought of as regressions for each person. DV is reaction time, our dummy is congrudent (0) vs incongruent (1) trials
+
+$$Y_\text{josh} = \beta_{0} + \beta_{1}D_\text{josh} + \varepsilon_\text{josh}$$
+
+$\beta_{0}$ is my average for congruent trials, whereas $\beta_{1}$ is my difference between congruent and incongruent. 
+
+
+----------------
+
+- If we do that for everyone in the study, we have a vector of scores that represent j people's average RT for congruent trials $\beta_{0j}$ and another vector of score that represent j peoples difference between conditions $\beta_{1j}$.
+
+- People are going to differ on each of these -- some will be faster, some will have a larger vs smaller stroop effect. 
+
+- We can then run more regressions using these coefficients ($\beta_{0j}$ & $\beta_{1j}$) as DVs. For example, do instructors (0) or students (1) have faster congrunent trials? 
+
+
+## Level 1 equation
+
+$$Y_{i,j} = \beta_{0j} + \beta_{1j}X_{i,j} + \varepsilon_{i,j}$$
+
+## Level 2 equation
+
+$$\beta_{0j} = \gamma_{00} + U_{0j}$$ 
+$$\beta_{1j} = \gamma_{10} + U_{1j}$$
+
+Our B1 coefficient indexes people's slope, and can be thought of as a simple vector of scores. This vector can be a DV and can be decomposed further by a simple regression. There is some average effect (fixed effect) that serves as the intercept. The $U_{j}$ are like residuals. 
+
+------------------------------------------------------------------------
+
+```{r}
+#| code-fold: true
+
+library(readr)
+mlm <- read_csv("https://raw.githubusercontent.com/josh-jackson/longitudinal-2021/master/example.csv")
+
+mlm$year <- mlm$week
+
+set.seed(11)
+ex.random <- mlm %>% 
+  dplyr::select(ID) %>% 
+  distinct %>% 
+  sample_n(3) 
+
+example2 <-
+  left_join(ex.random, mlm)  
+  
+g2<- ggplot(example2,
+   aes(x = week, y = SMN7, group = ID)) +  geom_point() + stat_smooth(method="lm", formula=y~1, se = FALSE) + facet_wrap( ~ID) +
+  geom_hline(yintercept = .13) +  ylab("DV") + xlab("trial") +
+  geom_label(label="Grand mean ",  x=1,y=.13,
+    label.size = 0.15) 
+g2
+```
+
+
+## 3. Diferent levels
+
+
+The third way is to think of questions at different levels. Level 1 is the smallest unit of analysis (students, waves, trials, family members). We can ask questions about those levels
+
+Level 2 variables are what level 1 variables are "nested" in (people, schools, counties, families, dyads). We can ask separate questions about those questions. 
+
+-------
+
+```{r, echo = FALSE}
+simp %>% 
+ggplot(aes(x=study, y=test.score, group = group)) +
+    geom_point(aes(colour = factor(group))) +   
+    geom_smooth(aes(colour = factor(group)),method=lm,se=FALSE)
+```
+
+---------------
+
+$$Score_{i,j} = \beta_{0j} + \beta_{1j}(S_{ij}-\bar{S}_j) + \varepsilon_{i,j}$$
+
+## Level 2 equation
+
+$$\beta_{0j} = \gamma_{00} + \gamma_{01}\bar{S}_{j} + U_{0j}$$ 
+$$\beta_{1j} = \gamma_{10}$$
+
+What direction will the $\gamma_{01}$ coefficient be?  $\gamma_{10}$?
+
+
+
+## 4. Variance decomposition
+
+For standard regression, we think of error as existing in one big bucket called $\varepsilon$ . Everything that we do not know goes into that bucket, from measurement error to unmeasured important factors.
+
+For MLMs we will be breaking up ( $\varepsilon$ ) into multiple buckets. These useful "buckets" (Us) are what we refer to as random/varying effects.
+
+Thinking about MLM as two separate regressions, these can be conceptualized as residuals. Thinking about variance decomposition, these can be thought of as similar to ANVOA models. 
+
+------------------------------------------------------------------------
+
+
+Assume a simple regression model where we ignore person deviations across trials to estimate a stroop effect. The stroop effect is the same, but what do we do with all the variance we did not measure? It goes into the error bucket. 
+
+------------------------------------------------------------------------
+
+- An MLM model, in contrast, models person specific deviations. The result is that the error bucket is smaller! Tests are more powerful this way, and we have new variables we can use to understand. 
+
+- We will treat random effects as variables themselves e.g. individual differences in change. They index how much people DIFFER on some effect.
+
+## Random and fixed effects
+
+::: columns
+::: {.column width="40%"}
+Level 1: $${Y}_{ij} = \beta_{0j}  + \beta_{1j}  +\varepsilon_{ij}$$
+
+Level 2: $${\beta}_{0j} = \gamma_{00} + U_{0j}$$ 
+$$\beta_{1j} = \gamma_{10} + U_{1j}$$
+Combined: $${Y}_{ij} = \gamma_{00} + \gamma_{10} +  U_{1j}+ U_{0j}  + \varepsilon_{ij}$$
+:::
+
+::: {.column width="60%"}
+$U_{0j}$ is considered a random effect, as it is varies across our grouping
+
+$\gamma_{00}$ is considered a fixed effect, as it is what is fixed (average) across our grouping
+:::
+:::
+
+
+
+## 5. Shrinkage/partial pooling
+
+-   We treat our group variable as coming from a population. All groups are alike (because they are from the same population), but different in their own way. Because of this it is helpful to use information from other groups to help make predictions.
+
+-   We do this in standard regression where we make predictions based on values from the whole dataset (not just binned Xs). A similar analogy for MLM is running a regression for each group. We want to pool as this leads to better predictions as we are not over fitting our data!
+
+
+## Complete, partial and no pooling
+
+-   Complete assumes everyone is the same, with $U_{0i}$ being zero for everyone.
+
+-   No pooling is if we calculate every person's effect with a regression, subtracting out he grand mean average.
+
+-   Partial pooling is in the middle, a weighted average between the two. For those with fewer trials there is less information for a particular individual, thus the complete pooling estimate will be given more weight. If someone has a lot of data, there weighted average is closer to no pooling.
+
+-   Partial pooling prevents both over and under fitting of your data, leading to increased out of sample predictions.
+
+## Complete pooling
+
+Ignores any dependency. Doesn't learn from others, assumes everyone is the same. Underfits the model.
+
+```{r}
+#| code-fold: true
+
+ggplot(mlm, aes(x = week, y = SMN7)) + geom_point() + stat_smooth(method="lm") +ylab("test score") + xlab("study") +  theme(axis.ticks.y = element_blank(),
+        axis.text.y = element_blank())
+
+```
+
+## No Pooling
+
+Everyone is unique and we cannot learn from others. Leads to overfitting
+
+```{r}
+#| code-fold: true
+
+ggplot(mlm, aes(x = week, y = SMN7, group = ID)) + geom_line() +  geom_point() + facet_wrap( ~ ID) +ylab("test score") + xlab("study")
+
+```
+
+## Partial pooling aka shrinkage aka regularization
+
+```{r}
+#| code-fold: true
+
+library(viridis)
+ggplot(mlm, aes(x = week, y = SMN7, group = ID, colour = ID)) + stat_smooth(method = "lm", se = FALSE, alpha = .5) +scale_color_viridis()+  ylab("test score") + xlab("study amount") + geom_point()
+```
+
+------------------------------------------------------------------------
+
+Partial pooling aka shrinkage provides the optimal amount of learning from others. Assumes people come from the same distribution but are distinct from one another.
+
+If you have a little data, then the safe bet is to look at the average. If you have a lot of data, you can ignore others.
+
+
+
+
