@@ -1713,5 +1713,12 @@
     "title": "MLM",
     "section": "Partial pooling aka shrinkage aka regularization",
     "text": "Partial pooling aka shrinkage aka regularization\n\n\nCode\nlibrary(viridis)\nggplot(mlm, aes(x = week, y = SMN7, group = ID, colour = ID)) + stat_smooth(method = \"lm\", se = FALSE, alpha = .5) +scale_color_viridis()+  ylab(\"test score\") + xlab(\"study amount\") + geom_point()"
+  },
+  {
+    "objectID": "7-mlm.html#example-1",
+    "href": "7-mlm.html#example-1",
+    "title": "MLM",
+    "section": "Example",
+    "text": "Example\nDay to day negative affect\n\n\nCode\nmelsm %&gt;% \ndistinct(record_id) %&gt;% \n  count()\n\n\n    n\n1 193\n\n\n\n\nCode\nmelsm %&gt;% \n    count(record_id) %&gt;% \n  ggplot(aes(x = n)) +\n  geom_bar() +\n  scale_x_continuous(\"number of days\", limits = c(0, NA))"
   }
 ]

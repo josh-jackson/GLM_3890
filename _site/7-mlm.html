@@ -615,6 +615,236 @@
 
 <p>Partial pooling aka shrinkage provides the optimal amount of learning from others. Assumes people come from the same distribution but are distinct from one another.</p>
 <p>If you have a little data, then the safe bet is to look at the average. If you have a lot of data, you can ignore others.</p>
+</section>
+<section id="example-1" class="slide level2">
+<h2>Example</h2>
+<p>Day to day negative affect</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>melsm <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">distinct</span>(record_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    n
+1 193</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>melsm <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="fu">count</span>(record_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> n)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">"number of days"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="7-mlm_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>melsm <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">!</span>record_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">16</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">unnest</span>(data) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> day, <span class="at">y =</span> N_A.lag)) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">ylab</span>(<span class="st">"negative affect (standardized)"</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>record_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="7-mlm_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>mlm<span class="fl">.1</span><span class="ot">&lt;-</span> <span class="fu">lmer</span>(N_A.std <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span> record_id), <span class="at">data =</span> melsm)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">summary</span>(mlm<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: N_A.std ~ 1 + (1 | record_id)
+   Data: melsm
+
+REML criterion at convergence: 25971.5
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-5.7139 -0.4720 -0.0275  0.4220  8.0264 
+
+Random effects:
+ Groups    Name        Variance Std.Dev.
+ record_id (Intercept) 0.5199   0.7210  
+ Residual              0.4026   0.6345  
+Number of obs: 13033, groups:  record_id, 193
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept) -0.03041    0.05231  -0.581</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>mlm<span class="fl">.2</span><span class="ot">&lt;-</span> <span class="fu">lmer</span>(N_A.std <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> steps.pmd <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> record_id), <span class="at">data =</span> melsm)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">summary</span>(mlm<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: N_A.std ~ 1 + steps.pmd + (1 | record_id)
+   Data: melsm
+
+REML criterion at convergence: 25950.5
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-5.7373 -0.4723 -0.0237  0.4188  8.0521 
+
+Random effects:
+ Groups    Name        Variance Std.Dev.
+ record_id (Intercept) 0.5213   0.7220  
+ Residual              0.4017   0.6338  
+Number of obs: 13033, groups:  record_id, 193
+
+Fixed effects:
+             Estimate Std. Error t value
+(Intercept) -0.028303   0.052374  -0.540
+steps.pmd   -0.039809   0.007382  -5.393
+
+Correlation of Fixed Effects:
+          (Intr)
+steps.pmd -0.007</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>mlm<span class="fl">.3</span><span class="ot">&lt;-</span> <span class="fu">lmer</span>(N_A.std <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> steps.pmd <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> steps.pmd<span class="sc">|</span> record_id), <span class="at">data =</span> melsm)</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">summary</span>(mlm<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: N_A.std ~ 1 + steps.pmd + (1 + steps.pmd | record_id)
+   Data: melsm
+
+REML criterion at convergence: 25909.9
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-5.7784 -0.4695 -0.0218  0.4162  8.0778 
+
+Random effects:
+ Groups    Name        Variance Std.Dev. Corr 
+ record_id (Intercept) 0.523536 0.72356       
+           steps.pmd   0.005855 0.07652  -0.30
+ Residual              0.398168 0.63101       
+Number of obs: 13033, groups:  record_id, 193
+
+Fixed effects:
+             Estimate Std. Error t value
+(Intercept) -0.028260   0.052491  -0.538
+steps.pmd   -0.039353   0.009898  -3.976
+
+Correlation of Fixed Effects:
+          (Intr)
+steps.pmd -0.172</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>mlm<span class="fl">.4</span><span class="ot">&lt;-</span> <span class="fu">lmer</span>(N_A.std <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> steps.pmd <span class="sc">+</span> steps.pm  <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> steps.pmd<span class="sc">|</span> record_id), <span class="at">data =</span> melsm)</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">summary</span>(mlm<span class="fl">.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: N_A.std ~ 1 + steps.pmd + steps.pm + (1 + steps.pmd | record_id)
+   Data: melsm
+
+REML criterion at convergence: 25913
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-5.7784 -0.4699 -0.0217  0.4162  8.0776 
+
+Random effects:
+ Groups    Name        Variance Std.Dev. Corr 
+ record_id (Intercept) 0.52618  0.72538       
+           steps.pmd   0.00585  0.07648  -0.30
+ Residual              0.39817  0.63101       
+Number of obs: 13033, groups:  record_id, 193
+
+Fixed effects:
+             Estimate Std. Error t value
+(Intercept) -0.027652   0.052655  -0.525
+steps.pmd   -0.039211   0.009906  -3.958
+steps.pm    -0.026233   0.081729  -0.321
+
+Correlation of Fixed Effects:
+          (Intr) stps.pmd
+steps.pmd -0.171         
+steps.pm  -0.036 -0.046  </code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>mlm<span class="fl">.5</span><span class="ot">&lt;-</span> <span class="fu">lmer</span>(N_A.std <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> steps.pmd <span class="sc">*</span> steps.pm  <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> steps.pmd<span class="sc">|</span> record_id), <span class="at">data =</span> melsm)</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">summary</span>(mlm<span class="fl">.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: N_A.std ~ 1 + steps.pmd * steps.pm + (1 + steps.pmd | record_id)
+   Data: melsm
+
+REML criterion at convergence: 25919
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-5.7772 -0.4701 -0.0214  0.4176  8.0754 
+
+Random effects:
+ Groups    Name        Variance Std.Dev. Corr 
+ record_id (Intercept) 0.525913 0.72520       
+           steps.pmd   0.005835 0.07639  -0.30
+ Residual              0.398193 0.63103       
+Number of obs: 13033, groups:  record_id, 193
+
+Fixed effects:
+                   Estimate Std. Error t value
+(Intercept)        -0.02820    0.05265  -0.536
+steps.pmd          -0.03691    0.01051  -3.513
+steps.pm           -0.01669    0.08301  -0.201
+steps.pmd:steps.pm -0.01031    0.01578  -0.653
+
+Correlation of Fixed Effects:
+            (Intr) stps.pmd steps.pm
+steps.pmd   -0.166                  
+steps.pm    -0.038  0.016           
+stps.pmd:s.  0.016 -0.335   -0.175  </code></pre>
+</div>
+</div>
 
 <div class="footer footer-default">
 
