@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GLM 2024 - homework</title>
+<title>GLM 2024 - HW 7</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -90,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./homework.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./homework.html" rel="" target="">
  <span class="menu-text">homework</span></a>
   </li>  
   <li class="nav-item">
@@ -116,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">homework</h1>
+<h1 class="title">HW 7</h1>
 </div>
 
 
@@ -131,15 +131,22 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<ul>
-<li><p><a href="./7-hw.html">Homework 7</a></p></li>
-<li><p><a href="./6-HW.html">Homework 6</a></p></li>
-<li><p><a href="./hw-5.html">Homework 5</a></p></li>
-<li><p><a href="./4-HW.html">Homework 4</a></p></li>
-<li><p><a href="./3-HW.html">Homework 3</a></p></li>
-<li><p><a href="./2-HW.html">Homework 2</a></p></li>
-<li><p><a href="./1-HW.html">Homework 1</a></p></li>
-</ul>
+<p>Due: 3/18 at 9:59am</p>
+<p><strong>Data:</strong> Data are the same as presented in class. They are repeated measures data where daily observations of negative and positive affect are nested within participant. Participants could have up to 100 observations. Data can be found here: <a href="data_hw_7.csv"><code>data_hw_7.csv</code></a></p>
+<ol type="1">
+<li><p>What situations would you need to use MLM? What are two benefits to MLMs?</p></li>
+<li><p>What types of variables can be considered “level 1” and what types of variables can be considered “level 2”?</p></li>
+<li><p>A researcher is interested in how exercise (operationalized as number of steps) is related to a person’s level of positive affect, with positive affect serving as the DV and exercise as the IV. However the researcher knows that she could think of exercise both as a between subjects variable (some people exercise more than others), as well as a within person variable (some days you exercise, sometimes you don’t). Write out a level 1 equation and level 2 equation that tests the hypothesis that these two forms of exercise are related to positive affect, describing how to interpret each coefficient.</p></li>
+<li><p>Using the data, run a model where daily levels of positive affect (P_A.std) are predicted by both person mean centered daily steps (steps.pmd) and person mean average steps (steps.pm).</p></li>
+</ol>
+<ol type="a">
+<li>Interpret the coefficient for the level 1 effect of steps</li>
+<li>What coefficient tests whether people who take more steps on average have higher levels of positive affect?</li>
+<li>Interpret the random effect for intercept.</li>
+</ol>
+<ol start="5" type="1">
+<li>How would you change the model to test the hypothesis that those who take more steps on average (lets call them athletes) don’t benefit from daily steps in the same way as those who take less steps on average do (lets call them couch potatoes)? In other words, how could we test whether couch potatoes feel higher levels of positive affect after taking more steps than they typically do whereas if an athlete has a day of higher than typical steps they do not have higher levels of positive affect.</li>
+</ol>
 
 
 

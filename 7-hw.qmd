@@ -1,0 +1,23 @@
+---
+title: "HW 7"
+---
+
+
+Due: 3/18 at 9:59am
+
+**Data:** Data are the same as presented in class. They are repeated measures data where daily observations of negative and positive affect are nested within participant. Participants could have up to 100 observations. Data can be found here: [`data_hw_7.csv`](data_hw_7.csv)
+
+
+1. What situations would you need to use MLM?  What are two benefits to MLMs? 
+
+2. What types of variables can be considered "level 1" and what types of variables can be considered "level 2"?
+
+3. A researcher is interested in how exercise (operationalized as number of steps) is related to a person's level of positive affect, with positive affect serving as the DV and exercise as the IV. However the researcher knows that she could think of exercise both as a between subjects variable (some people exercise more than others), as well as a within person variable (some days you exercise, sometimes you don't).  Write out a level 1 equation and level 2 equation that tests the hypothesis that these two forms of exercise are related to positive affect, describing how to interpret each coefficient. 
+
+4. Using the data, run a model where daily levels of positive affect (P_A.std) are predicted by both person mean centered daily steps (steps.pmd) and person mean average steps (steps.pm). 
+  a. Interpret the coefficient for the level 1 effect of steps
+  b. What coefficient tests whether people who take more steps on average have higher levels of positive affect? 
+  c. Interpret the random effect for intercept. 
+
+5. How would you change the model to test the hypothesis that those who take more steps on average (lets call them athletes) don't benefit from daily steps in the same way as those who take less steps on average do (lets call them couch potatoes)? In other words, how could we test whether couch potatoes feel higher levels of positive affect after taking more steps than they typically do whereas if an athlete has a day of higher than typical steps they do not have higher levels of positive affect.    
+
