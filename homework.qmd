@@ -2,6 +2,8 @@
 title: "homework"
 ---
 
+-   [Homework 8](8-hw.qmd)
+
 -   [Homework 7](7-hw.qmd)
 
 -   [Homework 6](6-HW.qmd)

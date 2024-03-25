@@ -1,0 +1,44 @@
+---
+title: "homework 8"
+---
+
+## Instructions
+
+Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.
+
+**Data:**  [`hw-8-data.csv`](https://raw.githubusercontent.com/josh-jackson/GLM_3890/main/hw-8-data.csv)
+
+
+# Question 1
+
+You are interested in the relationship between how much people want control and how this might predict self-esteem. Using the Desirability of Control scale and the Rosenberg Self-Esteem scale, please do the following.
+
+- Create a structural equation model to see if Desirability of Control predicts Self-Esteem. Please go about this using all items from both scales. For each scale, you can assume that all items are measuring the same construct.
+
+- Does Desirability of Control predict Self-Esteem? What is the regression coefficient, and is it significant?
+
+- Look at the factor loadings for each scale and comment (aka write a few sentences) on what you notice. Does it all make sense? Do any items stand out to you? 
+
+- Is this a good model? How do you know?
+
+# Question 2
+
+You are interested in the Narcissistic Personality Inventory. Current literature says that there are 7 subscales to this:
+
+1. Authority: items 1,8,10,11,12,32,33,36 
+2. Exhibitionism: items 2,3,7,20,28,30,38 
+3. Superiority: items 4,9,26,37,40 
+4. Entitlement: items 5,14,18,24,25,27 
+5. Exploitativeness: items 6,13,16,23,35 
+6. Vanity: items 15,19,29 
+7. Self-Sufficiency: items 17,21,22,31,34,39 
+
+
+You hypothesize that while you think there might be this 7 factor latent structure, there might also be a single higher order latent factor that you might call "general narcissism" or something like that.
+
+- Sketch out the 2 models that you will create to test this hypothesis. Use a pen and paper or power point to create these figures. Don't use R. 
+
+- Now actually run the models in R. 
+
+- Describe what you find. Which of these hypotheses do you think is most supported? How do you know?
+

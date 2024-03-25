@@ -487,7 +487,7 @@
     "href": "homework.html",
     "title": "homework",
     "section": "",
-    "text": "Homework 7\nHomework 6\nHomework 5\nHomework 4\nHomework 3\nHomework 2\nHomework 1"
+    "text": "Homework 8\nHomework 7\nHomework 6\nHomework 5\nHomework 4\nHomework 3\nHomework 2\nHomework 1"
   },
   {
     "objectID": "3-Basics.html#this-time",
@@ -2000,5 +2000,19 @@
     "title": "Logistic",
     "section": "Probit",
     "text": "Probit\n\ndeath.4 &lt;- glm(NOT.premature ~ Intelligence_Self,\n        family = binomial(link = \"probit\"), data = mortality)\nsummary(death.4)\n\n\nCall:\nglm(formula = NOT.premature ~ Intelligence_Self, family = binomial(link = \"probit\"), \n    data = mortality)\n\nCoefficients:\n                  Estimate Std. Error z value Pr(&gt;|z|)  \n(Intercept)        0.21961    0.38376   0.572   0.5671  \nIntelligence_Self  0.04513    0.02319   1.946   0.0516 .\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 273.53  on 299  degrees of freedom\nResidual deviance: 269.72  on 298  degrees of freedom\nAIC: 273.72\n\nNumber of Fisher Scoring iterations: 4"
+  },
+  {
+    "objectID": "8-hw.html",
+    "href": "8-hw.html",
+    "title": "homework 8",
+    "section": "",
+    "text": "Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.\nData: hw-8-data.csv"
+  },
+  {
+    "objectID": "8-hw.html#instructions",
+    "href": "8-hw.html#instructions",
+    "title": "homework 8",
+    "section": "",
+    "text": "Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.\nData: hw-8-data.csv"
   }
 ]

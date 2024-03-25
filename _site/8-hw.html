@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GLM 2024 - homework</title>
+<title>GLM 2024 - homework 8</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -90,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./homework.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./homework.html" rel="" target="">
  <span class="menu-text">homework</span></a>
   </li>  
   <li class="nav-item">
@@ -109,14 +109,22 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">homework</h1>
+<h1 class="title">homework 8</h1>
 </div>
 
 
@@ -131,18 +139,42 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<p>Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.</p>
+<p><strong>Data:</strong> <a href="https://raw.githubusercontent.com/josh-jackson/GLM_3890/main/hw-8-data.csv"><code>hw-8-data.csv</code></a></p>
+</section>
+<section id="question-1" class="level1">
+<h1>Question 1</h1>
+<p>You are interested in the relationship between how much people want control and how this might predict self-esteem. Using the Desirability of Control scale and the Rosenberg Self-Esteem scale, please do the following.</p>
 <ul>
-<li><p><a href="8-hw.qmd">Homework 8</a></p></li>
-<li><p><a href="./7-hw.html">Homework 7</a></p></li>
-<li><p><a href="./6-HW.html">Homework 6</a></p></li>
-<li><p><a href="./hw-5.html">Homework 5</a></p></li>
-<li><p><a href="./4-HW.html">Homework 4</a></p></li>
-<li><p><a href="./3-HW.html">Homework 3</a></p></li>
-<li><p><a href="./2-HW.html">Homework 2</a></p></li>
-<li><p><a href="./1-HW.html">Homework 1</a></p></li>
+<li><p>Create a structural equation model to see if Desirability of Control predicts Self-Esteem. Please go about this using all items from both scales. For each scale, you can assume that all items are measuring the same construct.</p></li>
+<li><p>Does Desirability of Control predict Self-Esteem? What is the regression coefficient, and is it significant?</p></li>
+<li><p>Look at the factor loadings for each scale and comment (aka write a few sentences) on what you notice. Does it all make sense? Do any items stand out to you?</p></li>
+<li><p>Is this a good model? How do you know?</p></li>
+</ul>
+</section>
+<section id="question-2" class="level1">
+<h1>Question 2</h1>
+<p>You are interested in the Narcissistic Personality Inventory. Current literature says that there are 7 subscales to this:</p>
+<ol type="1">
+<li>Authority: items 1,8,10,11,12,32,33,36</li>
+<li>Exhibitionism: items 2,3,7,20,28,30,38</li>
+<li>Superiority: items 4,9,26,37,40</li>
+<li>Entitlement: items 5,14,18,24,25,27</li>
+<li>Exploitativeness: items 6,13,16,23,35</li>
+<li>Vanity: items 15,19,29</li>
+<li>Self-Sufficiency: items 17,21,22,31,34,39</li>
+</ol>
+<p>You hypothesize that while you think there might be this 7 factor latent structure, there might also be a single higher order latent factor that you might call “general narcissism” or something like that.</p>
+<ul>
+<li><p>Sketch out the 2 models that you will create to test this hypothesis. Use a pen and paper or power point to create these figures. Don’t use R.</p></li>
+<li><p>Now actually run the models in R.</p></li>
+<li><p>Describe what you find. Which of these hypotheses do you think is most supported? How do you know?</p></li>
 </ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
