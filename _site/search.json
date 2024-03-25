@@ -102,7 +102,7 @@
     "href": "lectures.html",
     "title": "Lectures",
     "section": "",
-    "text": "What are models?\nGLM basics\nGLM basics - 2\nGLM basics - 3\nInteractions\nInteractions - 2\nMLM"
+    "text": "What are models?\nGLM basics\nGLM basics - 2\nGLM basics - 3\nInteractions\nInteractions - 2\nMLM\nSEM\nlogistic"
   },
   {
     "objectID": "index.html",
@@ -1727,5 +1727,278 @@
     "title": "HW 7",
     "section": "",
     "text": "Due: 3/18 at 9:59am\nData: Data are the same as presented in class. They are repeated measures data where daily observations of negative and positive affect are nested within participant. Participants could have up to 100 observations. Data can be found here: data_hw_7.csv\n\nWhat situations would you need to use MLM? What are two benefits to MLMs?\nWhat types of variables can be considered “level 1” and what types of variables can be considered “level 2”?\nA researcher is interested in how exercise (operationalized as number of steps) is related to a person’s level of positive affect, with positive affect serving as the DV and exercise as the IV. However the researcher knows that she could think of exercise both as a between subjects variable (some people exercise more than others), as well as a within person variable (some days you exercise, sometimes you don’t). Write out a level 1 equation and level 2 equation that tests the hypothesis that these two forms of exercise are related to positive affect, describing how to interpret each coefficient.\nUsing the data, run a model where daily levels of positive affect (P_A.std) are predicted by both person mean centered daily steps (steps.pmd) and person mean average steps (steps.pm).\n\n\nInterpret the coefficient for the level 1 effect of steps\nWhat coefficient tests whether people who take more steps on average have higher levels of positive affect?\nInterpret the random effect for intercept.\n\n\nHow would you change the model to test the hypothesis that those who take more steps on average (lets call them athletes) don’t benefit from daily steps in the same way as those who take less steps on average do (lets call them couch potatoes)? In other words, how could we test whether couch potatoes feel higher levels of positive affect after taking more steps than they typically do whereas if an athlete has a day of higher than typical steps they do not have higher levels of positive affect."
+  },
+  {
+    "objectID": "9-logistic.html#this-whole-semester-has-been-linear-regression-on-steroids",
+    "href": "9-logistic.html#this-whole-semester-has-been-linear-regression-on-steroids",
+    "title": "Logistic",
+    "section": "This whole semester has been linear regression (on steroids)",
+    "text": "This whole semester has been linear regression (on steroids)\n\nWe’ve had continuous IVs (regression)\nWe’ve had categorical IVs (factorial ANOVA)\nWe’ve had a mixture of continuous/categorical IVs (more regression)\nBut we’ve never had a DV variable that is categorical… in comes Logistic Regression"
+  },
+  {
+    "objectID": "9-logistic.html#linear-regression",
+    "href": "9-logistic.html#linear-regression",
+    "title": "Logistic",
+    "section": "Linear Regression",
+    "text": "Linear Regression\nWhen we have a continuous DV, we can… - Calculate the \\(R^2\\) and determine if our IVs & DV are correlated (large value implying = large effect)\n\nCalculate a \\(p\\)-value to determine if \\(R^2\\) (or our model) is statistically significant\nUse the line/slope of a linear regression to make a calculated prediction of y given x\nCompare models\nAdd in predictors & look at interactions"
+  },
+  {
+    "objectID": "9-logistic.html#logistic-regression",
+    "href": "9-logistic.html#logistic-regression",
+    "title": "Logistic",
+    "section": "Logistic Regression",
+    "text": "Logistic Regression\nWhat is the goal of prediction when you have a categorial (dichotomous) outcome?\nWe are trying to see if something is TRUE or FALSE"
+  },
+  {
+    "objectID": "9-logistic.html#learning-goals",
+    "href": "9-logistic.html#learning-goals",
+    "title": "Logistic",
+    "section": "Learning Goals",
+    "text": "Learning Goals\n\nWTF is logistic regression. When to use it?\nWTF is the generalized linear model. When to use it?\nWTF is maximum likelihood estimation\nHTF do I do this in R"
+  },
+  {
+    "objectID": "9-logistic.html#learning-goals-1",
+    "href": "9-logistic.html#learning-goals-1",
+    "title": "Logistic",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nLearning goals today are not: - know every little thing about odds/probabilities/weird things I’m going to introduce - know every element of the output - memorize anything"
+  },
+  {
+    "objectID": "9-logistic.html#logistic-regression-1",
+    "href": "9-logistic.html#logistic-regression-1",
+    "title": "Logistic",
+    "section": "Logistic Regression",
+    "text": "Logistic Regression\nUsed when your DV is binary (0,1)\n- Clinical diagnosis\n- Disease prevalence\n- Experiences (Yes/No) - Correct/Incorrect"
+  },
+  {
+    "objectID": "9-logistic.html#where-is-the-line",
+    "href": "9-logistic.html#where-is-the-line",
+    "title": "Logistic",
+    "section": "Where is the line??",
+    "text": "Where is the line??\nLogistic Regression, rather than a straight, fitted line like linear regression, logistic regression fits an S-shaped logistic function.\nThis curved line can tell us the probability that something will be “1” given X"
+  },
+  {
+    "objectID": "9-logistic.html#model-complexity",
+    "href": "9-logistic.html#model-complexity",
+    "title": "Logistic",
+    "section": "Model Complexity",
+    "text": "Model Complexity\n…and just like linear regression, we can make simple models (a relationship between x and y, with y being a binary variable) or more complicated models (with covariates).\nUnlike linear regression, it isn’t as easy to just compare a more complex model to a simple model"
+  },
+  {
+    "objectID": "9-logistic.html#assumption-violations",
+    "href": "9-logistic.html#assumption-violations",
+    "title": "Logistic",
+    "section": "Assumption violations",
+    "text": "Assumption violations\nWhen our outcome is binary, we violate OLS regression assumptions\nViolates:\n\nCorrectly specified form (not linear)\nHomoscedasticity (as probability approaches 1 or 0, variance approaches 0)\nNormality of the errors (lol not close)"
+  },
+  {
+    "objectID": "9-logistic.html#need-to-think-in-terms-of-probabilities",
+    "href": "9-logistic.html#need-to-think-in-terms-of-probabilities",
+    "title": "Logistic",
+    "section": "Need to think in terms of probabilities",
+    "text": "Need to think in terms of probabilities\n\nIf we use OLS, we violate assumptions and have predicted values that go outside 0 & 1\nHow does the predicted probability of getting a 0 or a 1 relate to our predictors?\n\n\\[\\hat{p}_{i} \\leftrightsquigarrow b_{0} + b_{1}X_{1} + b_{2}X_{2}... b_{3}X_{p}\\]"
+  },
+  {
+    "objectID": "9-logistic.html#generalized-linear-models",
+    "href": "9-logistic.html#generalized-linear-models",
+    "title": "Logistic",
+    "section": "Generalized linear models",
+    "text": "Generalized linear models\n\nExtends the general linear model framework\nUsed to describe different Data Generating Processes (DGPs) other than Gaussian normal\nNeed to use if we cannot use the Gaussian normal e.g. the range of Y is restricted (e.g. binary, count) and/or the variance of Y depends on the mean, etc…\nIn other words, what is your DGP?"
+  },
+  {
+    "objectID": "9-logistic.html#generalized-linear-models-1",
+    "href": "9-logistic.html#generalized-linear-models-1",
+    "title": "Logistic",
+    "section": "Generalized linear models",
+    "text": "Generalized linear models\n\nGaussian model is \\[y_i \\sim  N(\\mu_i, \\sigma)\\]\n\n\\[\\mu_i = \\alpha + \\beta x_i\\] - The parameters of the normal distribution are the mean μ and the standard deviation σ (or the variance \\(\\sigma^2\\))]\n\nBinomial outcome is \\[y_i \\sim  Binomial(n, p_i)\\]\n\n\\[f(p_i) = \\alpha + \\beta x_i\\] - n stands for the number of times the experiment runs. - p represents the probability of one specific outcome.]"
+  },
+  {
+    "objectID": "9-logistic.html#glm-components",
+    "href": "9-logistic.html#glm-components",
+    "title": "Logistic",
+    "section": "GLM components",
+    "text": "GLM components\nIt is not common to have an average outcome \\(\\mu\\) (other than in a normal distribution)\nIt is not common to have parameters range from negative to positive infinity.\nWe need something that translates our model into the parameters that describe the distribution."
+  },
+  {
+    "objectID": "9-logistic.html#logistic-regression-2",
+    "href": "9-logistic.html#logistic-regression-2",
+    "title": "Logistic",
+    "section": "Logistic regression",
+    "text": "Logistic regression\n\\[y_i \\sim  Binomial(n, p_i)\\]\n\\[f(p_i) = \\alpha + \\beta x_i\\]\nOur number of trials is \\(N\\), so we are predicting the probability of \\(y\\). Probabilities are bounded between zero and one.\nBecause our variables are not in probability units we need to “link” them via a function. The linear right side of the equation is not in the same units as the non-linear left side.\nTwo most popular are logit and log. Others are available too, such as probit."
+  },
+  {
+    "objectID": "9-logistic.html#link-function-for-logistic",
+    "href": "9-logistic.html#link-function-for-logistic",
+    "title": "Logistic",
+    "section": "Link function for logistic",
+    "text": "Link function for logistic\n\nWe need to map (0,1) to \\((-\\infty, \\infty)\\)\nLogistic regression uses the logistic function to link the predicted probabilities to the predictors\nThink of it as a transformation of \\(\\hat{Y}\\)s"
+  },
+  {
+    "objectID": "9-logistic.html#sigmoid-function",
+    "href": "9-logistic.html#sigmoid-function",
+    "title": "Logistic",
+    "section": "Sigmoid function",
+    "text": "Sigmoid function\n\\[f(x) = \\frac{1}{1+e^{-X}}\\]\n… where \\(e\\) is Euler’s number\n\nexp(1)\n\n[1] 2.718282"
+  },
+  {
+    "objectID": "9-logistic.html#sigmoid-function-cont.",
+    "href": "9-logistic.html#sigmoid-function-cont.",
+    "title": "Logistic",
+    "section": "Sigmoid function (cont.)",
+    "text": "Sigmoid function (cont.)\nFor the Sigmoid function, as x approaches \\(\\infty\\), it reaches a natural limit at 1.\nAs x approaches \\(-\\infty\\), it reaches a natural limit of 0\nThis all keeps the limits within the 0, 1 range."
+  },
+  {
+    "objectID": "9-logistic.html#odds",
+    "href": "9-logistic.html#odds",
+    "title": "Logistic",
+    "section": "Odds",
+    "text": "Odds\n\nOdds are defined as the probability of being a case divided by the probability of being a noncase\nNot bound between 0 and 1\nRange from 0 to infinity\nLess than one is less than 50% probability \\[odds = \\frac {\\hat{p}}{1-\\hat{p}}\\]\n\n\\[probability= \\frac{\\hat{odds}}{1+\\hat{odds}}\\]"
+  },
+  {
+    "objectID": "9-logistic.html#odds-versus-probability",
+    "href": "9-logistic.html#odds-versus-probability",
+    "title": "Logistic",
+    "section": "Odds versus Probability",
+    "text": "Odds versus Probability\nPut simply:\n\nOdds are the ratio of something happening over something not happening.\nProbability is the ratio of something happening over everything that could happen.\n\nThe odds being so asymmetrical (unlike probability) make it difficult to compare the odds of being 0 versus the odds of being 1. So we use something called log odds."
+  },
+  {
+    "objectID": "9-logistic.html#log-odds",
+    "href": "9-logistic.html#log-odds",
+    "title": "Logistic",
+    "section": "Log Odds",
+    "text": "Log Odds\nTaking the log of the odds solves this problem by making everything symetrical!\nOdds are 1 to 6:\n\nlog(1/6) = log(0.17) = -1.79\n\nOdds are 6 to 1:\n\nlog(6/1) = log(6) = 1.79"
+  },
+  {
+    "objectID": "9-logistic.html#linear-probability-model",
+    "href": "9-logistic.html#linear-probability-model",
+    "title": "Logistic",
+    "section": "Linear Probability Model",
+    "text": "Linear Probability Model\n\\[f(x) = \\frac{1}{1+e^{-X}}\\] \\[\\hat{p} = \\frac{1}{1+e^{-b_{0}+b_{1}X}}\\]\n\\[odds = \\frac {\\hat{p}}{1-\\hat{p}}=e^{b_{0}+b_{1}X}\\] \\[logit= Log(odds)=ln(\\frac{\\hat{p}}{1-\\hat{p}}) = b_{0}+b_{1}X\\]"
+  },
+  {
+    "objectID": "9-logistic.html#logit",
+    "href": "9-logistic.html#logit",
+    "title": "Logistic",
+    "section": "Logit",
+    "text": "Logit\n\\[logit= Log(odds)=ln(\\frac{\\hat{p}}{1-\\hat{p}}) = b_{0}+b_{1}X\\] - DV is a logit, the natural log of odds\n\nPredicted scores are not dichotomous\nInstead of predicting probabilities directly, we are instead predicting the log of the odds.\nThe regression we are used to is not predicting \\(\\hat{Y}\\), because we’re predicting (or relating our IV) logits"
+  },
+  {
+    "objectID": "9-logistic.html#now-what",
+    "href": "9-logistic.html#now-what",
+    "title": "Logistic",
+    "section": "Now what?",
+    "text": "Now what?\n\nIn order to get the probability of a value of X being 1 or 0 based on some model parameters ( \\(b_0\\), \\(b_1\\) etc. ), we rearrange our equation so that we actually get the predicted logit (log of odds) given our model parameters.\nHow the hell do you interpret a logit? Not easily…\nConvert back into odds\nConvert your odds back into probabilities"
+  },
+  {
+    "objectID": "9-logistic.html#uhhhhhh",
+    "href": "9-logistic.html#uhhhhhh",
+    "title": "Logistic",
+    "section": "Uhhhhhh",
+    "text": "Uhhhhhh\nDoes this seem convoluted?\nWe are predicting logits, which happen to be the log of odds. It’s bananas.\nHow do we get these numbers in the first place? Can we use OLS?"
+  },
+  {
+    "objectID": "9-logistic.html#estimation-with-maximum-likelihood",
+    "href": "9-logistic.html#estimation-with-maximum-likelihood",
+    "title": "Logistic",
+    "section": "Estimation with Maximum Likelihood",
+    "text": "Estimation with Maximum Likelihood\n\nOLS minimizes the errors ( \\(SS_{res}\\)), which maximizes ( \\(SS_{reg}\\))\n\nIn logistic regression we are not so lucky\nNeed to rely on iterative procedure, Maximum Likelihood (ML) Estimation:\n\nPick parameters of your model ( \\(b_0\\), \\(b_1\\) etc. ), and calculate the likelihood of the data, given those parameters. We do this iteratively until we find the best parameters – the ones that maximize the likelihood of your data."
+  },
+  {
+    "objectID": "9-logistic.html#estimation-with-maximium-likelihood",
+    "href": "9-logistic.html#estimation-with-maximium-likelihood",
+    "title": "Logistic",
+    "section": "Estimation with Maximium Likelihood",
+    "text": "Estimation with Maximium Likelihood\nDo any of you hike? Know how to read a topographic map?\nML Estimation is sort of like going hiking with your data to find the highest point. And most of the time you can!\nBut if if you take a wrong turn, you might get screwed. It’s the risk we take when using ML Estimation!"
+  },
+  {
+    "objectID": "9-logistic.html#estimation-with-maximum-likelihood-1",
+    "href": "9-logistic.html#estimation-with-maximum-likelihood-1",
+    "title": "Logistic",
+    "section": "Estimation with Maximum Likelihood",
+    "text": "Estimation with Maximum Likelihood\nWe are using the distribution of the data to find the location that maximizes the likelihood of observing the variable that we measured.\nWe are essentially trying to find the optimal value for the mean (or standard deviation) for a distribution given our observed data.\nWe are talking here about the mean of the distribution, not the mean of the data. (However, in a normal distribution, these are the same thing.)"
+  },
+  {
+    "objectID": "9-logistic.html#estimation-with-maximum-likelihood-2",
+    "href": "9-logistic.html#estimation-with-maximum-likelihood-2",
+    "title": "Logistic",
+    "section": "Estimation with Maximum Likelihood",
+    "text": "Estimation with Maximum Likelihood\n\nSo we get model parameters, estimated via MLE (instead of OLS)\nSame but different:\n\nAsymptotic standard errors (an approximation to the standard error)\nInterpret test statistics as \\(z\\)’s, not \\(t\\)’s\nNo \\(t\\)-tests; instead a Wald test = \\(\\chi^2\\) test with 1 df = \\((\\frac{coef}{se})^2\\)\n\n\nasymptotic se’s are just approximations since we finite-sample dist of the estimator isn’t known"
+  },
+  {
+    "objectID": "9-logistic.html#all-together-now",
+    "href": "9-logistic.html#all-together-now",
+    "title": "Logistic",
+    "section": "All Together Now",
+    "text": "All Together Now\n\nWe try to predict binary outcomes. Our DV is dichotomous.\nWe can use categorical or continuous predictors (IVs) to do so\nWe can write the equation in roughly the same way\nWe cannot use OLS because it will give us impossible values and just logically it doesn’t work. We use ML Estimation to determine our logistic regression coefficients instead. This gives us a S-shaped curve\nWe can ask if our coefficients are significantly different from 0\nWe convert to odds and/or probabilities"
+  },
+  {
+    "objectID": "9-logistic.html#glm-in-r",
+    "href": "9-logistic.html#glm-in-r",
+    "title": "Logistic",
+    "section": "GLM in R",
+    "text": "GLM in R\n\nglm(formula,\n    family = gaussian(link=\"identity\"), #&lt;&lt;\n    data,\n    weights,\n    subset,\n    na.action,\n    start = NULL,\n    etastart,\n    mustart,\n    offset, \n    control = glm.control(...),\n    model = TRUE,\n    method = ”glm.fit”,\n    x = FALSE, \n    y = TRUE,\n    contrasts = NULL, ...)"
+  },
+  {
+    "objectID": "9-logistic.html#glm-in-r-1",
+    "href": "9-logistic.html#glm-in-r-1",
+    "title": "Logistic",
+    "section": "GLM in R",
+    "text": "GLM in R\n\nglm(y ~ X1+ X2 + X3 , #&lt;&lt;\n    family = binomial,\n    data = dataset)\n\nSpecify the model like you would with lm"
+  },
+  {
+    "objectID": "9-logistic.html#glm-in-r-2",
+    "href": "9-logistic.html#glm-in-r-2",
+    "title": "Logistic",
+    "section": "GLM in R",
+    "text": "GLM in R\n\nglm(y ~ X1+ X2 + X3 , \n    family = binomial, #&lt;&lt;\n    data = dataset)\n\nSpecify the distribution you’re working with. When binary outcomes, we’ll use the binomial."
+  },
+  {
+    "objectID": "9-logistic.html#glm-in-r-3",
+    "href": "9-logistic.html#glm-in-r-3",
+    "title": "Logistic",
+    "section": "GLM in R",
+    "text": "GLM in R\n\nglm(y ~ X1+ X2 + X3 , \n    family = binomial, \n    data = dataset) #&lt;&lt;\n\nSpecify your dataset."
+  },
+  {
+    "objectID": "9-logistic.html#how-to-interpret",
+    "href": "9-logistic.html#how-to-interpret",
+    "title": "Logistic",
+    "section": "How to interpret",
+    "text": "How to interpret\n\n\\(b_1\\) is the predicted change in the logit for a 1-unit change in X, holding the other predictors constant\nFor a 1-unit change in X, holding other predictors constant, the odds that Y = 1 changes by \\(e^{b_{1}}\\)\n\ne.g,. \\(b_{1}\\) = .4, \\(e^{.4}\\) = 1.49\n\nFor fitted values, need to use entire equation \\(\\hat{Y} = e^{b_{0}+b_{1}X_{1}}\\)\nTurn to probabilities by: \\(\\frac{\\text{odds}}{(1 + \\text{odds})}\\)"
+  },
+  {
+    "objectID": "9-logistic.html#example",
+    "href": "9-logistic.html#example",
+    "title": "Logistic",
+    "section": "Example",
+    "text": "Example\n\n# 1 = not premature\nmortality\n\n# A tibble: 300 × 4\n   Intelligence_Self Intelligence_Mate premature.d NOT.premature\n               &lt;dbl&gt;             &lt;dbl&gt; &lt;fct&gt;               &lt;dbl&gt;\n 1                22                19 normal                  1\n 2                22                18 normal                  1\n 3                21                21 normal                  1\n 4                22                17 normal                  1\n 5                19                18 normal                  1\n 6                19                20 premature               0\n 7                16                18 normal                  1\n 8                15                11 premature               0\n 9                16                21 normal                  1\n10                19                22 normal                  1\n# ℹ 290 more rows"
+  },
+  {
+    "objectID": "9-logistic.html#interpretation",
+    "href": "9-logistic.html#interpretation",
+    "title": "Logistic",
+    "section": "Interpretation",
+    "text": "Interpretation\nFor a 1-unit change in X, holding other predictors constant, the odds that Y = 1 changes by \\(e^{b_{1}}\\)\n\nexp(1)^.08012\n\n[1] 1.083417\n\n\nFor every 1-unit increase in Intelligence, the odds of not having a premature death 8%"
+  },
+  {
+    "objectID": "9-logistic.html#specific-values",
+    "href": "9-logistic.html#specific-values",
+    "title": "Logistic",
+    "section": "Specific Values?",
+    "text": "Specific Values?\nWhat if you want the probability of being a premature death for a given level of Intelligence? (Now that we’ve run our model and have parameters…)\nFor fitted values, need to use entire equation \\(\\hat{Y} = e^{b_{0}+b_{1}X_{1}}\\)\n\n# get fitted value with a given value of X (here 20)\nexp(1)^(0.28695 + (.08012*20))\n\n[1] 6.615067\n\n# now get odds\n6.615067 / (1+6.615067)\n\n[1] 0.8686814"
+  },
+  {
+    "objectID": "9-logistic.html#probit",
+    "href": "9-logistic.html#probit",
+    "title": "Logistic",
+    "section": "Probit",
+    "text": "Probit\nWe can have different link functions. When your response variable (DV) is truly binary – the data generating process generates legit binary data – logit is your pick."
+  },
+  {
+    "objectID": "9-logistic.html#probit-1",
+    "href": "9-logistic.html#probit-1",
+    "title": "Logistic",
+    "section": "Probit",
+    "text": "Probit\n\ndeath.4 &lt;- glm(NOT.premature ~ Intelligence_Self,\n        family = binomial(link = \"probit\"), data = mortality)\nsummary(death.4)\n\n\nCall:\nglm(formula = NOT.premature ~ Intelligence_Self, family = binomial(link = \"probit\"), \n    data = mortality)\n\nCoefficients:\n                  Estimate Std. Error z value Pr(&gt;|z|)  \n(Intercept)        0.21961    0.38376   0.572   0.5671  \nIntelligence_Self  0.04513    0.02319   1.946   0.0516 .\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 273.53  on 299  degrees of freedom\nResidual deviance: 269.72  on 298  degrees of freedom\nAIC: 273.72\n\nNumber of Fisher Scoring iterations: 4"
   }
 ]

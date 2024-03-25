@@ -16,3 +16,7 @@ editor: source
 6. [Interactions - 2](6-interact.qmd)
 
 7. [MLM](7-mlm.qmd)
+
+8. [SEM](8-sem.pdf)
+
+9. [logistic](9-logistic.qmd)
