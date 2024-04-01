@@ -1,13 +1,14 @@
 ---
-title: "Become a Bayesian in 3 simple steps"
-author: "Josh Jackson"
+title: Bayes 
 format: revealjs
+slide-number: true
 editor: visual
-execute: 
+execute:
   echo: true
 html:
-    code-fold: true
-    code-summary: "Show the code"
+  code-fold: true
+  code-summary: Show the code
+  scrollable: true
 ---
 
 ## Reassurance, before we get to the three steps
@@ -89,7 +90,7 @@ summary(fit)
 ```{r}
 #| code-fold: true
 library(brms)
-fit.1.bayesian <- brm(child ~ parent, data = galton.data, file = "fit.1.b")
+fit.1.bayesian <- brm(child ~ parent, data = galton.data, backend = "cmdstanr", file = "fit.1.b")
 ```
 
 ```{r}

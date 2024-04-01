@@ -2014,5 +2014,208 @@
     "title": "homework 8",
     "section": "",
     "text": "Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.\nData: hw-8-data.csv"
+  },
+  {
+    "objectID": "10-bayes.html#reassurance-before-we-get-to-the-three-steps",
+    "href": "10-bayes.html#reassurance-before-we-get-to-the-three-steps",
+    "title": "Bayes",
+    "section": "Reassurance, before we get to the three steps",
+    "text": "Reassurance, before we get to the three steps\n\nNot drastically different!\nYou get to keep everything you like\nYour models stay the same!!"
+  },
+  {
+    "objectID": "10-bayes.html#glm",
+    "href": "10-bayes.html#glm",
+    "title": "Bayes",
+    "section": "GLM",
+    "text": "GLM\n\nOur good friend that gives us 99% of the models psychologists use (general(ized) linear model), is exactly the same\n\n\\[\\Large Y = b_{0} + b_{1}X +e\\] - No need to think about setting up new t-test, ANOVAS, regressions, etc. ALL THE SAME."
+  },
+  {
+    "objectID": "10-bayes.html#a-working-mental-model",
+    "href": "10-bayes.html#a-working-mental-model",
+    "title": "Bayes",
+    "section": "A working mental model",
+    "text": "A working mental model\nWhat are Bayesian models?\n\n“Normal” regression with a different algorithm.\nResults that represent a distribution rather than a point estimate and some uncertainty.\nPriors that incorporate existing knowledge."
+  },
+  {
+    "objectID": "10-bayes.html#be-comfortable-with-a-different-estimation-algorithm",
+    "href": "10-bayes.html#be-comfortable-with-a-different-estimation-algorithm",
+    "title": "Bayes",
+    "section": "1. Be comfortable with a different estimation algorithm",
+    "text": "1. Be comfortable with a different estimation algorithm\n\nWhat do you mean by estimation algorithm?\n\n\n\nOLS i.e. \\(min\\sum(Y_{i}-\\hat{Y})^{2}\\)\nFun fact, R uses QR decomposition, Newton Raphson, Fisher Scoring, SVR, etc – not this equation.\nAnother fun fact, more advanced stats use an even different algorithm (e.g., maximum likelihood)"
+  },
+  {
+    "objectID": "10-bayes.html#standard-way",
+    "href": "10-bayes.html#standard-way",
+    "title": "Bayes",
+    "section": "Standard way",
+    "text": "Standard way\n\n\nCode\nlibrary(tidyverse)\ngalton.data &lt;- psychTools::galton"
+  },
+  {
+    "objectID": "10-bayes.html#fisher-scoring",
+    "href": "10-bayes.html#fisher-scoring",
+    "title": "Bayes",
+    "section": "Fisher Scoring",
+    "text": "Fisher Scoring\n\n\nCode\nfit.1.g &lt;- glm(child ~ parent, family = gaussian, data = galton.data)\nsummary(fit.1.g)\n\n\n\nCall:\nglm(formula = child ~ parent, family = gaussian, data = galton.data)\n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for gaussian family taken to be 5.011094)\n\n    Null deviance: 5877.2  on 927  degrees of freedom\nResidual deviance: 4640.3  on 926  degrees of freedom\nAIC: 4133.2\n\nNumber of Fisher Scoring iterations: 2"
+  },
+  {
+    "objectID": "10-bayes.html#maximum-likelihood",
+    "href": "10-bayes.html#maximum-likelihood",
+    "title": "Bayes",
+    "section": "Maximum likelihood",
+    "text": "Maximum likelihood\n\n\nlavaan 0.6.16 ended normally after 1 iteration\n\n  Estimator                                         ML\n  Optimization method                           NLMINB\n  Number of model parameters                         3\n\n  Number of observations                           928\n\nModel Test User Model:\n                                                      \n  Test statistic                                 0.000\n  Degrees of freedom                                 0\n\nParameter Estimates:\n\n  Standard errors                             Standard\n  Information                                 Expected\n  Information saturated (h1) model          Structured\n\nRegressions:\n                   Estimate  Std.Err  z-value  P(&gt;|z|)\n  child ~                                             \n    parent            0.646    0.041   15.728    0.000\n\nIntercepts:\n                   Estimate  Std.Err  z-value  P(&gt;|z|)\n   .child            23.942    2.808    8.527    0.000\n\nVariances:\n                   Estimate  Std.Err  z-value  P(&gt;|z|)\n   .child             5.000    0.232   21.541    0.000"
+  },
+  {
+    "objectID": "10-bayes.html#bayesian-way",
+    "href": "10-bayes.html#bayesian-way",
+    "title": "Bayes",
+    "section": "Bayesian way",
+    "text": "Bayesian way\n\n\nCode\nlibrary(brms)\nfit.1.bayesian &lt;- brm(child ~ parent, data = galton.data, backend = \"cmdstanr\", file = \"fit.1.b\")\n\n\nRunning MCMC with 4 sequential chains...\n\nChain 1 Iteration:    1 / 2000 [  0%]  (Warmup) \nChain 1 Iteration:  100 / 2000 [  5%]  (Warmup) \nChain 1 Iteration:  200 / 2000 [ 10%]  (Warmup) \nChain 1 Iteration:  300 / 2000 [ 15%]  (Warmup) \nChain 1 Iteration:  400 / 2000 [ 20%]  (Warmup) \nChain 1 Iteration:  500 / 2000 [ 25%]  (Warmup) \nChain 1 Iteration:  600 / 2000 [ 30%]  (Warmup) \nChain 1 Iteration:  700 / 2000 [ 35%]  (Warmup) \nChain 1 Iteration:  800 / 2000 [ 40%]  (Warmup) \nChain 1 Iteration:  900 / 2000 [ 45%]  (Warmup) \nChain 1 Iteration: 1000 / 2000 [ 50%]  (Warmup) \nChain 1 Iteration: 1001 / 2000 [ 50%]  (Sampling) \nChain 1 Iteration: 1100 / 2000 [ 55%]  (Sampling) \nChain 1 Iteration: 1200 / 2000 [ 60%]  (Sampling) \nChain 1 Iteration: 1300 / 2000 [ 65%]  (Sampling) \nChain 1 Iteration: 1400 / 2000 [ 70%]  (Sampling) \nChain 1 Iteration: 1500 / 2000 [ 75%]  (Sampling) \nChain 1 Iteration: 1600 / 2000 [ 80%]  (Sampling) \nChain 1 Iteration: 1700 / 2000 [ 85%]  (Sampling) \nChain 1 Iteration: 1800 / 2000 [ 90%]  (Sampling) \nChain 1 Iteration: 1900 / 2000 [ 95%]  (Sampling) \nChain 1 Iteration: 2000 / 2000 [100%]  (Sampling) \nChain 1 finished in 0.0 seconds.\nChain 2 Iteration:    1 / 2000 [  0%]  (Warmup) \nChain 2 Iteration:  100 / 2000 [  5%]  (Warmup) \nChain 2 Iteration:  200 / 2000 [ 10%]  (Warmup) \nChain 2 Iteration:  300 / 2000 [ 15%]  (Warmup) \nChain 2 Iteration:  400 / 2000 [ 20%]  (Warmup) \nChain 2 Iteration:  500 / 2000 [ 25%]  (Warmup) \nChain 2 Iteration:  600 / 2000 [ 30%]  (Warmup) \nChain 2 Iteration:  700 / 2000 [ 35%]  (Warmup) \nChain 2 Iteration:  800 / 2000 [ 40%]  (Warmup) \nChain 2 Iteration:  900 / 2000 [ 45%]  (Warmup) \nChain 2 Iteration: 1000 / 2000 [ 50%]  (Warmup) \nChain 2 Iteration: 1001 / 2000 [ 50%]  (Sampling) \nChain 2 Iteration: 1100 / 2000 [ 55%]  (Sampling) \nChain 2 Iteration: 1200 / 2000 [ 60%]  (Sampling) \nChain 2 Iteration: 1300 / 2000 [ 65%]  (Sampling) \nChain 2 Iteration: 1400 / 2000 [ 70%]  (Sampling) \nChain 2 Iteration: 1500 / 2000 [ 75%]  (Sampling) \nChain 2 Iteration: 1600 / 2000 [ 80%]  (Sampling) \nChain 2 Iteration: 1700 / 2000 [ 85%]  (Sampling) \nChain 2 Iteration: 1800 / 2000 [ 90%]  (Sampling) \nChain 2 Iteration: 1900 / 2000 [ 95%]  (Sampling) \nChain 2 Iteration: 2000 / 2000 [100%]  (Sampling) \nChain 2 finished in 0.0 seconds.\nChain 3 Iteration:    1 / 2000 [  0%]  (Warmup) \nChain 3 Iteration:  100 / 2000 [  5%]  (Warmup) \nChain 3 Iteration:  200 / 2000 [ 10%]  (Warmup) \nChain 3 Iteration:  300 / 2000 [ 15%]  (Warmup) \nChain 3 Iteration:  400 / 2000 [ 20%]  (Warmup) \nChain 3 Iteration:  500 / 2000 [ 25%]  (Warmup) \nChain 3 Iteration:  600 / 2000 [ 30%]  (Warmup) \nChain 3 Iteration:  700 / 2000 [ 35%]  (Warmup) \nChain 3 Iteration:  800 / 2000 [ 40%]  (Warmup) \nChain 3 Iteration:  900 / 2000 [ 45%]  (Warmup) \nChain 3 Iteration: 1000 / 2000 [ 50%]  (Warmup) \nChain 3 Iteration: 1001 / 2000 [ 50%]  (Sampling) \nChain 3 Iteration: 1100 / 2000 [ 55%]  (Sampling) \nChain 3 Iteration: 1200 / 2000 [ 60%]  (Sampling) \nChain 3 Iteration: 1300 / 2000 [ 65%]  (Sampling) \nChain 3 Iteration: 1400 / 2000 [ 70%]  (Sampling) \nChain 3 Iteration: 1500 / 2000 [ 75%]  (Sampling) \nChain 3 Iteration: 1600 / 2000 [ 80%]  (Sampling) \nChain 3 Iteration: 1700 / 2000 [ 85%]  (Sampling) \nChain 3 Iteration: 1800 / 2000 [ 90%]  (Sampling) \nChain 3 Iteration: 1900 / 2000 [ 95%]  (Sampling) \nChain 3 Iteration: 2000 / 2000 [100%]  (Sampling) \nChain 3 finished in 0.0 seconds.\nChain 4 Iteration:    1 / 2000 [  0%]  (Warmup) \nChain 4 Iteration:  100 / 2000 [  5%]  (Warmup) \nChain 4 Iteration:  200 / 2000 [ 10%]  (Warmup) \nChain 4 Iteration:  300 / 2000 [ 15%]  (Warmup) \nChain 4 Iteration:  400 / 2000 [ 20%]  (Warmup) \nChain 4 Iteration:  500 / 2000 [ 25%]  (Warmup) \nChain 4 Iteration:  600 / 2000 [ 30%]  (Warmup) \nChain 4 Iteration:  700 / 2000 [ 35%]  (Warmup) \nChain 4 Iteration:  800 / 2000 [ 40%]  (Warmup) \nChain 4 Iteration:  900 / 2000 [ 45%]  (Warmup) \nChain 4 Iteration: 1000 / 2000 [ 50%]  (Warmup) \nChain 4 Iteration: 1001 / 2000 [ 50%]  (Sampling) \nChain 4 Iteration: 1100 / 2000 [ 55%]  (Sampling) \nChain 4 Iteration: 1200 / 2000 [ 60%]  (Sampling) \nChain 4 Iteration: 1300 / 2000 [ 65%]  (Sampling) \nChain 4 Iteration: 1400 / 2000 [ 70%]  (Sampling) \nChain 4 Iteration: 1500 / 2000 [ 75%]  (Sampling) \nChain 4 Iteration: 1600 / 2000 [ 80%]  (Sampling) \nChain 4 Iteration: 1700 / 2000 [ 85%]  (Sampling) \nChain 4 Iteration: 1800 / 2000 [ 90%]  (Sampling) \nChain 4 Iteration: 1900 / 2000 [ 95%]  (Sampling) \nChain 4 Iteration: 2000 / 2000 [100%]  (Sampling) \nChain 4 finished in 0.0 seconds.\n\nAll 4 chains finished successfully.\nMean chain execution time: 0.0 seconds.\nTotal execution time: 0.7 seconds.\n\n\n\nsummary(fit.1.bayesian)\n\n Family: gaussian \n  Links: mu = identity; sigma = identity \nFormula: child ~ parent \n   Data: galton.data (Number of observations: 928) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nPopulation-Level Effects: \n          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nIntercept    24.00      2.79    18.54    29.38 1.00     3554     3112\nparent        0.65      0.04     0.57     0.73 1.00     3545     3112\n\nFamily Specific Parameters: \n      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nsigma     2.24      0.05     2.14     2.34 1.00     3880     3058\n\nDraws were sampled using sample(hmc). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1)."
+  },
+  {
+    "objectID": "10-bayes.html#step-1-is-easy",
+    "href": "10-bayes.html#step-1-is-easy",
+    "title": "Bayes",
+    "section": "Step 1 is easy",
+    "text": "Step 1 is easy\n\nBayes gives you basically the same results\n\n\n\nSo why use it? Many reasons, but the most direct is manipulating, visualizing, and extrapolating from results"
+  },
+  {
+    "objectID": "10-bayes.html#think-of-results-in-terms-of-distributions",
+    "href": "10-bayes.html#think-of-results-in-terms-of-distributions",
+    "title": "Bayes",
+    "section": "2. Think of results in terms of distributions",
+    "text": "2. Think of results in terms of distributions\n\nWhat are results?\n\n\n\nEstimate and an SE\nIndicates a “best guess” ie mean/median/mode and the imprecision related to it\nIf this guess is far away from zero (and imprecision not large), then it is significant\nWe know that if we repeated this again we won’t get the same answer (estimate), but likely in between our CIs\nHow do we convey the “best guess?”"
+  },
+  {
+    "objectID": "10-bayes.html#posterior-distribution-ie-results",
+    "href": "10-bayes.html#posterior-distribution-ie-results",
+    "title": "Bayes",
+    "section": "Posterior distribution (ie results)",
+    "text": "Posterior distribution (ie results)\n\nIs made up of a series of educated guesses (via our algorithm), each of which is consistent with the data.\nIn aggregate, these guesses provide us not with a best guess and an SD (as with Maximum Likelihood), but a more complete sense of each parameter we are trying to estimate.\nWe can assume this distribution (typically normal) with standard estimation, but with bayes it can be flexible!"
+  },
+  {
+    "objectID": "10-bayes.html#posterior-distribution-ie-results-1",
+    "href": "10-bayes.html#posterior-distribution-ie-results-1",
+    "title": "Bayes",
+    "section": "Posterior distribution (ie results)",
+    "text": "Posterior distribution (ie results)\nIs made of up of a series of educated guesses. Each dot represents a particular guess. Guesses that occur more often are considered more likely.\n\n\nCode\nfit.1.bayesian %&gt;% \nspread_draws(b_Intercept, b_parent) %&gt;% \nggplot(aes(x = b_parent)) +\n  stat_dotsinterval()"
+  },
+  {
+    "objectID": "10-bayes.html#how-does-the-algorithm-work",
+    "href": "10-bayes.html#how-does-the-algorithm-work",
+    "title": "Bayes",
+    "section": "How does the algorithm work?",
+    "text": "How does the algorithm work?\n\nPlayed a role in developing the thermonuclear bomb with one of the earliest computers. Published in 1953 but ignored within stats b/c it was published within a physics/chemistry journal. Took about until 1990 for desktop computers to run fast enough to do at home.\nMany variants, but the general idea is a) propose an estimate value + noise N(0, \\(\\sigma\\) ) then b) see how “likely” the data is given the estimate, c) based on some criteria (better than worse that some value) either accept or reject the estimate and d) repeat"
+  },
+  {
+    "objectID": "10-bayes.html#what-do-you-mean-by-likely",
+    "href": "10-bayes.html#what-do-you-mean-by-likely",
+    "title": "Bayes",
+    "section": "What do you mean by likely?",
+    "text": "What do you mean by likely?\nYou’ve done this before last semester. Three parameters in a binomial distribution (# successes, # of trials, probability of success). Often you would fix #trials and probability of success to see what # successes are most/least likely.\n\n\nCode\ndata.frame(heads = 0:10, prob = dbinom(x = 0:10, size = 10, prob = .5)) %&gt;% \n  ggplot(aes(x = factor(heads), y = prob)) +\n  geom_col(fill = \"#562457\") +\n  geom_text(aes(label = round(prob, 2), y = prob + .01),\n            position = position_dodge(.9),\n            size = 5, \n            vjust = 0) +\n  labs(title = \"Binomial Distribution of Coin Flips\",\n       subtitle = \"n = 10, p = .5\",\n       x = \"Number of Successes (Heads)\",\n       y = \"Density\") +\n  theme_classic(base_size = 16)"
+  },
+  {
+    "objectID": "10-bayes.html#more-intuituion",
+    "href": "10-bayes.html#more-intuituion",
+    "title": "Bayes",
+    "section": "More intuituion",
+    "text": "More intuituion\n\nThink of the algorithm as picking out marbles from a sack, with replacement, to figure out the distribution of colors.\nOr us doing rnorm with me hiding what the mean and SD are, but then figuring out what the mean and SD are through counting the samples."
+  },
+  {
+    "objectID": "10-bayes.html#bayesian-analysis-is-just-counting",
+    "href": "10-bayes.html#bayesian-analysis-is-just-counting",
+    "title": "Bayes",
+    "section": "Bayesian analysis is just counting",
+    "text": "Bayesian analysis is just counting\n\nBayesian analysis counts all ways that something can happen (according to assumptions/model). Assumptions with more ways that are consistent with data are more plausible.\nThis method is not demonstrably different than standard approaches. Standard likelihood approaches use the values that are most consistent with the data as an estimate. Try out all possible numbers and then tells you which one is most likely.\nWhere Bayes differs, is we will focus beyond just a “best estimate”"
+  },
+  {
+    "objectID": "10-bayes.html#visualizing-uncertainty",
+    "href": "10-bayes.html#visualizing-uncertainty",
+    "title": "Bayes",
+    "section": "Visualizing uncertainty",
+    "text": "Visualizing uncertainty\nOur posterior (ie different educated guesses at a the correct parameters; distribution of plausible values) is highlighting: that there is no ONE result, that there are many possible results that are consistent with the data.\n\n\nCode\nfit.1.bayesian %&gt;% \nspread_draws(b_Intercept, b_parent) %&gt;% \nggplot(aes(x = b_parent)) +\n  stat_dotsinterval()"
+  },
+  {
+    "objectID": "10-bayes.html#some-positives-of-focusing-on-uncertainty",
+    "href": "10-bayes.html#some-positives-of-focusing-on-uncertainty",
+    "title": "Bayes",
+    "section": "Some positives of focusing on uncertainty",
+    "text": "Some positives of focusing on uncertainty\n\nDo not need to assume normal or multivariate normal. Uncertainty does not need to be even tailed.\nDifferences (say across groups) in uncertainty is allowed. Do not need to assume groups have same standard errors. One can better account for and/or probe situations where a certain group has a lot or little variability.\nEasy to calculate uncertainty"
+  },
+  {
+    "objectID": "10-bayes.html#cis-around-a-particular-value",
+    "href": "10-bayes.html#cis-around-a-particular-value",
+    "title": "Bayes",
+    "section": "CIs around a particular value",
+    "text": "CIs around a particular value\nWith your current knowledge, calculate a 95% CI around parent = 72 inches, to tell you what is possible for the sample mean at that hight.\n\\[  \\hat{Y}\\pm t_{critical} * se_{residual}*\\sqrt{\\frac {1}{n}+\\frac{(X-\\bar{X})^2}{(n-1)s_{X}^2}}  \\]"
+  },
+  {
+    "objectID": "10-bayes.html#be-comfortable-integrating-prior-knowledge",
+    "href": "10-bayes.html#be-comfortable-integrating-prior-knowledge",
+    "title": "Bayes",
+    "section": "3. Be comfortable integrating prior knowledge",
+    "text": "3. Be comfortable integrating prior knowledge\n\nPriors insert knowledge you have outside of your data into your model\nThis can seem “subjective” as opposed to the more “objective” way of letting the data speak.\n\n\n\nWe will mostly not “tip the scales” towards an outcome we want.\nMost of the time the prior knowledge constrains plausible or implausible range of values e.g. we know an effect size of a million is very unlikely.\nOften priors don’t matter…"
+  },
+  {
+    "objectID": "10-bayes.html#okay-so-what-does-this-mean",
+    "href": "10-bayes.html#okay-so-what-does-this-mean",
+    "title": "Bayes",
+    "section": "Okay so what does this mean?",
+    "text": "Okay so what does this mean?\nIt means, BEFORE WE SEE THE DATA we are comfortable with different regression lines."
+  },
+  {
+    "objectID": "10-bayes.html#okay-so-why-is-this-important",
+    "href": "10-bayes.html#okay-so-why-is-this-important",
+    "title": "Bayes",
+    "section": "Okay so why is this important?",
+    "text": "Okay so why is this important?\n\nA model that makes impossible predictions prior to seeing the data isn’t too useful. Why waste the effort? We often know what values are likely, given what we know about effect sizes\nThis is exactly what we do with standard “frequentist” methods. They have implicit priors such that all values, from negative infinity to positive infinity are equally likely.\nIf we use priors from a uniform distribution we will get the EXACT same results as a frequentist method."
+  },
+  {
+    "objectID": "10-bayes.html#tying-it-together",
+    "href": "10-bayes.html#tying-it-together",
+    "title": "Bayes",
+    "section": "Tying it together",
+    "text": "Tying it together\n\nBe comfortable with a different estimation algorithm\nThink of results in terms of distributions\nBe comfortable integrating prior knowledge\n\n\\[p(\\theta | data) \\propto \\frac{p(data | \\theta) \\times p(\\theta )}{p(data)}\\] P(θ|data) is the posterior probability.\nP(θ) is the prior probability.\np(data| \\(\\theta\\) ) is the likelihood.\np(data) can be ignored, it is just a normalized coefficient"
+  },
+  {
+    "objectID": "10-bayes.html#combining-the-three-components",
+    "href": "10-bayes.html#combining-the-three-components",
+    "title": "Bayes",
+    "section": "Combining the three components",
+    "text": "Combining the three components\nPriors influencing Posterior"
+  },
+  {
+    "objectID": "10-bayes.html#sample-size-influence",
+    "href": "10-bayes.html#sample-size-influence",
+    "title": "Bayes",
+    "section": "sample size influence",
+    "text": "sample size influence"
+  },
+  {
+    "objectID": "10-bayes.html#going-from-prior-to-posterior",
+    "href": "10-bayes.html#going-from-prior-to-posterior",
+    "title": "Bayes",
+    "section": "Going from prior to posterior",
+    "text": "Going from prior to posterior\nWhat is our regression estimate again?\n\n\nCode\nfit.1.bayesian %&gt;% \nspread_draws(b_Intercept, b_parent) %&gt;% \nselect(b_parent) %&gt;% \n  mode_hdi(.width = c(.95))\n\n\n# A tibble: 1 × 6\n  b_parent .lower .upper .width .point .interval\n     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    \n1    0.640  0.564  0.722   0.95 mode   hdi"
+  },
+  {
+    "objectID": "10-bayes.html#going-from-prior-to-posterior-1",
+    "href": "10-bayes.html#going-from-prior-to-posterior-1",
+    "title": "Bayes",
+    "section": "Going from prior to posterior",
+    "text": "Going from prior to posterior\nWith a prior for b0 of N(0, .5)\n\n\nCode\nfit.1.bayesian %&gt;% \nspread_draws(b_Intercept, b_parent) %&gt;% \n  ggplot(aes(x = b_parent)) +\n  stat_slab() +\n  stat_function(data = data.frame(x = c(-2, 2)), aes(x), fun = dnorm, n = 100, args = list(0, .5))"
+  },
+  {
+    "objectID": "10-bayes.html#going-from-prior-to-posterior-2",
+    "href": "10-bayes.html#going-from-prior-to-posterior-2",
+    "title": "Bayes",
+    "section": "Going from prior to posterior",
+    "text": "Going from prior to posterior\n\nplusible lines prior to data –&gt; plausible lines after data"
+  },
+  {
+    "objectID": "10-bayes.html#what-is-confusing",
+    "href": "10-bayes.html#what-is-confusing",
+    "title": "Bayes",
+    "section": "What is confusing:",
+    "text": "What is confusing:\n\n\nIs it a philosophical different frame work? We can talk about how it is p(H0|d) vs p(d|H0) but it really doesn’t matter. Become a Bayesian just means using the algorithm, and again, most of us don’t have strong algo preferences\nTechnically we don’t have P-values, but Bayesian has analogues. Technically there isn’t NHST (because no null distribution to create sampling distribution) but you can easily do it.\n\nWhy don’t we do this already? Isn’t frequentist better? Historical accident due to computation limitations\nBayes Factors. Mostly garbage (imho) as they can be easily manipulated. But they have their place. BFs =/= Bayesian."
   }
 ]
