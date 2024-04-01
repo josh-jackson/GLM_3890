@@ -20,3 +20,5 @@ editor: source
 8. [SEM](8-sem.pdf)
 
 9. [logistic](9-logistic.qmd)
+
+10. [Bayes](10-bayes.qmd)
