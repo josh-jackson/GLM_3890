@@ -22,3 +22,5 @@ editor: source
 9. [logistic](9-logistic.qmd)
 
 10. [Bayes](10-bayes.qmd)
+
+11. [Machine learning 1](11-ml.qmd)

@@ -102,14 +102,14 @@
     "href": "lectures.html",
     "title": "Lectures",
     "section": "",
-    "text": "What are models?\nGLM basics\nGLM basics - 2\nGLM basics - 3\nInteractions\nInteractions - 2\nMLM\nSEM\nlogistic\nBayes"
+    "text": "What are models?\nGLM basics\nGLM basics - 2\nGLM basics - 3\nInteractions\nInteractions - 2\nMLM\nSEM\nlogistic\nBayes\nMachine learning 1"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Advanced Psychological Statistics",
     "section": "",
-    "text": "2/12: HW #4 is posted. Please turn it into canvas by 2/19 at 9:59am\n2/5: HW #3 is posted. Please turn it into canvas by 2/12 at 9:59am\n1/31: Homework #2 is now posted. Please turn it in to canvas by 2/5 at 9:59am\n1/24: Homework #1 is now posted. Please turn it in to canvas by 1/29 at 9:59am\n1/17: Welcome to the first day of class! If you want to follow along with examples, head over to github for all of the code and data. https://github.com/josh-jackson/GLM_3890"
+    "text": "4/8: Class is canceled so as to enjoy the eclipse!\n2/12: HW #4 is posted. Please turn it into canvas by 2/19 at 9:59am\n2/5: HW #3 is posted. Please turn it into canvas by 2/12 at 9:59am\n1/31: Homework #2 is now posted. Please turn it in to canvas by 2/5 at 9:59am\n1/24: Homework #1 is now posted. Please turn it in to canvas by 1/29 at 9:59am\n1/17: Welcome to the first day of class! If you want to follow along with examples, head over to github for all of the code and data. https://github.com/josh-jackson/GLM_3890"
   },
   {
     "objectID": "1-intro.html#how-do-we-know-if-a-model-is-good",
@@ -2217,5 +2217,264 @@
     "title": "Bayes",
     "section": "What is confusing:",
     "text": "What is confusing:\n\n\nIs it a philosophical different frame work? We can talk about how it is p(H0|d) vs p(d|H0) but it really doesn’t matter. Become a Bayesian just means using the algorithm, and again, most of us don’t have strong algo preferences\nTechnically we don’t have P-values, but Bayesian has analogues. Technically there isn’t NHST (because no null distribution to create sampling distribution) but you can easily do it.\n\nWhy don’t we do this already? Isn’t frequentist better? Historical accident due to computation limitations\nBayes Factors. Mostly garbage (imho) as they can be easily manipulated. But they have their place. BFs =/= Bayesian."
+  },
+  {
+    "objectID": "11-ml.html#today",
+    "href": "11-ml.html#today",
+    "title": "bootstrapping",
+    "section": "Today",
+    "text": "Today\n\nStart looking at topics related to machine learning\nWe are going to start off with Resampling methods"
+  },
+  {
+    "objectID": "11-ml.html#first.-sampling",
+    "href": "11-ml.html#first.-sampling",
+    "title": "bootstrapping",
+    "section": "First. Sampling",
+    "text": "First. Sampling\nIt is impossible to survey every person in the population we are interested in, so we often take a “random sample” from the population and calculate a sample statistic (e.g., mean, median).\nA lot of our statistics follow well-defined distributions (e.g., normal distribution), and we use the properties of these distributions to estimate the population parameter."
+  },
+  {
+    "objectID": "11-ml.html#problems-with-sampling",
+    "href": "11-ml.html#problems-with-sampling",
+    "title": "bootstrapping",
+    "section": "Problems with Sampling",
+    "text": "Problems with Sampling\nSingle Estimate of the Population Parameter\n\nEstimate the population mean\nSampling distribution of mean derived from sample statistics\nBuilt a 95% confidence interval around the sample mean\nWe’ve been relying on a single estimate of the population parameter."
+  },
+  {
+    "objectID": "11-ml.html#introduction-to-resampling",
+    "href": "11-ml.html#introduction-to-resampling",
+    "title": "bootstrapping",
+    "section": "Introduction to Resampling",
+    "text": "Introduction to Resampling\nA statistical technique that involves re-estimation of the population parameter by repeatedly drawing samples from the original sample"
+  },
+  {
+    "objectID": "11-ml.html#reasons-for-resampling",
+    "href": "11-ml.html#reasons-for-resampling",
+    "title": "bootstrapping",
+    "section": "Reasons for Resampling",
+    "text": "Reasons for Resampling\n\nReduce bias of the estimate by using multiple samples instead of one\nBetter sense of precision of the estimated population parameter\nWe do not need to make assumptions about the population distribution (e.g., when we perform two samples t-test, for example, we make the assumption that the populations from which the samples are drawn are normally distributed)\nSample does not have to be large"
+  },
+  {
+    "objectID": "11-ml.html#types-of-resampling",
+    "href": "11-ml.html#types-of-resampling",
+    "title": "bootstrapping",
+    "section": "Types of Resampling",
+    "text": "Types of Resampling\n\nBootstrapping\nJackknife method (just a glimpse)\nPermutation testing (just a glimpse; Research Methods will cover it)"
+  },
+  {
+    "objectID": "11-ml.html#bootstrapping",
+    "href": "11-ml.html#bootstrapping",
+    "title": "bootstrapping",
+    "section": "Bootstrapping",
+    "text": "Bootstrapping\nBootstrapping is a method where we rely entirely on the sample that we have at hand.\n\nWe randomly sample within the sample (with replacement)\nCompute the estimator of interest in order to…\nBuild an empirical distribution of that test statistic."
+  },
+  {
+    "objectID": "11-ml.html#illustration-of-bootstrapping",
+    "href": "11-ml.html#illustration-of-bootstrapping",
+    "title": "bootstrapping",
+    "section": "Illustration of Bootstrapping",
+    "text": "Illustration of Bootstrapping\nImagine we are trying to estimate the height of a cohort of friends. But you only have 6. Specifically, these 6 friends."
+  },
+  {
+    "objectID": "11-ml.html#repeat",
+    "href": "11-ml.html#repeat",
+    "title": "bootstrapping",
+    "section": "Repeat",
+    "text": "Repeat\n\n\nCode\n(sample1 = sample(friends, size = 6, replace = T)); paste('Mean height of this sample:', mean(heights[sample1]))\n\n\n[1] \"Rachel\" \"Rachel\" \"Rachel\" \"Phoebe\" \"Monica\" \"Monica\"\n\n\n[1] \"Mean height of this sample: 166.166666666667\"\n\n\n\n\nCode\n(sample1 = sample(friends, size = 6, replace = T)); paste('Mean height of this sample:', mean(heights[sample1]))\n\n\n[1] \"Joey\"     \"Rachel\"   \"Rachel\"   \"Chandler\" \"Joey\"     \"Joey\"    \n\n\n[1] \"Mean height of this sample: 168.833333333333\"\n\n\n\n\nCode\n(sample1 = sample(friends, size = 6, replace = T)); paste('Mean height of this sample:', mean(heights[sample1]))\n\n\n[1] \"Joey\"     \"Phoebe\"   \"Rachel\"   \"Phoebe\"   \"Chandler\" \"Ross\"    \n\n\n[1] \"Mean height of this sample: 171.666666666667\""
+  },
+  {
+    "objectID": "11-ml.html#bootstrap-10000-times",
+    "href": "11-ml.html#bootstrap-10000-times",
+    "title": "bootstrapping",
+    "section": "Bootstrap 10,000 Times",
+    "text": "Bootstrap 10,000 Times\n\n\nCode\n# When resampling, it is generally a good practice to set random seed\n# for full reproducibility of the resampling process\nset.seed(5067)\n\nboot &lt;- 10000 # Set number of bootstrap samples\n\nfriends = c('Monica', 'Rachel', 'Ross', 'Joey', 'Phoebe', 'Chandler')\nheights &lt;- c(165, 165, 178, 170, 172, 173)\n\nsample_means &lt;- NULL # Initialize list to store sample means"
+  },
+  {
+    "objectID": "11-ml.html#bootstrap-10000-times-1",
+    "href": "11-ml.html#bootstrap-10000-times-1",
+    "title": "bootstrapping",
+    "section": "Bootstrap 10,000 Times",
+    "text": "Bootstrap 10,000 Times\n\n\nCode\n# When resampling, it is generally a good practice to set random seed\n# for full reproducibility of the resampling process\nset.seed(5067)\n\nboot &lt;- 10000 # Set number of bootstrap samples\n\nfriends = c('Monica', 'Rachel', 'Ross', 'Joey', 'Phoebe', 'Chandler')\nheights &lt;- c(165, 165, 178, 170, 172, 173)\n\nsample_means &lt;- NULL # Initialize list to store sample means\n\n# Append the mean of bootstrap sample heights to *sample_means*\nfor(i in 1:boot){ #&lt;&lt;\n  this_sample &lt;- sample(heights, size = length(heights), replace = T) #&lt;&lt;\n  sample_means &lt;- c(sample_means, mean(this_sample)) #&lt;&lt;\n} #&lt;&lt;"
+  },
+  {
+    "objectID": "11-ml.html#comparison",
+    "href": "11-ml.html#comparison",
+    "title": "bootstrapping",
+    "section": "Comparison",
+    "text": "Comparison\n\n\nCode\nlibrary(ggpubr)\nmu = mean(heights)\nsem = sd(heights)/sqrt(length(heights))\ncv_t = qt(p = .975, df = length(heights)-1)\n\nbootstrapped = data.frame(means = sample_means) %&gt;%\n  ggplot(aes(x = means)) + \n  geom_histogram(color = \"white\") +\n  geom_density() +\n  geom_vline(aes(xintercept = mean(sample_means), color = \"mean\"), \n             linewidth = 2) +\n  geom_vline(aes(xintercept = median(sample_means), color = \"median\"),\n             linewidth = 2) +\n  geom_vline(aes(xintercept = quantile(sample_means, probs = .025), color = \"Lower 2.5%\"), \n             linewidth = 2) +\n    geom_vline(aes(xintercept = quantile(sample_means, probs = .975), color = \"Upper 2.5%\"), \n               linewidth = 2) +\n  scale_x_continuous(limits = c(mu-3*sem, mu+3*sem))+\n  ggtitle(\"Bootstrapped distribution\") +\n  cowplot::theme_cowplot()\n\nfrom_prob = data.frame(means = seq(from = min(sample_means), to = max(sample_means))) %&gt;%\n  ggplot(aes(x = means)) +\n  stat_function(fun = function(x) dnorm(x, m = mu, sd = sem)) + \n  geom_vline(aes(xintercept = mean(heights), color = \"mean\"), \n             linewidth = 2) +\n  geom_vline(aes(xintercept = median(heights), color = \"median\"), \n             linewidth = 2) +\n  geom_vline(aes(xintercept = mu-cv_t*sem, color = \"Lower 2.5%\"), \n             linewidth = 2) +\n  geom_vline(aes(xintercept = mu+cv_t*sem, color = \"Upper 2.5%\"), \n             linewidth = 2) + \n  scale_x_continuous(limits = c(mu-3*sem, mu+3*sem))+  \n  ggtitle(\"Distribution from probability theory\") +\n  cowplot::theme_cowplot()\n\nggarrange(bootstrapped, from_prob, ncol = 1)"
+  },
+  {
+    "objectID": "11-ml.html#example-2",
+    "href": "11-ml.html#example-2",
+    "title": "bootstrapping",
+    "section": "Example 2",
+    "text": "Example 2\nCentral tendency and variability of 216 reaction times\n\n\nCode\n# Set random seed before generating data\nset.seed(5067)\n\n# The observations generally follow the F Distribution + random noise\nresponse = rf(n = 216, 3, 50) \nresponse = response * 500 + rnorm(n = 216, mean = 200, sd = 100)"
+  },
+  {
+    "objectID": "11-ml.html#visualize-data",
+    "href": "11-ml.html#visualize-data",
+    "title": "bootstrapping",
+    "section": "Visualize Data",
+    "text": "Visualize Data\n\n\nCode\nlibrary(tidyverse)\n\nset.seed(1048596)\nresponse = rf(n = 216, 3, 50) \nresponse = response * 500 + rnorm(n = 216, mean = 200, sd = 100)\n\nvalues = quantile(response, \n                  probs = c(.025, .5, .975))\nmean_res = mean(response)\n\ndata.frame(x = response) %&gt;%\n  ggplot(aes(x)) +\n  geom_histogram(aes(y = ..density..), \n                 binwidth = 150, \n                 fill = \"lightgrey\",\n                 color = \"black\")+\n  geom_density()+\n  geom_vline(aes(xintercept = values[1], \n                 color = \"Lower 2.5%\"), linewidth = 2)+\n  geom_vline(aes(xintercept = values[2], color = \"Median\"), \n             linewidth = 2)+\n  geom_vline(aes(xintercept = values[3], color = \"Upper 2.5%\"),\n             linewidth = 2)+\n  geom_vline(aes(xintercept = mean_res, color = \"Mean\"), \n             linewidth = 2)+\n  labs(x = \"Reponse time (ms)\", title = \"Response Time Distribution\") + cowplot::theme_cowplot(font_size = 20)"
+  },
+  {
+    "objectID": "11-ml.html#distribution-of-means",
+    "href": "11-ml.html#distribution-of-means",
+    "title": "bootstrapping",
+    "section": "Distribution of Means",
+    "text": "Distribution of Means\n\n\nCode\ndata.frame(means = response_means) %&gt;%\n  ggplot(aes(x = means)) + \n  geom_histogram(color = \"white\") +\n  geom_density() +\n  geom_vline(aes(xintercept = mean(response_means), color = \"mean\"),\n             linewidth = 2) +\n  geom_vline(aes(xintercept = median(response_means), color = \"median\"),\n             linewidth = 2) +\n  geom_vline(aes(xintercept = quantile(response_means, probs = .025), \n                 color = \"Lower 2.5%\"), linewidth = 2) +\n  geom_vline(aes(xintercept = quantile(response_means, probs = .975), \n                 color = \"Upper 2.5%\"), linewidth = 2) +\n  cowplot::theme_cowplot()"
+  },
+  {
+    "objectID": "11-ml.html#other-estimators",
+    "href": "11-ml.html#other-estimators",
+    "title": "bootstrapping",
+    "section": "Other Estimators?",
+    "text": "Other Estimators?\nYou can bootstrap estimates and 95% confidence intervals for any statistics you’ll need to estimate.\nThings you should learn how to do in R: - learn to read a for loop - learn to write your own function"
+  },
+  {
+    "objectID": "11-ml.html#another-example",
+    "href": "11-ml.html#another-example",
+    "title": "bootstrapping",
+    "section": "Another Example",
+    "text": "Another Example\nIn this district, Verizon provides line service to both Verizon and non-Verizon customers. Here, we are going to look at a dataset containing service waiting times for Verizon customers (ILEC) and non-Verizon customers (CLEC). We are interested in whether waiting time of non-Verizon customers is longer than that of Verizon customers.\n\n\nCode\nVerizon = read.csv(\"https://raw.githubusercontent.com/shellyc26/psy5067/master/data/Verizon.csv\")\n\n\n\nhead(Verizon, 3)\n\n  Time Group\n1 17.5  ILEC\n2  2.4  ILEC\n3  0.0  ILEC"
+  },
+  {
+    "objectID": "11-ml.html#inspect-verizon-data-1",
+    "href": "11-ml.html#inspect-verizon-data-1",
+    "title": "bootstrapping",
+    "section": "Inspect Verizon Data 1",
+    "text": "Inspect Verizon Data 1\n\n\nCode\nVerizon %&gt;%\n  ggplot(aes(x = Time, fill = Group)) + \n  geom_histogram(bins = 30) + \n  guides(fill = \"none\") +\n  facet_wrap(~Group, scales = \"free_y\")\n\n\n\n\nLeft is the distribution of waiting times of Non-Verizon (CLEC) customers; and\nRight is the distribution of waiting times of Verizon (ILEC) customers.\nBoth distributions are not normal."
+  },
+  {
+    "objectID": "11-ml.html#inspect-verizon-data-2",
+    "href": "11-ml.html#inspect-verizon-data-2",
+    "title": "bootstrapping",
+    "section": "Inspect Verizon Data 2",
+    "text": "Inspect Verizon Data 2\n\n\nCode\nVerizon %&gt;%\n  ggplot(aes(x = Time, fill = Group)) + \n  geom_histogram(bins = 50, position = \"dodge\") + \n  guides(fill = \"none\") +\n  theme_bw()\n\n\n\nCode\ntable(Verizon$Group)\n\n\n\nCLEC ILEC \n  23 1664 \n\n\n\nThe groups are (very) unbalanced."
+  },
+  {
+    "objectID": "11-ml.html#analysis-plan-and-justification",
+    "href": "11-ml.html#analysis-plan-and-justification",
+    "title": "bootstrapping",
+    "section": "Analysis Plan and Justification",
+    "text": "Analysis Plan and Justification\nIt seems that the data do not meet the typical assumptions of an independent samples \\(t\\)-test.\nIn this case, to estimate mean differences we can use bootstrapping.\nHere, we’ll resample with replacement separately from the two samples and calculate their difference in means."
+  },
+  {
+    "objectID": "11-ml.html#one-solution",
+    "href": "11-ml.html#one-solution",
+    "title": "bootstrapping",
+    "section": "One Solution",
+    "text": "One Solution\n\n\nCode\nset.seed(5067)\nboot &lt;- 10000\ndifference &lt;- NULL\n\nsubsample_CLEC = Verizon %&gt;% filter(Group == \"CLEC\") #&lt;&lt;\nsubsample_ILEC = Verizon %&gt;% filter(Group == \"ILEC\") #&lt;&lt;"
+  },
+  {
+    "objectID": "11-ml.html#one-solution-1",
+    "href": "11-ml.html#one-solution-1",
+    "title": "bootstrapping",
+    "section": "One Solution",
+    "text": "One Solution\n\n\nCode\nset.seed(5067)\nboot &lt;- 10000\ndifference &lt;- NULL\n\nsubsample_CLEC = Verizon %&gt;% filter(Group == \"CLEC\")\nsubsample_ILEC = Verizon %&gt;% filter(Group == \"ILEC\")\n\nfor(i in 1:boot){\n  # Sample (with replacement) Verizon group (ILEC) customers\n  sample_CLEC = sample(subsample_CLEC$Time, #&lt;&lt;\n                       size = nrow(subsample_CLEC), #&lt;&lt;\n                       replace = T) #&lt;&lt;\n  # Sample (with replacement) Non-Verizon group (CLEC) customers\n  sample_ILEC = sample(subsample_ILEC$Time, #&lt;&lt;\n                       size = nrow(subsample_ILEC), #&lt;&lt;\n                       replace = T) #&lt;&lt;\n}"
+  },
+  {
+    "objectID": "11-ml.html#one-solution-2",
+    "href": "11-ml.html#one-solution-2",
+    "title": "bootstrapping",
+    "section": "One Solution",
+    "text": "One Solution\n\n\nCode\nset.seed(5067)\nboot &lt;- 10000\ndifference &lt;- NULL\n\nsubsample_CLEC = Verizon %&gt;% filter(Group == \"CLEC\")\nsubsample_ILEC = Verizon %&gt;% filter(Group == \"ILEC\")\n\nfor(i in 1:boot){\n  # Sample (with replacement) Verizon group (ILEC) customers\n  sample_CLEC = sample(subsample_CLEC$Time, \n                       size = nrow(subsample_CLEC), \n                       replace = T)\n  # Sample (with replacement) Non-Verizon group (CLEC) customers\n  sample_ILEC = sample(subsample_ILEC$Time, \n                       size = nrow(subsample_ILEC), \n                       replace = T)\n  \n  # Calculate the difference in means between the two groups\n  # Append the difference value to a list\n  difference &lt;- c(difference, mean(sample_CLEC) - mean(sample_ILEC)) #&lt;&lt;\n}"
+  },
+  {
+    "objectID": "11-ml.html#bootstrap-distribution-of-differences",
+    "href": "11-ml.html#bootstrap-distribution-of-differences",
+    "title": "bootstrapping",
+    "section": "Bootstrap Distribution of Differences",
+    "text": "Bootstrap Distribution of Differences\n\n\nCode\ndata.frame(differences = difference) %&gt;%\n  ggplot(aes(x = differences)) + \n  geom_histogram(aes(y = ..density..),color = \"white\", fill = \"grey\") +\n  geom_density() +\n  geom_vline(aes(xintercept = mean(differences), color = \"mean\"), \n             linewidth = 2) +\n  geom_vline(aes(xintercept = median(differences), color = \"median\"),\n             linewidth = 2) +\n  geom_vline(aes(xintercept = quantile(differences, probs = .025), color = \"Lower 2.5%\"), \n             linewidth = 2) +\n    geom_vline(aes(xintercept = quantile(differences, probs = .975), color = \"Upper 2.5%\"), \n               linewidth = 2) +\n  cowplot::theme_cowplot()\n\n\n\nThe difference in means is 7.64 \\([1.66,16.98]\\). What would this mean?\nBootstrap CI does not include 0. There is a difference in the waiting time of Verizon and non-Verizon customers in the expected direction"
+  },
+  {
+    "objectID": "11-ml.html#jackknife-resampling",
+    "href": "11-ml.html#jackknife-resampling",
+    "title": "bootstrapping",
+    "section": "Jackknife Resampling",
+    "text": "Jackknife Resampling\nJackknife Resampling is a method where researchers generate n sub-samples, each leaving out one observation. The method is very similar to bootstrapping except the way that we create the sub-samples."
+  },
+  {
+    "objectID": "11-ml.html#jack-of-all-trades-master-of-none---jackknife",
+    "href": "11-ml.html#jack-of-all-trades-master-of-none---jackknife",
+    "title": "bootstrapping",
+    "section": "Jack of all trades, master of none - Jackknife",
+    "text": "Jack of all trades, master of none - Jackknife\n\nCan assess the accuracy of a statistical estimator without making assumptions about the underlying distribution\nComputationally efficient bc only n sub-samples are generated (compared to 10,000 for example)\nNot used as much these days\nSensitive to sample size: If sample size is small, it can result in inaccurate estimates of the bias (e.g., sample size of 6 means six jackknife samples)."
+  },
+  {
+    "objectID": "11-ml.html#permutation-testing",
+    "href": "11-ml.html#permutation-testing",
+    "title": "bootstrapping",
+    "section": "Permutation Testing",
+    "text": "Permutation Testing\nA resampling method that involves randomly shuffling the labels (e.g., conditions) across the data and recomputing the test statistic of interest, thereby deriving a null distribution of the test statistic."
+  },
+  {
+    "objectID": "11-ml.html#permutation-example-restaurants",
+    "href": "11-ml.html#permutation-example-restaurants",
+    "title": "bootstrapping",
+    "section": "Permutation Example: Restaurants",
+    "text": "Permutation Example: Restaurants\nWe are interested in the difference in the rating of group A and group B restaurants.\n\n\nCode\nnames &lt;- c(\"Pappy's Smokehouse\", 'Mai Lee', \"Adriana's on the Hill\", 'Salt & Smoke', 'Chilli Spot', 'BLK MKT')\nlabels &lt;- c('A', 'A', 'A', 'B', 'B', 'B')\nratings &lt;- c(7, 8, 8, 4, 6, 7)\n\nperm_df &lt;- data.frame(name = names, \n                      group = labels, \n                      rating = ratings)\n\nhead(perm_df, 6)\n\n\n                   name group rating\n1    Pappy's Smokehouse     A      7\n2               Mai Lee     A      8\n3 Adriana's on the Hill     A      8\n4          Salt & Smoke     B      4\n5           Chilli Spot     B      6\n6               BLK MKT     B      7"
+  },
+  {
+    "objectID": "11-ml.html#permutation-example-restaurants-1",
+    "href": "11-ml.html#permutation-example-restaurants-1",
+    "title": "bootstrapping",
+    "section": "Permutation Example: Restaurants",
+    "text": "Permutation Example: Restaurants\nThe observed difference is…\n\n\n                   name group rating\n1    Pappy's Smokehouse     A      7\n2               Mai Lee     A      8\n3 Adriana's on the Hill     A      8\n\n\n\n\n[1] 7.666667\n\n\n\n\n          name group rating\n1 Salt & Smoke     B      4\n2  Chilli Spot     B      6\n3      BLK MKT     B      7\n\n\n\n\n[1] 5.666667\n\n\n\nperm_df %&gt;% filter(group == 'A') %&gt;% pull(rating) %&gt;% mean() - perm_df %&gt;% filter(group == 'B') %&gt;% pull(rating) %&gt;% mean()\n\n[1] 2"
+  },
+  {
+    "objectID": "11-ml.html#lets-try",
+    "href": "11-ml.html#lets-try",
+    "title": "bootstrapping",
+    "section": "Let’s Try",
+    "text": "Let’s Try\nInitially, we had 23 CLEC and 1,664 ILEC customers. First, we are going to calculate the mean difference in waiting time between the two groups using the observed data.\n\nsubsample_CLEC = Verizon %&gt;% filter(Group == \"CLEC\")\nsubsample_ILEC = Verizon %&gt;% filter(Group == \"ILEC\")\n\n(mean(subsample_CLEC$Time) - mean(subsample_ILEC$Time))\n\n[1] 8.09752"
+  },
+  {
+    "objectID": "11-ml.html#second-step",
+    "href": "11-ml.html#second-step",
+    "title": "bootstrapping",
+    "section": "Second Step",
+    "text": "Second Step\nWe are going to randomly shuffle the labels of groups (previous CLEC and ILEC labels don’t matter!). Label 23 random customers as CLEC and 1,664 random customers as ILEC 1,000 times, and store the mean difference in waiting time between the two groups inside a list."
+  },
+  {
+    "objectID": "11-ml.html#repeat-1000-times-to-derive-the-p-value",
+    "href": "11-ml.html#repeat-1000-times-to-derive-the-p-value",
+    "title": "bootstrapping",
+    "section": "Repeat 1,000 times to derive the p-value",
+    "text": "Repeat 1,000 times to derive the p-value\nOne iteration would look something like this:\n\nrandom_indices &lt;- sample.int(nrow(Verizon), 23)\nrandom_CLEC &lt;- Verizon[random_indices,]\nrandom_ILEC &lt;- Verizon[-random_indices,]\n\n(mean(random_CLEC$Time) - mean(random_ILEC$Time))\n\n[1] -0.3775922"
+  },
+  {
+    "objectID": "11-ml.html#analysis-plan",
+    "href": "11-ml.html#analysis-plan",
+    "title": "bootstrapping",
+    "section": "Analysis Plan",
+    "text": "Analysis Plan\n\nPut this in a for loop\n\n–\n\nConstruct a list of mean differences\n\n–\n\nDetermine the number of (random) mean differences greater than the observed difference in means (8.10)."
+  },
+  {
+    "objectID": "11-ml.html#one-way-to-do-this",
+    "href": "11-ml.html#one-way-to-do-this",
+    "title": "bootstrapping",
+    "section": "One Way to do this",
+    "text": "One Way to do this\n\nsubsample_CLEC = Verizon %&gt;% filter(Group == \"CLEC\")\nsubsample_ILEC = Verizon %&gt;% filter(Group == \"ILEC\")\nobserved_diff &lt;- mean(subsample_CLEC$Time) - mean(subsample_ILEC$Time)\n\nset.seed(1048596) # Set random seed\nperm = 1000 # Set number of permutations\n\ndifferences &lt;- NULL #&lt;&lt;"
+  },
+  {
+    "objectID": "11-ml.html#one-way-to-do-this-1",
+    "href": "11-ml.html#one-way-to-do-this-1",
+    "title": "bootstrapping",
+    "section": "One Way to do this",
+    "text": "One Way to do this\n\nsubsample_CLEC = Verizon %&gt;% filter(Group == \"CLEC\")\nsubsample_ILEC = Verizon %&gt;% filter(Group == \"ILEC\")\nobserved_diff &lt;- mean(subsample_CLEC$Time) - mean(subsample_ILEC$Time)\n\nset.seed(1048596) # Set random seed\nperm = 1000 # Set number of permutations\n\ndifferences &lt;- NULL\n\nfor (i in 1:perm){\n  random_indices &lt;- sample.int(nrow(Verizon), 23)\n  random_CLEC &lt;- Verizon[random_indices,]\n  random_ILEC &lt;- Verizon[-random_indices,]\n  \n  differences &lt;- c(differences, #&lt;&lt;\n                   mean(random_CLEC$Time) - mean(random_ILEC$Time)) #&lt;&lt;\n}"
+  },
+  {
+    "objectID": "11-ml.html#visualization",
+    "href": "11-ml.html#visualization",
+    "title": "bootstrapping",
+    "section": "Visualization",
+    "text": "Visualization\n\n\nCode\nperm_df = data.frame(diff = differences)\n\nggplot(perm_df, aes(x = diff)) +\n  geom_histogram(color = \"white\") + \n  geom_vline(aes(xintercept = mean(diff), color = \"mean\"), \n             linewidth = 1) +\n  geom_vline(aes(xintercept = median(diff), color = \"median\"), \n             linewidth = 1) +\n  geom_vline(aes(xintercept = observed_diff, color = \"observed\"), \n             linewidth = 1) +\n  ggtitle(\"Empirical Distribution of Differences under the Null\") +\n  cowplot::theme_cowplot()"
+  },
+  {
+    "objectID": "11-ml.html#permutation-testing-summary",
+    "href": "11-ml.html#permutation-testing-summary",
+    "title": "bootstrapping",
+    "section": "Permutation Testing Summary",
+    "text": "Permutation Testing Summary\n\nPermutation testing is useful for hypothesis testing because we can easily derive a \\(p\\)-value\nCan be used when data violates common assumptions about the data (i.e., homogeneity of variance and normality)\nAssumption that the observations need to be exchangeable. Some observations may not be exchangeable (e.g., time series data - data collected at different time points)\nSample size needs to be large. No point randomly shuffling 1,000 times when the possible permutation is less than 1000."
   }
 ]
