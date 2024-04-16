@@ -321,7 +321,6 @@ data.frame(means = response_means) %>%
 -------
 
 ```{r}
-#| code-fold: true
 set.seed(5067)
 boot <- 10000
 response_med <- NULL
@@ -362,7 +361,6 @@ quantile(response_med,
 -------
 
 ```{r}
-#| code-fold: true
 set.seed(5067)
 boot <- 10000
 response_sd <- NULL
@@ -407,9 +405,11 @@ quantile(response_sd,
 
 You can bootstrap estimates and 95% confidence intervals for *any* statistics you'll need to estimate. 
 
-Things you should learn how to do in `R`:
-- learn to read a `for loop`
-- learn to write your own function
+Things you should learn how to do in `R`:   
+
+- learn to read a `for loop`. 
+
+- learn to write your own function.  
 
 -------
 
@@ -417,7 +417,6 @@ The `boot` package and function provides some help to speed this process along. 
 
 
 ```{r}
-#| code-fold: true
 library(boot)
 
 # function to obtain R-Squared from the data
@@ -439,6 +438,8 @@ data.frame(rsq = results$t) %>%
   geom_histogram(color = "white", bins = 30) 
 ```
 
+
+-----------
 
 
 ```{r}
@@ -475,9 +476,7 @@ Verizon %>%
   facet_wrap(~Group, scales = "free_y")
 ```
 
-- Left is the distribution of waiting times of Non-Verizon (CLEC) customers; and
-- Right is the distribution of waiting times of Verizon (ILEC) customers. 
-- Both distributions are not normal.
+- Left is the distribution of waiting times of Non-Verizon (CLEC) customers and right is the distribution of waiting times of Verizon (ILEC) customers
 
 
 ## Inspect Verizon Data 2
@@ -489,10 +488,13 @@ Verizon %>%
   geom_histogram(bins = 50, position = "dodge") + 
   guides(fill = "none") +
   theme_bw()
-table(Verizon$Group)
+
 ```
 
-- The groups are (very) unbalanced. 
+```{r}
+#| code-fold: true
+table(Verizon$Group)
+```
 
 
 ## Analysis Plan and Justification 
@@ -532,7 +534,7 @@ for(i in 1:boot){
 ## One Solution
 
 ```{r}
-#| code-fold: true
+
 set.seed(5067)
 boot <- 10000
 difference <- NULL
@@ -545,7 +547,7 @@ subsample_ILEC = Verizon %>% filter(Group == "ILEC") #<<
 ## One Solution
 
 ```{r}
-#| code-fold: true
+
 set.seed(5067)
 boot <- 10000
 difference <- NULL
@@ -569,7 +571,7 @@ for(i in 1:boot){
 ## One Solution
 
 ```{r}
-#| code-fold: true
+
 set.seed(5067)
 boot <- 10000
 difference <- NULL
@@ -613,9 +615,8 @@ data.frame(differences = difference) %>%
   cowplot::theme_cowplot()
 ```
 
-The difference in means is `r round(median(difference),2)` $[`r round(quantile(difference, probs = .025),2)`,`r round(quantile(difference, probs = .975),2)`]$. What would this mean?
 
-Bootstrap CI does not include 0. There is a difference in the waiting time of Verizon and non-Verizon customers in the expected direction
+The difference in means is `r round(median(difference),2)` $[`r round(quantile(difference, probs = .025),2)`,`r round(quantile(difference, probs = .975),2)`]$. What would this mean?
 
 -------
 
@@ -680,13 +681,11 @@ paste("First Sub-sample: ", toString(friends[-1]))
 paste("Second Sub-sample: ", toString(friends[-2]))
 ```
 
-```{r}
-#| code-fold: true
+```{r, , echo = F}
 paste("Third Sub-sample: ", toString(friends[-3]))
 ```
 
-```{r}
-#| code-fold: true
+```{r, echo = F}
 paste("Fourth Sub-sample: ", toString(friends[-4]))
 ```
 
@@ -792,7 +791,6 @@ random_A %>% pull(rating) %>% mean() - random_B %>% pull(rating) %>% mean()
 Repeat the previous step numerous times to impose a null distribution of mean differences
 
 ```{r}
-#| code-fold: true
 observed_diff <- perm_df %>% filter(group == 'A') %>% pull(rating) %>% mean() - perm_df %>% filter(group == 'B') %>% pull(rating) %>% mean()
 
 set.seed(5067) # Set random seed
@@ -825,7 +823,7 @@ ggplot(diff_df, aes(x = diff)) +
 ```
 
 
-We could count the number of permutations that have larger test statistic value than the observed difference, which would be equivalent to the $p$-value (or the probability that a test statistic is greater than or equal to the observed value, **under the null**).
+Count the number of permutations that have larger test statistic value than the observed difference, equivalent to the $p$-value (or the probability that a test statistic is greater than or equal to the observed value, **under the null**).
 
 
 ## Let's Try
