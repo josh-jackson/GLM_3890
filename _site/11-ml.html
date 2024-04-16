@@ -414,7 +414,7 @@
 <li><p>Estimate the population mean</p></li>
 <li><p>Sampling distribution of mean derived from sample statistics</p></li>
 <li><p>Built a 95% confidence interval around the sample mean</p></li>
-<li><p>We’ve been <strong>relying on a single estimate</strong> of the population parameter.</p></li>
+<li><p>We’ve been <strong>relying on a single estimate</strong> of the population parameter (except for with Bayesian methods).</p></li>
 </ul>
 </section>
 <section class="slide level2">
@@ -439,7 +439,7 @@
 <ul>
 <li><p>Bootstrapping</p></li>
 <li><p>Jackknife method (just a glimpse)</p></li>
-<li><p>Permutation testing (just a glimpse; Research Methods will cover it)</p></li>
+<li><p>Permutation testing (just a glimpse)</p></li>
 </ul>
 </section>
 <section class="slide level2">
@@ -475,10 +475,10 @@
 <span id="cb1-5"><a href="#cb1-5"></a>(<span class="at">sample1 =</span> <span class="fu">sample</span>(friends, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">replace =</span> T)); <span class="fu">paste</span>(<span class="st">'Mean height of this sample:'</span>, <span class="fu">mean</span>(heights[sample1]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Ross"     "Joey"     "Phoebe"   "Chandler" "Monica"   "Ross"    </code></pre>
+<pre><code>[1] "Rachel"   "Monica"   "Ross"     "Chandler" "Monica"   "Ross"    </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Mean height of this sample: 172.666666666667"</code></pre>
+<pre><code>[1] "Mean height of this sample: 170.666666666667"</code></pre>
 </div>
 </div>
 </section>
@@ -495,10 +495,10 @@
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>(<span class="at">sample1 =</span> <span class="fu">sample</span>(friends, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">replace =</span> T)); <span class="fu">paste</span>(<span class="st">'Mean height of this sample:'</span>, <span class="fu">mean</span>(heights[sample1]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Rachel" "Rachel" "Rachel" "Phoebe" "Monica" "Monica"</code></pre>
+<pre><code>[1] "Monica"   "Monica"   "Ross"     "Monica"   "Monica"   "Chandler"</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Mean height of this sample: 166.166666666667"</code></pre>
+<pre><code>[1] "Mean height of this sample: 168.5"</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -507,10 +507,10 @@
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>(<span class="at">sample1 =</span> <span class="fu">sample</span>(friends, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">replace =</span> T)); <span class="fu">paste</span>(<span class="st">'Mean height of this sample:'</span>, <span class="fu">mean</span>(heights[sample1]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Joey"     "Rachel"   "Rachel"   "Chandler" "Joey"     "Joey"    </code></pre>
+<pre><code>[1] "Phoebe"   "Joey"     "Phoebe"   "Chandler" "Phoebe"   "Rachel"  </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Mean height of this sample: 168.833333333333"</code></pre>
+<pre><code>[1] "Mean height of this sample: 170.666666666667"</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -519,10 +519,10 @@
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>(<span class="at">sample1 =</span> <span class="fu">sample</span>(friends, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">replace =</span> T)); <span class="fu">paste</span>(<span class="st">'Mean height of this sample:'</span>, <span class="fu">mean</span>(heights[sample1]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Joey"     "Phoebe"   "Rachel"   "Phoebe"   "Chandler" "Ross"    </code></pre>
+<pre><code>[1] "Joey"     "Chandler" "Rachel"   "Chandler" "Monica"   "Chandler"</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Mean height of this sample: 171.666666666667"</code></pre>
+<pre><code>[1] "Mean height of this sample: 169.833333333333"</code></pre>
 </div>
 </div>
 </section>

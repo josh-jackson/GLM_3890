@@ -34,7 +34,7 @@ Single Estimate of the Population Parameter
 
 - Built a 95% confidence interval around the sample mean
 
-- We've been **relying on a single estimate** of the population parameter. 
+- We've been **relying on a single estimate** of the population parameter (except for with Bayesian methods). 
 
 ---
 
@@ -66,7 +66,7 @@ A statistical technique that involves re-estimation of the population parameter 
 
 - Jackknife method (just a glimpse)
 
-- Permutation testing (just a glimpse; Research Methods will cover it)
+- Permutation testing (just a glimpse)
 
 -----
 

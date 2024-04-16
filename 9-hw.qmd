@@ -1,0 +1,21 @@
+---
+title: "HW-9"
+---
+
+
+## Instructions
+
+Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.
+
+Data: You will use the same Human Connectome Project dataset you worked with in the R class and this semester’s R refresher. It is available  [`here`](https://raw.githubusercontent.com/josh-jackson/GLM_3890/main/hcp-data.csv)
+
+## Questions
+
+1. In a few sentences, describe the difference between a theoretical probability distribution and an empirical distribution. In your answer, make sure to discuss how bootstrapping fits into this. 
+
+2. You are interested in the correlation between the Penn Matrix Reasoning Task (PMAT) and the List Sorting task, and you are wondering if the correlation is significantly different from 0. Use bootstrapping to create a more precise estimate of the correlation, as well as answer if it is different from 0. Create a figure illustrating your findings.
+
+3. Run a permutation test to see if Neuroticism is different for men and women. Create a figure illustrating your findings.
+
+4. Reflect on the Yarkoni & Westfall paper, as well as our discussion in class. In 4-6 sentences, what were YOUR takeaways? Did you change your mind on something? Did you start thinking about scientific research in a different way? Were you convinced or unconvinced in either direction? We want to hear what you got out of the paper and subsequent discussion!
+

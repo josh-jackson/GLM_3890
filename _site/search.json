@@ -487,7 +487,7 @@
     "href": "homework.html",
     "title": "homework",
     "section": "",
-    "text": "Homework 8\nHomework 7\nHomework 6\nHomework 5\nHomework 4\nHomework 3\nHomework 2\nHomework 1"
+    "text": "Homework 9\nHomework 8\nHomework 7\nHomework 6\nHomework 5\nHomework 4\nHomework 3\nHomework 2\nHomework 1"
   },
   {
     "objectID": "3-Basics.html#this-time",
@@ -2237,7 +2237,7 @@
     "href": "11-ml.html#problems-with-sampling",
     "title": "bootstrapping",
     "section": "Problems with Sampling",
-    "text": "Problems with Sampling\nSingle Estimate of the Population Parameter\n\nEstimate the population mean\nSampling distribution of mean derived from sample statistics\nBuilt a 95% confidence interval around the sample mean\nWe’ve been relying on a single estimate of the population parameter."
+    "text": "Problems with Sampling\nSingle Estimate of the Population Parameter\n\nEstimate the population mean\nSampling distribution of mean derived from sample statistics\nBuilt a 95% confidence interval around the sample mean\nWe’ve been relying on a single estimate of the population parameter (except for with Bayesian methods)."
   },
   {
     "objectID": "11-ml.html#introduction-to-resampling",
@@ -2258,7 +2258,7 @@
     "href": "11-ml.html#types-of-resampling",
     "title": "bootstrapping",
     "section": "Types of Resampling",
-    "text": "Types of Resampling\n\nBootstrapping\nJackknife method (just a glimpse)\nPermutation testing (just a glimpse; Research Methods will cover it)"
+    "text": "Types of Resampling\n\nBootstrapping\nJackknife method (just a glimpse)\nPermutation testing (just a glimpse)"
   },
   {
     "objectID": "11-ml.html#bootstrapping",
@@ -2279,7 +2279,7 @@
     "href": "11-ml.html#repeat",
     "title": "bootstrapping",
     "section": "Repeat",
-    "text": "Repeat\n\n\nCode\n(sample1 = sample(friends, size = 6, replace = T)); paste('Mean height of this sample:', mean(heights[sample1]))\n\n\n[1] \"Rachel\" \"Rachel\" \"Rachel\" \"Phoebe\" \"Monica\" \"Monica\"\n\n\n[1] \"Mean height of this sample: 166.166666666667\"\n\n\n\n\nCode\n(sample1 = sample(friends, size = 6, replace = T)); paste('Mean height of this sample:', mean(heights[sample1]))\n\n\n[1] \"Joey\"     \"Rachel\"   \"Rachel\"   \"Chandler\" \"Joey\"     \"Joey\"    \n\n\n[1] \"Mean height of this sample: 168.833333333333\"\n\n\n\n\nCode\n(sample1 = sample(friends, size = 6, replace = T)); paste('Mean height of this sample:', mean(heights[sample1]))\n\n\n[1] \"Joey\"     \"Phoebe\"   \"Rachel\"   \"Phoebe\"   \"Chandler\" \"Ross\"    \n\n\n[1] \"Mean height of this sample: 171.666666666667\""
+    "text": "Repeat\n\n\nCode\n(sample1 = sample(friends, size = 6, replace = T)); paste('Mean height of this sample:', mean(heights[sample1]))\n\n\n[1] \"Monica\"   \"Monica\"   \"Ross\"     \"Monica\"   \"Monica\"   \"Chandler\"\n\n\n[1] \"Mean height of this sample: 168.5\"\n\n\n\n\nCode\n(sample1 = sample(friends, size = 6, replace = T)); paste('Mean height of this sample:', mean(heights[sample1]))\n\n\n[1] \"Phoebe\"   \"Joey\"     \"Phoebe\"   \"Chandler\" \"Phoebe\"   \"Rachel\"  \n\n\n[1] \"Mean height of this sample: 170.666666666667\"\n\n\n\n\nCode\n(sample1 = sample(friends, size = 6, replace = T)); paste('Mean height of this sample:', mean(heights[sample1]))\n\n\n[1] \"Joey\"     \"Chandler\" \"Rachel\"   \"Chandler\" \"Monica\"   \"Chandler\"\n\n\n[1] \"Mean height of this sample: 169.833333333333\""
   },
   {
     "objectID": "11-ml.html#bootstrap-10000-times",
@@ -2476,5 +2476,26 @@
     "title": "bootstrapping",
     "section": "Permutation Testing Summary",
     "text": "Permutation Testing Summary\n\nPermutation testing is useful for hypothesis testing because we can easily derive a \\(p\\)-value\nCan be used when data violates common assumptions about the data (i.e., homogeneity of variance and normality)\nAssumption that the observations need to be exchangeable. Some observations may not be exchangeable (e.g., time series data - data collected at different time points)\nSample size needs to be large. No point randomly shuffling 1,000 times when the possible permutation is less than 1000."
+  },
+  {
+    "objectID": "9-hw.html",
+    "href": "9-hw.html",
+    "title": "HW-9",
+    "section": "",
+    "text": "Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.\nData: You will use the same Human Connectome Project dataset you worked with in the R class and this semester’s R refresher. It is available here"
+  },
+  {
+    "objectID": "9-hw.html#instructions",
+    "href": "9-hw.html#instructions",
+    "title": "HW-9",
+    "section": "",
+    "text": "Please complete this assignment by creating a new RMarkdown (or Quarto) file. Be sure to include your name in the preamble. Please submit both your .Rmd (or .qmd) and your .html files to Canvas.\nData: You will use the same Human Connectome Project dataset you worked with in the R class and this semester’s R refresher. It is available here"
+  },
+  {
+    "objectID": "9-hw.html#questions",
+    "href": "9-hw.html#questions",
+    "title": "HW-9",
+    "section": "Questions",
+    "text": "Questions\n\nIn a few sentences, describe the difference between a theoretical probability distribution and an empirical distribution. In your answer, make sure to discuss how bootstrapping fits into this.\nYou are interested in the correlation between the Penn Matrix Reasoning Task (PMAT) and the List Sorting task, and you are wondering if the correlation is significantly different from 0. Use bootstrapping to create a more precise estimate of the correlation, as well as answer if it is different from 0. Create a figure illustrating your findings.\nRun a permutation test to see if Neuroticism is different for men and women. Create a figure illustrating your findings.\nReflect on the Yarkoni & Westfall paper, as well as our discussion in class. In 4-6 sentences, what were YOUR takeaways? Did you change your mind on something? Did you start thinking about scientific research in a different way? Were you convinced or unconvinced in either direction? We want to hear what you got out of the paper and subsequent discussion!"
   }
 ]
