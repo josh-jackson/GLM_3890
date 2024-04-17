@@ -102,7 +102,7 @@
     "href": "lectures.html",
     "title": "Lectures",
     "section": "",
-    "text": "What are models?\nGLM basics\nGLM basics - 2\nGLM basics - 3\nInteractions\nInteractions - 2\nMLM\nSEM\nlogistic\nBayes\nMachine learning 1"
+    "text": "What are models?\nGLM basics\nGLM basics - 2\nGLM basics - 3\nInteractions\nInteractions - 2\nMLM\nSEM\nlogistic\nBayes\nMachine learning 1\nMachine learning 2"
   },
   {
     "objectID": "index.html",
@@ -2497,5 +2497,180 @@
     "title": "HW-9",
     "section": "Questions",
     "text": "Questions\n\nIn a few sentences, describe the difference between a theoretical probability distribution and an empirical distribution. In your answer, make sure to discuss how bootstrapping fits into this.\nYou are interested in the correlation between the Penn Matrix Reasoning Task (PMAT) and the List Sorting task, and you are wondering if the correlation is significantly different from 0. Use bootstrapping to create a more precise estimate of the correlation, as well as answer if it is different from 0. Create a figure illustrating your findings.\nRun a permutation test to see if Neuroticism is different for men and women. Create a figure illustrating your findings.\nReflect on the Yarkoni & Westfall paper, as well as our discussion in class. In 4-6 sentences, what were YOUR takeaways? Did you change your mind on something? Did you start thinking about scientific research in a different way? Were you convinced or unconvinced in either direction? We want to hear what you got out of the paper and subsequent discussion!"
+  },
+  {
+    "objectID": "12-ml.html#today-last-time",
+    "href": "12-ml.html#today-last-time",
+    "title": "ML-2",
+    "section": "Today & Last time…",
+    "text": "Today & Last time…\n\nResampling methods via bootstrapping & permutation testing\nLessons from machine learning"
+  },
+  {
+    "objectID": "12-ml.html#explanation-vs.-prediction",
+    "href": "12-ml.html#explanation-vs.-prediction",
+    "title": "ML-2",
+    "section": "Explanation vs. Prediction",
+    "text": "Explanation vs. Prediction\nExplanation: describe causal underpinnings of behaviors/outcomes\nPrediction: Accurately forecast behaviors/outcomes\nSimilarities.\n\nBoth are goals of science.\nGood predictions can help us develop theories of explanation and vice versa"
+  },
+  {
+    "objectID": "12-ml.html#explanation-vs.-prediction-1",
+    "href": "12-ml.html#explanation-vs.-prediction-1",
+    "title": "ML-2",
+    "section": "Explanation vs. Prediction",
+    "text": "Explanation vs. Prediction\nStatistical Tensions\n\nStatistical models that accurately describe causal truths often have poor prediction and are complex\nPredictive models are often very different from the “true”, underlying data generating processes"
+  },
+  {
+    "objectID": "12-ml.html#explanation-vs.-prediction-2",
+    "href": "12-ml.html#explanation-vs.-prediction-2",
+    "title": "ML-2",
+    "section": "Explanation vs. Prediction",
+    "text": "Explanation vs. Prediction\n\nWhat do we do in Psychology and Neuroscience?\nWhat about regression?\n\nPoint of Yarkoni & Westfall (2017) - How far have we really come in the past 10 years? 20 years? 30 years? …not as far as we’d like\n\nWe should spend more time and resources developing predictive models than we currently do"
+  },
+  {
+    "objectID": "12-ml.html#maybe-helpful-definitions",
+    "href": "12-ml.html#maybe-helpful-definitions",
+    "title": "ML-2",
+    "section": "Maybe Helpful Definitions",
+    "text": "Maybe Helpful Definitions\nMachine Learning (ML) is the process of feeding previous observations into a computer and using the computer to generate predictions for new observations. AKA:\n\nmachine inference\npattern recognition (Google Photos!)\nstatistical estimation\nprediction modeling\nstatistical learning (ish)"
+  },
+  {
+    "objectID": "12-ml.html#maybe-helpful-definitions-1",
+    "href": "12-ml.html#maybe-helpful-definitions-1",
+    "title": "ML-2",
+    "section": "Maybe Helpful Definitions",
+    "text": "Maybe Helpful Definitions\nTraining occurs by extracting patterns from the observed data; think of this as learning\nTesting occurs by verifying predictions on previously unobserved data; think of this as evaluating\nArtificial Intelligence is not the same as machine learning. AI is the simulation of human intelligence by computers; AI systems are generally trained with machine learning approaches."
+  },
+  {
+    "objectID": "12-ml.html#some-more-definitions",
+    "href": "12-ml.html#some-more-definitions",
+    "title": "ML-2",
+    "section": "Some more definitions",
+    "text": "Some more definitions\nSupervised Learning: using known patterns between input and output observations to train a mapping between the two\n\nRegression! learning the mapping between a continuous input feature variable and a continuous output target variable\nClassification: learning the mapping between a continuous input feature variable and a categorical output target variable (i.e., a label)"
+  },
+  {
+    "objectID": "12-ml.html#some-more-definitions-1",
+    "href": "12-ml.html#some-more-definitions-1",
+    "title": "ML-2",
+    "section": "Some more definitions",
+    "text": "Some more definitions\nUnsupervised Learning: determining patterns in observations without guiding referents\n\nDimensionality Reduction: decreasing the overall number of features considered in a learning procedure (i.e., PCA, ICA etc.)\nClustering: grouping features together that are similar as determined by some metric"
+  },
+  {
+    "objectID": "12-ml.html#wash-u",
+    "href": "12-ml.html#wash-u",
+    "title": "ML-2",
+    "section": "@Wash U",
+    "text": "@Wash U\n\nReinforcement Learning: determining a mapping between input and output observations using only a measure of training quality\nML classes in CS department\nWouter Kool for reinforcement learning\nACCSN with Dennis Barbour and myself for high level discussions on these topics\nPoli Sci department for dealing with categorical outcomes"
+  },
+  {
+    "objectID": "12-ml.html#machine-learning-algorithms",
+    "href": "12-ml.html#machine-learning-algorithms",
+    "title": "ML-2",
+    "section": "Machine Learning Algorithms",
+    "text": "Machine Learning Algorithms\n\n\n\nordinary least squares linear regression\nlogistic regression\nk-means clustering\nnearest neighbor\nnaive Bayes\nridge regression\nLASSO regression\nsupport vector machine\n\n\n\nrandom forest\nGaussian process estimator\nmultilayer perceptron (deep net)\nconvolutional network\nrecurrent network\ngeneralized adversarial network"
+  },
+  {
+    "objectID": "12-ml.html#some-terminology",
+    "href": "12-ml.html#some-terminology",
+    "title": "ML-2",
+    "section": "Some terminology",
+    "text": "Some terminology\nOverfitting is when we mistakenly fit sample-specific noise as if it were actually a signal.\n\nIf our model has a \\(R^2 = .9\\), we do an excellent job of explaining variance in our sample.\nOLS models tend to be overfit because they minimize error for a specific sample"
+  },
+  {
+    "objectID": "12-ml.html#bias-and-variance",
+    "href": "12-ml.html#bias-and-variance",
+    "title": "ML-2",
+    "section": "Bias and Variance",
+    "text": "Bias and Variance\nBias refers to systematically over- or under-estimating parameters.\nVariance refers to how much estimates tend to jump around\nBias-Variance Tradeoff we can reduce variance around our estimates but at the expense of increasing bias of estimates and vice versa\nUnderfitting means we can’t capture a relationship at all – not as big of a problem for us"
+  },
+  {
+    "objectID": "12-ml.html#cross-validation",
+    "href": "12-ml.html#cross-validation",
+    "title": "ML-2",
+    "section": "Cross-validation",
+    "text": "Cross-validation\nCross-validation is a family of techniques that involve testing and training a model on different samples of data."
+  },
+  {
+    "objectID": "12-ml.html#cross-validation-hold-out-samples",
+    "href": "12-ml.html#cross-validation-hold-out-samples",
+    "title": "ML-2",
+    "section": "Cross-validation: Hold-out Samples",
+    "text": "Cross-validation: Hold-out Samples\n\n\n\nSplit into training and testing sets\nFit your model on the training set\nPredict outputs for your testing set\n\n\nPros\n\nStraightforward; computationally easy\n\nCons\n\nWhich data go into which set?\nWhat if the vast majority of group A fall into the training set and the vast majority of group B fall into the testing set?"
+  },
+  {
+    "objectID": "12-ml.html#k-fold-cross-validation",
+    "href": "12-ml.html#k-fold-cross-validation",
+    "title": "ML-2",
+    "section": "K-fold Cross-validation",
+    "text": "K-fold Cross-validation\n\nMake k subsets of your data\nRepeat the hold-out method of test/train, but do it k times\nGet the model fit for all k iterations; take the average model fit"
+  },
+  {
+    "objectID": "12-ml.html#k-fold-cross-validation-1",
+    "href": "12-ml.html#k-fold-cross-validation-1",
+    "title": "ML-2",
+    "section": "K-fold Cross-validation",
+    "text": "K-fold Cross-validation\nPros\n\nDoesn’t matter much which data points fall into test or train since each subset can be both a test and a training set\nThe more folds you do (larger k), the more you are able to decrease your variance around your averaged model fit\n\nCons\n\nCan take a decent amount of computational power, depending on the dataset"
+  },
+  {
+    "objectID": "12-ml.html#leave-one-out-cross-validation",
+    "href": "12-ml.html#leave-one-out-cross-validation",
+    "title": "ML-2",
+    "section": "Leave-One-Out Cross-validation",
+    "text": "Leave-One-Out Cross-validation\n\nSame as k-fold, but now k is equal to your \\(N\\)\n\nPros\n\nGood estimations\n\nCons\n\nEven more computationally expensive\nEspecially if using “big data”"
+  },
+  {
+    "objectID": "12-ml.html#a-brief-aside",
+    "href": "12-ml.html#a-brief-aside",
+    "title": "ML-2",
+    "section": "A brief aside:",
+    "text": "A brief aside:\nNewer package called tidymodels is better for machine learning, but requires many more steps. For now, this is the simpler method.\nR vs. Python 🐍 . R is excellent for statistics and visualizing data. Most of what we do in Psychology. Python is better for machine learning and is more of a full suite language.\nIf you’re going hard with ML, use tidymodels or Python."
+  },
+  {
+    "objectID": "12-ml.html#example-10-fold-cross-validation",
+    "href": "12-ml.html#example-10-fold-cross-validation",
+    "title": "ML-2",
+    "section": "Example: 10-fold cross validation",
+    "text": "Example: 10-fold cross validation\n\n\nCode\nlibrary(caret)\n# set control parameters\nctrl &lt;- trainControl(method=\"cv\", number=10)\n# use train() instead of lm()\ncv.model &lt;- train(Stress ~ Anxiety*Support*group, \n               data = stress.data, \n               trControl=ctrl, # what are the control parameters\n               method=\"lm\") # what kind of model\ncv.model\n\n\nLinear Regression \n\n118 samples\n  3 predictor\n\nNo pre-processing\nResampling: Cross-Validated (10 fold) \nSummary of sample sizes: 106, 107, 106, 107, 106, 106, ... \nResampling results:\n\n  RMSE      Rsquared   MAE     \n  1.575509  0.3851594  1.279616\n\nTuning parameter 'intercept' was held constant at a value of TRUE"
+  },
+  {
+    "objectID": "12-ml.html#cross-validation-summary",
+    "href": "12-ml.html#cross-validation-summary",
+    "title": "ML-2",
+    "section": "Cross-Validation Summary",
+    "text": "Cross-Validation Summary\n\nTempers your estimates to protect against overfitting\nYou do not need fancy ML algorithms. You can do this with your classic regression!\nIf your whole sample is not representative, this will not save you"
+  },
+  {
+    "objectID": "12-ml.html#regularization",
+    "href": "12-ml.html#regularization",
+    "title": "ML-2",
+    "section": "Regularization",
+    "text": "Regularization\nPenalizing a model as it grows more complex.\n\nUsually involves shrinking coefficient estimates – the model will fit less well in-sample but may be more predictive"
+  },
+  {
+    "objectID": "12-ml.html#lasso-regression",
+    "href": "12-ml.html#lasso-regression",
+    "title": "ML-2",
+    "section": "LASSO Regression",
+    "text": "LASSO Regression\n\nThe glmnet package has the tools for LASSO regression.\nOne small complication is that the package uses matrix algebra, so you need to feed it a matrix of predictors – specifically, instead of saying “find the interaction between A and B”, you need to create the variable that represents this term.\nLuckily, the function model.matrix() can do this for you."
+  },
+  {
+    "objectID": "12-ml.html#what-value-of-lambda-to-choose",
+    "href": "12-ml.html#what-value-of-lambda-to-choose",
+    "title": "ML-2",
+    "section": "What value of \\(\\lambda\\) to choose?",
+    "text": "What value of \\(\\lambda\\) to choose?\nLooks like coefficients 1, 2, and 3 have high values even with shrinkage.\n\n\nCode\nplot(lasso.mod, xvar = \"dev\", label = T, )"
+  },
+  {
+    "objectID": "12-ml.html#what-value-of-lambda-to-choose-1",
+    "href": "12-ml.html#what-value-of-lambda-to-choose-1",
+    "title": "ML-2",
+    "section": "What value of \\(\\lambda\\) to choose?",
+    "text": "What value of \\(\\lambda\\) to choose?\nLooking for \\(\\lambda\\) values where those coefficients are still different from 0.\n\n\nCode\nplot(lasso.mod, xvar = \"lambda\", label = TRUE, cex = 8)"
+  },
+  {
+    "objectID": "12-ml.html#summary-yarkoni-and-westfall-2017",
+    "href": "12-ml.html#summary-yarkoni-and-westfall-2017",
+    "title": "ML-2",
+    "section": "Summary: Yarkoni and Westfall (2017)",
+    "text": "Summary: Yarkoni and Westfall (2017)\nBig Data * Reduce the likelihood of overfitting – more data means less error\nCross-validation * Is my model overfit?\nRegularization * Constrain the model to be less overfit"
   }
 ]
